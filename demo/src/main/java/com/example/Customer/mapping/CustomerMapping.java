@@ -17,6 +17,17 @@ public class CustomerMapping implements RowMapper<CustomerEntity> {
 
         customerEntity.setCustomerid(rs.getInt("customerid"));
         customerEntity.setName(rs.getString("name"));
+        customerEntity.setAddress(rs.getString("address"));
+        customerEntity.setLocality(rs.getString("locality"));
+        customerEntity.setLandmark(rs.getString("landmark"));
+        customerEntity.setCity(rs.getString("city"));
+        customerEntity.setState(rs.getString("state"));
+        customerEntity.setAccountType(rs.getString("accounttype"));
+        customerEntity.setEmailId(rs.getString("emailid"));
+        customerEntity.setContNo(rs.getString("contno"));
+        customerEntity.setAccountDate(rs.getDate("accountdate"));
+
+
         return customerEntity;
     }
 

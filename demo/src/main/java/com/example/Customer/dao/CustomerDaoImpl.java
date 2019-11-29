@@ -23,7 +23,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<CustomerEntity> getDetail() {
 
-        String sql="select * from CustomerEntity";
+        String sql="select * from Customer";
         List<CustomerEntity> listOfCustomer=template.query(sql,new CustomerMapping());
 
         return listOfCustomer;
