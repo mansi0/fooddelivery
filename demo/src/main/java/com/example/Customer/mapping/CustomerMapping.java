@@ -25,6 +25,7 @@ public class CustomerMapping implements RowMapper<CustomerEntity> {
         customerEntity.setAccountType(rs.getString("accounttype"));
         customerEntity.setEmailId(rs.getString("emailid"));
         customerEntity.setContNo(rs.getString("contno"));
+        customerEntity.setPassword(rs.getString("password"));
         customerEntity.setAccountDate(rs.getDate("accountdate"));
 
 

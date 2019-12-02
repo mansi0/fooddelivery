@@ -1,4 +1,4 @@
-create table customer(customerId int primary key,name varchar(40),address varchar(50),locality varchar(20),landmark varchar(20),city varchar(15),state varchar(20),accountType varchar(10) check(accountType in('simple','golden')),emailId varchar(70),contno varchar(15),accountDate date);
+create table customer(customerId int primary key,name varchar(40),address varchar(50),locality varchar(20),landmark varchar(20),city varchar(15),state varchar(20),accountType varchar(10) check(accountType in('simple','golden')),emailId varchar(70),contno varchar(15),password varchar(150),accountDate date);
 
 create table order1(orderId int primary key,orderDate date,orderTime time,cookingInstruction varchar(50),customerId int references customer(customerId)on delete cascade on update cascade,unique(customerId,orderId));
 

@@ -10,4 +10,6 @@ import com.example.Customer.entity.CustomerEntity;
 public interface CustomerDao {
 
     public List<CustomerEntity> getDetail();
+    public List<CustomerEntity> checkDuplicationOfEmail(CustomerEntity customerEntity);
+    public int addCustomer(CustomerEntity customerEntity);
 }

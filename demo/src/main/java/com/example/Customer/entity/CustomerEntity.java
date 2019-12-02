@@ -17,6 +17,7 @@ public class CustomerEntity {
     String accountType;
     String emailId;
     String contNo;
+    String password;
     Date accountDate;
 
     public int getCustomerid() {
@@ -106,6 +107,14 @@ public class CustomerEntity {
 
     public Date getAccountDate() {
         return accountDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 
