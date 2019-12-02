@@ -73,9 +73,10 @@ public class CustomerDaoImpl implements CustomerDao {
 
     try {
 
-      String sql = "insert into customer values(:customerId,:name,:address,:locality,:landmark,:city,:state,:accountType,:emailId,:contno,:password,:accountDate)";
+      String sql = "insert into customer values(:customerid,:name,:address,:locality,:landmark,:city,:state,:accounttype,:emailid,:contno,:password,:accountdate)";
+      logger.debug("DAO::CustomerDaoImp::addCustomer::sql:: " + sql);
       SqlParameterSource param = new MapSqlParameterSource()
-        .addValue("customerId", uuid.toString())
+        .addValue("customerid", uuid.toString())
         .addValue("name", customerEntity.getName())
         .addValue("address", customerEntity.getAddress())
         .addValue("locality", customerEntity.getLocality())
@@ -83,13 +84,13 @@ public class CustomerDaoImpl implements CustomerDao {
         .addValue("city", customerEntity.getCity())
         .addValue("state", customerEntity.getState())
         .addValue("accounttype", customerEntity.getAccountType())
-        .addValue("email", customerEntity.getEmailId())
+        .addValue("emailid", customerEntity.getEmailId())
 
-        .addValue("contNo", customerEntity.getContNo())
+        .addValue("contno", customerEntity.getContNo())
         .addValue("password", customerEntity.getPassword())
         .addValue("accountdate", customerEntity.getAccountDate());
 
-        logger.debug("DAO::CustomerDaoImp::addCustomer::sql:: " + sql);
+       
           
         logger.debug("DAO::CustomerDaoImp::addCustomer::param:: " + param);
 
@@ -97,8 +98,8 @@ public class CustomerDaoImpl implements CustomerDao {
       return template.update(sql, param);
     }
     catch(Exception e) {
-
-      logger.error("DAO::UserDaoImp::addUser::error:: " + e.getStackTrace());
+      logger.error("DAO::CustomerDaoImp::addCustomer::error****:: " + e.getMessage());
+      logger.error("DAO::CustomerDaoImp::addCustomer::error:: " + e.getStackTrace());
       
       throw e;
     }

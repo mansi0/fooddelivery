@@ -12,10 +12,10 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 //import java.lang.Object.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.mail.javamail.JavaMailSender;
 //import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;;
 
 /**
@@ -71,14 +71,15 @@ public class CustomerServiceImpl implements CustomerService{
             customerEntity.setPassword(encryptedPassword);
             int addCustomerResponse = customerDao.addCustomer(customerEntity);
     
-           /* if(addCustomerResponse > 0) {
-              Future<Integer> response = sendGreetingEmail(customerEntity.getName(), customerEntity.getEmailId());
-            // logger.debug("SERVICE::UserServiceImp::addUser::response:: " + response.get()); 
+            if(addCustomerResponse > 0) {
+           //   Future<Integer> response = sendGreetingEmail(customerEntity.getName(), customerEntity.getEmailId());
+             logger.debug("SERVICE::UserServiceImp::addUser::response:: " + addCustomerResponse); 
             }
             else {
     
-            logger.debug("SERVICE::CustomerServiceImp::addCustomer::Customer not get added"); 
-            }*/
+            logger.debug("SERVICE::CustomerServiceImp::addCustomer::Customer not get added");
+            return -1; 
+            }
     
           return 1;
         }
