@@ -60,9 +60,9 @@ public class CustomerDaoImpl implements CustomerDao {
     }
   }
   /**
-   * function addUser
-   * @param user
-   * @return void
+   * function addCustomer
+   * @param customer
+   * @return int
    * @throws Exception
    */
   @Override
@@ -105,6 +105,33 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
   }
+  @Override
+  public List<CustomerEntity> fetchByEmailId(String email) {
+
+    List<CustomerEntity> listOfCustomer = new ArrayList<CustomerEntity>();
+
+    try {
+
+      String sql = "select * from customer where emailid = :emailid";
+
+      SqlParameterSource param = new MapSqlParameterSource()
+        .addValue("emailid", email);
+      
+     // System.out.println("sql :: " + sql);
+      listOfCustomer = template.query(sql, param, new CustomerMapping());
+
+     // System.out.println("listof user :: " + listOfUser);
+      logger.debug("DAO::CustomerDaoImp::fetchByEmail::listOfCustomer:: " + listOfCustomer);
+
+      return listOfCustomer;
+    }
+    catch(Exception e) {
+
+      throw e;
+    }
+
+  }
+ 
 
     
 }

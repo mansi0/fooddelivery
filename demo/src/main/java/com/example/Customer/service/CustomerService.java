@@ -10,6 +10,5 @@ import com.example.Customer.entity.CustomerEntity;
 public interface CustomerService {
 
     public List<CustomerEntity> getDetail();
-    public int checkDuplicationOfEmail(CustomerEntity customerEntity);
     public int addCustomer(CustomerEntity customerEntity);
 }

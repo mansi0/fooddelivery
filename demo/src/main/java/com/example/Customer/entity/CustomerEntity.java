@@ -7,7 +7,7 @@ import java.sql.Date;
  */
 public class CustomerEntity {
 
-    int customerid;
+    String customerid;
     String name;
     String address;
     String locality;
@@ -20,11 +20,11 @@ public class CustomerEntity {
     String password;
     Date accountDate;
 
-    public int getCustomerid() {
+    public String getCustomerid() {
         return customerid;
     }
 
-    public void setCustomerid(int customerid) {
+    public void setCustomerid(String customerid) {
         this.customerid = customerid;
     }
 
