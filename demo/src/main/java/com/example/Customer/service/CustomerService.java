@@ -10,4 +10,5 @@ import com.example.Customer.entity.CustomerEntity;
 public interface CustomerService {
 
     public List<CustomerEntity> getDetail();
+    public int addCustomer(CustomerEntity customerEntity);
 }
