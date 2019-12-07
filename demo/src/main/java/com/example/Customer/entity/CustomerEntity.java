@@ -7,7 +7,7 @@ import java.sql.Date;
  */
 public class CustomerEntity {
 
-    String customerid;
+    String customerId;
     String name;
     String address;
     String locality;
@@ -19,13 +19,14 @@ public class CustomerEntity {
     String contNo;
     String password;
     Date accountDate;
+    boolean notification=false;
 
-    public String getCustomerid() {
-        return customerid;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerid(String customerid) {
-        this.customerid = customerid;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -115,6 +116,14 @@ public class CustomerEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isNotification() {
+        return notification;
+    }
+
+    public void setNotification(boolean notification) {
+        this.notification = notification;
     }
     
 

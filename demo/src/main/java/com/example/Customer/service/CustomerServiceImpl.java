@@ -47,8 +47,9 @@ public class CustomerServiceImpl implements CustomerService{
 
         try{
         //String email = user.getEmail();
-          List<CustomerEntity> listOfUser = customerDao.checkDuplicationOfEmail(customerEntity);
-          if(listOfUser.size() > 0) {
+          List<CustomerEntity> listOfCustomer = customerDao.checkDuplicationOfEmail(customerEntity);
+          System.out.println(listOfCustomer.size());
+          if(listOfCustomer.size() > 0) {
     
             System.out.println("this email already exist:: " + customerEntity.getEmailId());
             return 1;
@@ -95,7 +96,7 @@ public class CustomerServiceImpl implements CustomerService{
           logger.error("SERVICE::CustomerServiceImp::addCustomer::error:: " + e.getMessage());
           return 0;
         }
-      }
+       }
         else 
           return -1;
       }
@@ -105,8 +106,8 @@ public class CustomerServiceImpl implements CustomerService{
           return executor.submit(() -> {
     
             String message = String.format("<html>Hi <b>%s</b>,", name);
-            message += "<br>&nbsp;&nbsp;Thanks for signing up for ChatApp. We are very excited to have you.";
-            message += "<br><br><br> Thanks, <br> ChatApp Team.</html>";
+            message += "<br>&nbsp;&nbsp;Welcome in FoodTrip journey,Thanx for joining us.";
+            message += "<br><br><br> Thanks, <br> FoodTrip Team.</html>";
     
             logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::message:: " + message);
     
@@ -129,11 +130,11 @@ public class CustomerServiceImpl implements CustomerService{
             List<CustomerEntity> listOfUser = customerDao.fetchByEmailId(email);
             CustomerEntity customerEntity = listOfUser.get(0);
     
-            String customerUUID = customerEntity.getCustomerid();
+            String customerUUID = customerEntity.getCustomerId();
     
-           // customerEntity.setNotification(true);
-            customerEntity.setCustomerid(customerUUID);
-           // customerDao.updateUser(customerEntity);
+            customerEntity.setNotification(true);
+            customerEntity.setCustomerId(customerUUID);
+            customerDao.updateCustomer(customerEntity);
     
             return 1;
           });

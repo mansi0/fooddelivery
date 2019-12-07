@@ -38,6 +38,8 @@ public class CustomerController {
         List<CustomerEntity> listOfCustomer=customerService.getDetail();
         return listOfCustomer;
     }
+
+    
     @PostMapping(value = "/add")
     public ResponseEntity<?> addCustomer(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException ,IOException{
