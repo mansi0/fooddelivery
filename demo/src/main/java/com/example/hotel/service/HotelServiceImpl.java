@@ -1,4 +1,4 @@
-package com.example.Customer.service;
+package com.example.Hotel.service;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -8,8 +8,8 @@ import java.util.concurrent.Future;
 import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 
-import com.example.Customer.dao.CustomerDao;
-import com.example.Customer.entity.CustomerEntity;
+import com.example.Hotel.dao.HotelDao;
+import com.example.Hotel.entity.HotelEntity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,69 +23,69 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;;
 
 /**
- * CustomerServiceImpl
+ * HotelServiceImpl
  */
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class HotelServiceImpl implements HotelService{
 
 
   @Autowired
   private JavaMailSender JavaMailSender;
-    @Resource CustomerDao customerDao;
+    @Resource HotelDao hotelDao;
 
-    Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+    Logger logger = LoggerFactory.getLogger(HotelServiceImpl.class);
     private ExecutorService executor = Executors.newSingleThreadExecutor();
     @Override
-    public List<CustomerEntity> getDetail() {
+    public List<HotelEntity> getDetail() {
 
 
         
-        List<CustomerEntity> listOfCustomer=customerDao.getDetail();
-        return listOfCustomer;
+        List<HotelEntity> listOfHotel=hotelDao.getDetail();
+        return listOfHotel;
     }
-    public int checkDuplicationOfEmail(CustomerEntity customerEntity) {
+    public int checkDuplicationOfEmail(com.example.hotel.entity.HotelEntity hotelEntity) {
 
         try{
         //String email = user.getEmail();
-          List<CustomerEntity> listOfCustomer = customerDao.checkDuplicationOfEmail(customerEntity);
-          System.out.println(listOfCustomer.size());
-          if(listOfCustomer.size() > 0) {
+          List<HotelEntity> listOfHotel = hotelDao.checkDuplicationOfEmail(hotelEntity);
+          System.out.println(listOfHotel.size());
+          if(listOfHotel.size() > 0) {
     
-            System.out.println("this email already exist:: " + customerEntity.getEmailId());
+            System.out.println("this email already exist:: " + hotelEntity.getHotelEmailId());
             return 1;
-            //return ResponseEntity.status(HttpStatus.OK).body("Customer Already Exits");
+            //return ResponseEntity.status(HttpStatus.OK).body("hotel Already Exits");
           }
         }
         catch(Exception e) {
     
-          logger.error("SERVICE::CustomerServiceImpl::addCustomer::checkDuplicationForEmail::error:: " + e.getMessage());
+          logger.error("SERVICE::HotelServiceImpl::addHotel::checkDuplicationForEmail::error:: " + e.getMessage());
         }
           return 0;
         
       }
-      public int addCustomer(CustomerEntity customerEntity) {
+      public int addHotel(com.example.hotel.entity.HotelEntity hotelEntity) {
     
         
-        int resultOfDuplication = checkDuplicationOfEmail(customerEntity);
+        int resultOfDuplication = checkDuplicationOfEmail(hotelEntity);
     
         if(resultOfDuplication == 0) {
-          String password = customerEntity.getPassword();
+          String password = hotelEntity.getHotelPassword();
         
           try {
           
             String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-            logger.debug("SERVICE::CustomerServiceImp::addCustomer::encryptedPassword:: " + encryptedPassword);
+            logger.debug("SERVICE::HotelServiceImp::addHotel::encryptedPassword:: " + encryptedPassword);
           
-            customerEntity.setPassword(encryptedPassword);
-            int addCustomerResponse = customerDao.addCustomer(customerEntity);
+            hotelEntity.setPassword(encryptedPassword);
+            int addHotelResponse = hotelDao.addHotel(hotelEntity);
     
-            if(addCustomerResponse > 0) {
-              Future<Integer> response = sendGreetingEmail(customerEntity.getName(), customerEntity.getEmailId());
-             logger.debug("SERVICE::UserServiceImp::addUser::response:: " + addCustomerResponse); 
+            if(addHotelResponse > 0) {
+              Future<Integer> response = sendGreetingEmail(hotelEntity.getHotelName(), hotelEntity.getHotelEmailId());
+             logger.debug("SERVICE::UserServiceImp::addUser::response:: " + addHotelResponse); 
             }
             else {
     
-            logger.debug("SERVICE::CustomerServiceImp::addCustomer::Customer not get added");
+            logger.debug("SERVICE::HotelServiceImp::addHotel::Hotel not get added");
              
             }
     
@@ -93,7 +93,7 @@ public class CustomerServiceImpl implements CustomerService{
         }
         catch(Exception e) {
     
-          logger.error("SERVICE::CustomerServiceImp::addCustomer::error:: " + e.getMessage());
+          logger.error("SERVICE::HotelServiceImp::addHotel::error:: " + e.getMessage());
           return 0;
         }
        }
@@ -127,14 +127,14 @@ public class CustomerServiceImpl implements CustomerService{
             logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::sendMessage Successfully");
     
             // Fetch user by emailId
-            List<CustomerEntity> listOfUser = customerDao.fetchByEmailId(email);
-            CustomerEntity customerEntity = listOfUser.get(0);
+            List<HotelEntity> listOfUser = hotelDao.fetchByEmailId(email);
+            com.example.hotel.entity.HotelEntity hotelEntity = listOfUser.get(0);
     
-            String customerUUID = customerEntity.getCustomerId();
+            String hotelUUID = hotelEntity.getHotelId();
     
-            customerEntity.setNotification(true);
-            customerEntity.setCustomerId(customerUUID);
-            customerDao.updateCustomer(customerEntity);
+            hotelEntity.setNotification(true);
+            hotelEntity.setHotelId(hotelUUID);
+            hotelDao.updateHotel(hotelEntity);
     
             return 1;
           });

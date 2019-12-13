@@ -1,4 +1,4 @@
-package com.example.Customer.service;
+package com.example.Deliveryboy.service;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -8,8 +8,8 @@ import java.util.concurrent.Future;
 import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 
-import com.example.Customer.dao.CustomerDao;
-import com.example.Customer.entity.CustomerEntity;
+import com.example.Deliveryboy.dao.DeliveryboyDao;
+import com.example.Deliveryboy.entity.DeliveryboyEntity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,69 +23,69 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;;
 
 /**
- * CustomerServiceImpl
+ * DeliveryboyServiceImpl
  */
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class DeliveryboyServiceImpl implements DeliveryboyService{
 
 
   @Autowired
   private JavaMailSender JavaMailSender;
-    @Resource CustomerDao customerDao;
+    @Resource DeliveryboyDao deliveryboyDao;
 
-    Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+    Logger logger = LoggerFactory.getLogger(DeliveryboyServiceImpl.class);
     private ExecutorService executor = Executors.newSingleThreadExecutor();
     @Override
-    public List<CustomerEntity> getDetail() {
+    public List<DeliveryboyEntity> getDetail() {
 
 
         
-        List<CustomerEntity> listOfCustomer=customerDao.getDetail();
-        return listOfCustomer;
+        List<DeliveryboyEntity> listOfDeliveryboy=deliveryboyDao.getDetail();
+        return listOfDeliveryboy;
     }
-    public int checkDuplicationOfEmail(CustomerEntity customerEntity) {
+    public int checkDuplicationOfEmail(DeliveryboyEntity deliveryboyEntity) {
 
         try{
         //String email = user.getEmail();
-          List<CustomerEntity> listOfCustomer = customerDao.checkDuplicationOfEmail(customerEntity);
-          System.out.println(listOfCustomer.size());
-          if(listOfCustomer.size() > 0) {
+          List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyDao.checkDuplicationOfEmail(deliveryboyEntity);
+          System.out.println(listOfDeliveryboy.size());
+          if(listOfDeliveryboy.size() > 0) {
     
-            System.out.println("this email already exist:: " + customerEntity.getEmailId());
+            System.out.println("this email already exist:: " + deliveryboyEntity.getdeliveryboyemailid());
             return 1;
-            //return ResponseEntity.status(HttpStatus.OK).body("Customer Already Exits");
+            //return ResponseEntity.status(HttpStatus.OK).body("delivery boy Already Exits");
           }
         }
         catch(Exception e) {
     
-          logger.error("SERVICE::CustomerServiceImpl::addCustomer::checkDuplicationForEmail::error:: " + e.getMessage());
+          logger.error("SERVICE::DeliveryboyServiceImpl::addDeliveryboy::checkDuplicationForEmail::error:: " + e.getMessage());
         }
           return 0;
         
       }
-      public int addCustomer(CustomerEntity customerEntity) {
+      public int addDeliveryboy(DeliveryboyEntity deliveryboyEntity) {
     
         
-        int resultOfDuplication = checkDuplicationOfEmail(customerEntity);
+        int resultOfDuplication = checkDuplicationOfEmail(deliveryboyEntity);
     
         if(resultOfDuplication == 0) {
-          String password = customerEntity.getPassword();
+          String password = deliveryboyEntity.getDeliveryBoyPassword();
         
           try {
           
             String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-            logger.debug("SERVICE::CustomerServiceImp::addCustomer::encryptedPassword:: " + encryptedPassword);
+            logger.debug("SERVICE::DeliveryboyServiceImp::addDeliveryboy::encryptedPassword:: " + encryptedPassword);
           
-            customerEntity.setPassword(encryptedPassword);
-            int addCustomerResponse = customerDao.addCustomer(customerEntity);
+            deliveryboyEntity.setDeliveryBoyPassword(encryptedPassword);
+            int addDeliveryboyResponse = deliveryboyDao.addDeliveryboy(deliveryboyEntity);
     
-            if(addCustomerResponse > 0) {
-              Future<Integer> response = sendGreetingEmail(customerEntity.getName(), customerEntity.getEmailId());
-             logger.debug("SERVICE::UserServiceImp::addUser::response:: " + addCustomerResponse); 
+            if(addDeliveryboyResponse > 0) {
+              Future<Integer> response = sendGreetingEmail(deliveryboyEntity.getDeliveryboyname(), deliveryboyEntity.getdeliveryboyemailid());
+             logger.debug("SERVICE::UserServiceImp::addUser::response:: " + addDeliveryboyResponse); 
             }
             else {
     
-            logger.debug("SERVICE::CustomerServiceImp::addCustomer::Customer not get added");
+            logger.debug("SERVICE::DeliveryboyServiceImp::addDeliveryboy::Delivery boy not get added");
              
             }
     
@@ -93,7 +93,7 @@ public class CustomerServiceImpl implements CustomerService{
         }
         catch(Exception e) {
     
-          logger.error("SERVICE::CustomerServiceImp::addCustomer::error:: " + e.getMessage());
+          logger.error("SERVICE::DeliveryboyServiceImp::addDeliveryboy::error:: " + e.getMessage());
           return 0;
         }
        }
@@ -127,14 +127,14 @@ public class CustomerServiceImpl implements CustomerService{
             logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::sendMessage Successfully");
     
             // Fetch user by emailId
-            List<CustomerEntity> listOfUser = customerDao.fetchByEmailId(email);
-            CustomerEntity customerEntity = listOfUser.get(0);
+            List<DeliveryboyEntity> listOfUser = deliveryboyDao.fetchByEmailId(email);
+            DeliveryboyEntity deliveryboyEntity = listOfUser.get(0);
     
-            String customerUUID = customerEntity.getCustomerId();
+            String deliveryboyUUID = deliveryboyEntity.getDeliveryboyid();
     
-            customerEntity.setNotification(true);
-            customerEntity.setCustomerId(customerUUID);
-            customerDao.updateCustomer(customerEntity);
+            deliveryboyEntity.setNotification(true);
+            deliveryboyEntity.setDeliveryboyid(deliveryboyUUID);
+            deliveryboyDao.updateDeliveryboy(deliveryboyEntity);
     
             return 1;
           });

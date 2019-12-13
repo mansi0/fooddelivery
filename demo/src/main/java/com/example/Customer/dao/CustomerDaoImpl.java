@@ -1,6 +1,10 @@
 package com.example.Customer.dao;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,56 +24,67 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
-    NamedParameterJdbcTemplate template;
+  NamedParameterJdbcTemplate template;
 
-    Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
-    
-    public CustomerDaoImpl(NamedParameterJdbcTemplate template) {
-        this.template=template;
+  Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
-    }
+  public CustomerDaoImpl(NamedParameterJdbcTemplate template) {
+    this.template = template;
 
-    @Override
-    public List<CustomerEntity> getDetail() {
+  }
 
-        String sql="select * from Customer";
-        List<CustomerEntity> listOfCustomer=template.query(sql,new CustomerMapping());
+  @Override
+  public List<CustomerEntity> getDetail() {
 
-        return listOfCustomer;
-    } 
-    @Override
-     public List<CustomerEntity> checkDuplicationOfEmail(CustomerEntity customerEntity) {
+    String sql = "select * from Customer";
+    List<CustomerEntity> listOfCustomer = template.query(sql, new CustomerMapping());
+
+    return listOfCustomer;
+  }
+
+  @Override
+  public List<CustomerEntity> checkDuplicationOfEmail(CustomerEntity customerEntity) {
 
     List<CustomerEntity> listOfCustomer = new ArrayList<CustomerEntity>();
-    
+
     try {
 
-      String sql = "select customerId from customer where emailId = :emailId";
-      SqlParameterSource param = new MapSqlParameterSource()
-        .addValue("emailId", customerEntity.getEmailId());
-      
+      String sql = "select * from customer where emailId = :emailId";
+      SqlParameterSource param = new MapSqlParameterSource().addValue("emailId", customerEntity.getEmailId());
+
       listOfCustomer = template.query(sql, param, new CustomerMapping());
       logger.debug("DAO::CustomerDaoImp::getDetail::listOfCustomer::listOfCustomer:: " + listOfCustomer);
-      
-      return listOfCustomer;
-    }
-    catch(Exception e) {
 
-        logger.error("DAO::CustomerDaoImp::checkDuplicateEmail::error:: " + e.getStackTrace());
+      return listOfCustomer;
+    } 
+    catch (Exception e) {
+      logger.error("DAO::CustomerDaoImp::checkDuplicateEmail::error:: " + e.getMessage());
+      logger.error("DAO::CustomerDaoImp::checkDuplicateEmail::error:: " + e.getStackTrace());
       throw e;
     }
   }
+
   /**
    * function addCustomer
+   * 
    * @param customer
    * @return int
+   * @throws ParseException
    * @throws Exception
    */
   @Override
-  public int addCustomer(CustomerEntity customerEntity) {
+  public int addCustomer(CustomerEntity customerEntity) throws ParseException {
 
     UUID uuid = UUID.randomUUID();
+    DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+    Date date = new Date();
    // long epoch = System.currentTimeMillis()/1000;
+    DateFormat parser = new SimpleDateFormat("yyyy-mm-dd");
+    Date parsedDate = parser.parse(dateFormat.format(date));
+
+
+   
+
 
     try {
 
@@ -88,7 +103,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
         .addValue("contno", customerEntity.getContNo())
         .addValue("password", customerEntity.getPassword())
-        .addValue("accountdate", customerEntity.getAccountDate());
+        .addValue("accountdate",parsedDate);
 
        
           
@@ -105,6 +120,29 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
   }
+
+  @Override
+  public void updateCustomer(CustomerEntity customerEntity) {
+    
+    try {
+      
+      String sql = "update customer set notification = :notification where customerid = :customerid";
+
+      SqlParameterSource param = new MapSqlParameterSource()
+        .addValue("notification", customerEntity.isNotification())
+        .addValue("customerid", customerEntity.getCustomerId());
+
+      logger.debug("DAO::CustomerDao::updateCustomer::sql:: " + sql);
+      //logger.debug("DAO::UserDao::updateUser::param:: " + ObjectPrinter.print(param));
+      
+      template.update(sql, param);
+
+    } catch (Exception e) {
+      logger.error("DAO::CustomerDao::updateCustomer::error:: " + e.getMessage());
+      e.printStackTrace();
+    }
+  }
+
   @Override
   public List<CustomerEntity> fetchByEmailId(String email) {
 

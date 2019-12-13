@@ -1,12 +1,12 @@
-package com.example.Customer.controller;
+package com.example.hotel.controller;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.example.Customer.entity.CustomerEntity;
-import com.example.Customer.service.CustomerService;
+import com.example.hotel.entity.HotelEntity;
+import com.example.hotel.service.HotelService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,43 +23,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * CustomerController
+ * HotelController
  */
 @RestController
-@RequestMapping(path = "customer")
-public class CustomerController {
-    @Resource CustomerService customerService;
+@RequestMapping(path = "hotel")
+public class HotelController {
+    @Resource HotelService hotelService;
     
-    static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    static final Logger logger = LoggerFactory.getLogger(HotelController.class);
     @GetMapping(value = "details")
-    public List<CustomerEntity> getDetails() {
+    public List<HotelEntity> getDetails() {
 
 
-        List<CustomerEntity> listOfCustomer=customerService.getDetail();
-        return listOfCustomer;
+        List<HotelEntity> listOfHotel=hotelService.getDetail();
+        return listOfHotel;
     }
 
     
     @PostMapping(value = "/add")
-    public ResponseEntity<?> addCustomer(@RequestBody String parameters)
+    public ResponseEntity<?> addHotel(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException ,IOException{
-       // logger.debug("POST:CustomerController:addCustomer::parameters:: "+parameters);
+       // logger.debug("POST:HotelController:addHotel::parameters:: "+parameters);
         ObjectMapper mapper=new ObjectMapper();
-        CustomerEntity customerEntity=mapper.readValue(parameters, CustomerEntity.class);
-        System.out.println("customer in controller ::"+customerEntity);
+        HotelEntity hotelEntity=mapper.readValue(parameters, HotelEntity.class);
+        System.out.println("hotel in controller ::"+hotelEntity);
 
         try {
-          int result=customerService.addCustomer(customerEntity);
+          int result=hotelService.addHotel(hotelEntity);
          if(result== -1)
-              return ResponseEntity.status(HttpStatus.OK).body("customer Already Exist");
+              return ResponseEntity.status(HttpStatus.OK).body("hotel Already Exist");
          else if(result ==0)
              return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
          else if(result ==1)
-            return ResponseEntity.status(HttpStatus.OK).body("Customer added successfully ");
+            return ResponseEntity.status(HttpStatus.OK).body("hotel added successfully ");
         
         }
         catch(Exception e) {
-             logger.error("POST:CustomerController:addCustomer::error:: "+e.getStackTrace());
+             logger.error("POST:HotelController:addHotel::error:: "+e.getStackTrace());
              return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured");
       }
      return null;

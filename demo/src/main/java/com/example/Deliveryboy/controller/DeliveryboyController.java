@@ -1,12 +1,12 @@
-package com.example.Customer.controller;
+package com.example.Deliveryboy.controller;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.example.Customer.entity.CustomerEntity;
-import com.example.Customer.service.CustomerService;
+import com.example.Deliveryboy.entity.DeliveryboyEntity;
+import com.example.Deliveryboy.service.DeliveryboyService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,43 +23,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * CustomerController
+ * DeliveryboyController
  */
 @RestController
-@RequestMapping(path = "customer")
-public class CustomerController {
-    @Resource CustomerService customerService;
+@RequestMapping(path = "deliveryboy")
+public class DeliveryboyController {
+    @Resource DeliveryboyService deliveryboyService;
     
-    static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    static final Logger logger = LoggerFactory.getLogger(DeliveryboyController.class);
     @GetMapping(value = "details")
-    public List<CustomerEntity> getDetails() {
+    public List<DeliveryboyEntity> getDetails() {
 
 
-        List<CustomerEntity> listOfCustomer=customerService.getDetail();
-        return listOfCustomer;
+        List<DeliveryboyEntity> listOfDeliveryboy=deliveryboyService.getDetail();
+        return listOfDeliveryboy;
     }
 
     
     @PostMapping(value = "/add")
-    public ResponseEntity<?> addCustomer(@RequestBody String parameters)
+    public ResponseEntity<?> addDeliveryboy(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException ,IOException{
-       // logger.debug("POST:CustomerController:addCustomer::parameters:: "+parameters);
+       // logger.debug("POST:DeliveryboyController:addDeliveryboy::parameters:: "+parameters);
         ObjectMapper mapper=new ObjectMapper();
-        CustomerEntity customerEntity=mapper.readValue(parameters, CustomerEntity.class);
-        System.out.println("customer in controller ::"+customerEntity);
+        DeliveryboyEntity deliveryboyEntity=mapper.readValue(parameters, DeliveryboyEntity.class);
+        System.out.println("delivery boy in controller ::"+deliveryboyEntity);
 
         try {
-          int result=customerService.addCustomer(customerEntity);
+          int result=deliveryboyService.addDeliveryboy(deliveryboyEntity);
          if(result== -1)
-              return ResponseEntity.status(HttpStatus.OK).body("customer Already Exist");
+              return ResponseEntity.status(HttpStatus.OK).body("delivery boy Already Exist");
          else if(result ==0)
              return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
          else if(result ==1)
-            return ResponseEntity.status(HttpStatus.OK).body("Customer added successfully ");
+            return ResponseEntity.status(HttpStatus.OK).body("Deliveryboy added successfully ");
         
         }
         catch(Exception e) {
-             logger.error("POST:CustomerController:addCustomer::error:: "+e.getStackTrace());
+             logger.error("POST:DeliveryboyController:addDeliveryboy::error:: "+e.getStackTrace());
              return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured");
       }
      return null;
