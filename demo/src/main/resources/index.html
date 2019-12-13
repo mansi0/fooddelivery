@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/home/mm/foodDelivery/demo/src/main/resources/style.css">
+    </head>
+
+<body>
+<form action="index.html" style="border:2px solid rgb(241, 48, 58)">
+    <div class="container">
+    <h1 style="color:blue; text-align: center">Register now</h1>
+      <p style="color:chocolate">Please fill in this form to create an account.</p>
+      <hr>        
+       <table border=0px>
+         <tr>
+          <td><label for="Enter your name"><b>Name:</b></label>
+        <input type="text" placeholder="Enter your Name"  name="Name" required>&nbsp;></td>
+
+        <td><label for="Enter your address"><b>Address:</b></label>
+        <input type="text" placeholder="Enter your Address" name="Address" required></td><br><br>
+        </tr><tr>
+        <td><label for="Enter locality"><b>Locality:</b></label>
+    <input type="text" placeholder="Enter Locality" name="Locality" required>&nbsp;</td>
+
+    <td><label for="Enter landmark"><b>Landmark:</b></label>
+    <input type="text" placeholder="Enter Landmark" name="Landmark" required></td><br><br>
+      </tr><tr>
+    <td><label for="Enter your city"><b>City:</b></label>
+    <select>
+      <option value="Pune">Pune</option>
+      <option value="Pimpri Chinchwad">Pimpri Chinchwad</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Satara">Satara</option>
+      <option value="Hyderabad">Hyderabad</option>
+      <option value="Banglore">Banglore</option>
+
+    </select></td> &nbsp;&nbsp;
+
+    <td><label for="Enter your state"><b>State:</b></label>
+    <input type="text" placeholder="Enter State" name="State" required></td>&nbsp;&nbsp;
+      </tr><tr>
+    <td><label for="Enter phone no"><b>Phone no:</b></label>
+    <input type="text" placeholder="Enter phone no" name="Phone  no" required></td><br><br>
+
+      
+    
+    <td><label for="email"><b>Email:</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required></td>&nbsp;&nbsp;      
+    </tr>
+  </table>
+    <label for="Enter account type"><b>Account Type:</b></label>&nbsp;
+    <input type="radio" name="account" value="Simple"> <b>Simple</b>&nbsp;
+    <input type="radio" name="account" value="Golden"> <b>Golden</b><br><br>
+      
+    
+       
+         
+  
+      <label for="psw"><b>Password:</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>&nbsp;
+  
+      <label for="psw-repeat"><b>Repeat Password:</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br><br>
+    </table>
+
+
+  
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+
+    
+  
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+  
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Register</button>
+      </div>
+    </div>
+  </form>
+  </body> 
+  </html>

@@ -1,0 +1,31 @@
+*
+{
+    margin: o;
+    margin: o;
+}
+header{
+
+}
+
+ul{
+    list-style-type: none;
+    float:right;
+    margin-top: 25px;
+}
+ul li{
+    display: inline-block;
+}
+ul li a
+{
+    text-decoration:none;
+    color:black;
+    padding:5px 20px;
+    border: 1px solid black;
+    transition: 0.5s ease;
+    
+}
+ul li a:hover{
+    background-color:black;
+    color: #000;
+
+}
