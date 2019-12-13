@@ -1,9 +1,7 @@
 * {box-sizing: border-box}
 
-body{
-  /*background-image: url(/home/mm/Downloads/pngtree-yellow-flat-cartoon-delivery-staff-takeaway-poster-background-material-image_134896.jpg);
-  */
-  background-color: white;
+body{background-image: url(/home/aishwariya/fooddelivery/demo/src/main/resources/fd2.jpg);
+  background-color: black;
   background-size: cover;}
 
 
@@ -55,7 +53,11 @@ button:hover {
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {
   float: left;
+<<<<<<< HEAD
   width: 30%;
+=======
+  width: 50%;
+>>>>>>> fb99c395489c65c747fee276a8ee5147e3962ca0
 }
 
 /* Add padding to container elements */
