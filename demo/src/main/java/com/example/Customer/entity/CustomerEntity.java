@@ -14,7 +14,7 @@ public class CustomerEntity {
     String landmark;
     String city;
     String state;
-    String accountType;
+  //  String accountType;
     String emailId;
     String contNo;
     String password;
@@ -77,14 +77,14 @@ public class CustomerEntity {
         this.state = state;
     }
 
-    public String getAccountType() {
+  /*  public String getAccountType() {
         return accountType;
     }
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
        // this.accountType = accountType;
-    }
+    }*/
 
     public String getEmailId() {
         return emailId;

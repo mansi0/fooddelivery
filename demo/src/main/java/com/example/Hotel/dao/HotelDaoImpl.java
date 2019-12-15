@@ -23,7 +23,9 @@ import org.springframework.stereotype.Repository;
  * HotelDaoImpl
  */
 @Repository
+
 public class HotelDaoImpl implements HotelDao {
+
   NamedParameterJdbcTemplate template;
 
   Logger logger = LoggerFactory.getLogger(HotelDaoImpl.class);
@@ -52,12 +54,11 @@ public class HotelDaoImpl implements HotelDao {
       String sql = "select * from hotel where hotelemailid = :hotelemailid";
       SqlParameterSource param = new MapSqlParameterSource().addValue("hotelemailid", hotelEntity.getHotelEmailId());
 
-      listOfHotel= template.query(sql, param, new HotelMapping());
+      listOfHotel = template.query(sql, param, new HotelMapping());
       logger.debug("DAO::HotelDaoImp::getDetail::listOfHotel::listOfHotel:: " + listOfHotel);
 
       return listOfHotel;
-    } 
-    catch (Exception e) {
+    } catch (Exception e) {
       logger.error("DAO::HotelDaoImp::checkDuplicateEmail::error:: " + e.getMessage());
       logger.error("DAO::HotelDaoImp::checkDuplicateEmail::error:: " + e.getStackTrace());
       throw e;
@@ -73,57 +74,42 @@ public class HotelDaoImpl implements HotelDao {
    * @throws Exception
    */
   @Override
-  public int addhotel(com.example.hotel.entity.HotelEntity hotelEntity) throws ParseException {
+  public int addHotel(HotelEntity hotelEntity) throws ParseException {
 
     UUID uuid = UUID.randomUUID();
     DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
     Date date = new Date();
-   // long epoch = System.currentTimeMillis()/1000;
+    // long epoch = System.currentTimeMillis()/1000;
     DateFormat parser = new SimpleDateFormat("yyyy-mm-dd");
     Date parsedDate = parser.parse(dateFormat.format(date));
 
-
-   
-
-
     try {
 
-      String sql = "insert into hotel values(:hotelid,:hotelpassword,:hotelemailid,:hotelcontno,:hotelname,:hoteladdress,:hotellocality,:hotellandmark,:hotelcity,:hotelstate,:openat,:closeat,:appromixatecost,:hotelopeningdate,:expressdelivery,:hotelstatus,:hotelmenutype,:hotelrating,:hotelreview,:hotelfacility,:hotelcuisine,:notification)";
+      String sql = "insert into hotel values(:hotelid,:hotelpassword,:hotelemailid,:hotelcontno,:hotelname,:hoteladdress,:hotellocality,:hotellandmark,:hotelcity,:hotelstate,:openat,:closeat,:approximatecost,:hotelopeningdate,:expressdelivery,:hotelstatus,:hotelmenutype,:hotelcuisine)";
       logger.debug("DAO::HotelDaoImp::addHotel::sql:: " + sql);
-      SqlParameterSource param = new MapSqlParameterSource()
-        .addValue("hotelid", uuid.toString())
-        .addValue("hotelpassword", hotelEntity.getHotelPassword())
-        .addValue("hotelemailid", hotelEntity.getHotelEmailId())
-        .addValue("hotelcontno", hotelEntity.getHotelContNo())
-        .addValue("hotelname", hotelEntity.getHotelName())
-        .addValue("hoteladdress", hotelEntity.getHotelAddress())
-        .addValue("hotellocality", hotelEntity.getHotelLocality())
-        .addValue("hotellandmark", hotelEntity.getHotelLandmark())
-        .addValue("hotelcity", hotelEntity.getHotelCity())
+      SqlParameterSource param = new MapSqlParameterSource().addValue("hotelid", uuid.toString())
+          .addValue("hotelpassword", hotelEntity.getHotelPassword())
+          .addValue("hotelemailid", hotelEntity.getHotelEmailId()).addValue("hotelcontno", hotelEntity.getHotelContNo())
+          .addValue("hotelname", hotelEntity.getHotelName()).addValue("hoteladdress", hotelEntity.getHotelAddress())
+          .addValue("hotellocality", hotelEntity.getHotelLocality())
+          .addValue("hotellandmark", hotelEntity.getHotelLandmark()).addValue("hotelcity", hotelEntity.getHotelCity())
 
-        .addValue("hotelstate", hotelEntity.getHotelState())
-        .addValue("openat", hotelEntity.getOpenAt())
-        .addValue("closeat",hotelEntity.getCloseAt())
-        .addValue("approximatecost",hotelEntity.getApproximateCost())
-        .addValue("hotelopeningdate",hotelEntity.getHotelOpeningDate())
-        .addValue("expressdelivery",hotelEntity.isExpressDelivery())
-        .addValue("hotelstatus",hotelEntity.getHotelState())
-        .addValue("hotelmenutype",hotelEntity.getHotelMenuType())
-        .addValue("hotelrating",hotelEntity.getHotelRating())
-        .addValue("hotelreview",hotelEntity.getHotelReview())
-        .addValue("hotelfacility",hotelEntity.getHotelFacility())
-        .addValue("hotelcuisine",hotelEntity.getHotelCuisine())
-        .addValue("notification",hotelEntity.isNotification());
-          
-        logger.debug("DAO::HotelDaoImp::addHotel::param:: " + param);
+          .addValue("hotelstate", hotelEntity.getHotelState()).addValue("openat", hotelEntity.getOpenAt())
+          .addValue("closeat", hotelEntity.getCloseAt()).addValue("approximatecost", hotelEntity.getApproximateCost())
+          .addValue("hotelopeningdate", hotelEntity.getHotelOpeningDate())
+          .addValue("expressdelivery", hotelEntity.isExpressDelivery())
+          .addValue("hotelstatus", hotelEntity.getHotelStatus())
+          .addValue("hotelmenutype", hotelEntity.getHotelMenuType())
+          .addValue("hotelfacility", hotelEntity.getHotelFacility())
+          .addValue("hotelcuisine", hotelEntity.getHotelCuisine());
 
-    
+      logger.debug("DAO::HotelDaoImp::addHotel::param:: " + param);
+
       return template.update(sql, param);
-    }
-    catch(Exception e) {
+    } catch (Exception e) {
       logger.error("DAO::HotelDaoImp::addHotel::error****:: " + e.getMessage());
       logger.error("DAO::HotelDaoImp::addHotel::error:: " + e.getStackTrace());
-      
+
       throw e;
     }
 
@@ -131,18 +117,18 @@ public class HotelDaoImpl implements HotelDao {
 
   @Override
   public void updateHotel(HotelEntity hotelEntity) {
-    
+
     try {
-      
+
       String sql = "update hotel set notification = :notification where hotelid = :hotelid";
 
-      SqlParameterSource param = new MapSqlParameterSource()
-        .addValue("notification", hotelEntity.isNotification())
-        .addValue("hotelid", hotelEntity.getHotelId());
+      SqlParameterSource param = new MapSqlParameterSource().addValue("notification", hotelEntity.isNotification())
+          .addValue("hotelid", hotelEntity.getHotelId());
 
       logger.debug("DAO::HotelDao::updateHotel::sql:: " + sql);
-      //logger.debug("DAO::UserDao::updateUser::param:: " + ObjectPrinter.print(param));
-      
+      // logger.debug("DAO::UserDao::updateUser::param:: " +
+      // ObjectPrinter.print(param));
+
       template.update(sql, param);
 
     } catch (Exception e) {
@@ -160,24 +146,20 @@ public class HotelDaoImpl implements HotelDao {
 
       String sql = "select * from hotel where hotelemailid = :hotelemailid";
 
-      SqlParameterSource param = new MapSqlParameterSource()
-        .addValue("hotelemailid", email);
-      
-     // System.out.println("sql :: " + sql);
+      SqlParameterSource param = new MapSqlParameterSource().addValue("hotelemailid", email);
+
+      // System.out.println("sql :: " + sql);
       listOfHotel = template.query(sql, param, new HotelMapping());
 
-     // System.out.println("listof user :: " + listOfUser);
+      // System.out.println("listof user :: " + listOfUser);
       logger.debug("DAO::HotelDaoImp::fetchByEmail::listOfHotel:: " + listOfHotel);
 
       return listOfHotel;
-    }
-    catch(Exception e) {
+    } catch (Exception e) {
 
       throw e;
     }
 
   }
- 
 
-    
 }

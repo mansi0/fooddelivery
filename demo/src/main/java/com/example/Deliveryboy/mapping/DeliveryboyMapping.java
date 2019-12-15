@@ -15,18 +15,18 @@ public class DeliveryboyMapping implements RowMapper<DeliveryboyEntity> {
 
         DeliveryboyEntity deliveryboyEntity=new DeliveryboyEntity();
 
-        deliveryboyEntity.setDeliveryboyid(rs.getString("deliveryboyid"));
-        deliveryboyEntity.setDeliveryboyname(rs.getString("deliveryboyname"));
-        deliveryboyEntity.setDeliveryboyaddress(rs.getString("deliveryboyaddress"));
-        deliveryboyEntity.setDeliveryboyemailid(rs.getString("deliveryboyemailid"));
-        deliveryboyEntity.setDeliveryboycontno(rs.getString("deliveryboycontno"));
-        deliveryboyEntity.setDeliveryboysalary(rs.getFloat("deliveryboysalary"));
+        deliveryboyEntity.setDeliveryboyId(rs.getString("deliveryboyid"));
+        deliveryboyEntity.setDeliveryboyName(rs.getString("deliveryboyname"));
+        deliveryboyEntity.setDeliveryboyAddress(rs.getString("deliveryboyaddress"));
+        deliveryboyEntity.setDeliveryboyEmailId(rs.getString("deliveryboyemailid"));
+        deliveryboyEntity.setDeliveryboyContNo(rs.getString("deliveryboycontno"));
+        deliveryboyEntity.setDeliveryboySalary(rs.getFloat("deliveryboysalary"));
         deliveryboyEntity.setDeliveryArea(rs.getString("deliveryArea"));
-        deliveryboyEntity.setDeliveryBoyStatus(rs.getString("deliveryBoyStatus"));
-        deliveryboyEntity.setDeliveryBoyPassword(rs.getString("deliberyBoypassword"));
-        deliveryboyEntity.setNoofdays(rs.getInt("noofdays"));
-        deliveryboyEntity.setDeliveryboyshift(rs.getString("deliveryboyshift"));
-        deliveryboyEntity.setNoofdelivery(rs.getInt("noofdelivery"));
+        deliveryboyEntity.setDeliveryboyStatus(rs.getString("deliveryBoyStatus"));
+        deliveryboyEntity.setDeliveryboyPassword(rs.getString("deliberyBoypassword"));
+        deliveryboyEntity.setNoOfDays(rs.getInt("noofdays"));
+        deliveryboyEntity.setDeliveryboyShift(rs.getString("deliveryboyshift"));
+        deliveryboyEntity.setNoOfDelivery(rs.getInt("noofdelivery"));
         deliveryboyEntity.setNotification(rs.getBoolean("notification"));
         
      return deliveryboyEntity;

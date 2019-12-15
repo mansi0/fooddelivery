@@ -10,5 +10,6 @@ import com.example.Deliveryboy.entity.DeliveryboyEntity;
 public interface DeliveryboyService {
 
     public List<DeliveryboyEntity> getDetail();
+
     public int addDeliveryboy(DeliveryboyEntity deliveryboyEntity);
 }

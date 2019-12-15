@@ -6,7 +6,6 @@ create table customer(
     landmark varchar(50),
     city varchar(15),
     state varchar(20),
-    accountType varchar(10) check(accountType in('simple','golden')),
     emailId varchar(70),
     contno varchar(15),
     password varchar(150),
@@ -37,9 +36,9 @@ create table selfPickUp(
 
 create table deliveryBoy(
     deliveryboyid varchar(100) primary key,
-    deliveryboyname varchar(30),
+    deliveryboyname varchar(50),
     deliveryboyaddress varchar(100),
-    deliveryboyemailid varchar(30),
+    deliveryboyemailid varchar(50),
     deliveryboycontno varchar(15),
     deliveryboysalary float,
     deliveryArea varchar(100),
@@ -64,12 +63,12 @@ create table homeDelivery(
 CREATE TABLE hotel(
     hotelid varchar(100) PRIMARY KEY,
     hotelpassword VARCHAR(150),
-    hotelemailid VARCHAR(30),
+    hotelemailid VARCHAR(50),
     hotelcontno varchar(15),
-    hotelname VARCHAR(20),
+    hotelname VARCHAR(50),
     hoteladdress varchar(50),
-    hotellocality varchar(20),
-    hotellandmark varchar(20),
+    hotellocality varchar(50),
+    hotellandmark varchar(50),
     hotelcity varchar(15),
     hotelstate varchar(20),
     openat time,
@@ -79,10 +78,10 @@ CREATE TABLE hotel(
     expressdelivery boolean,
     hotelstatus varchar(10),
     hotelmenutype text[],
-    hotelrating int[],
-    hotelreview text[],
     hotelfacility int[],
     hotelcuisine text[],
+    hotelrating int[],
+    hotelreview text[],
     notification boolean
 );
 

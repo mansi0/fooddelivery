@@ -28,40 +28,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "deliveryboy")
 public class DeliveryboyController {
-    @Resource DeliveryboyService deliveryboyService;
-    
+    @Resource
+    DeliveryboyService deliveryboyService;
+
     static final Logger logger = LoggerFactory.getLogger(DeliveryboyController.class);
+
     @GetMapping(value = "details")
     public List<DeliveryboyEntity> getDetails() {
 
-
-        List<DeliveryboyEntity> listOfDeliveryboy=deliveryboyService.getDetail();
+        List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyService.getDetail();
         return listOfDeliveryboy;
     }
 
-    
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/adddeliveryboy")
     public ResponseEntity<?> addDeliveryboy(@RequestBody String parameters)
-            throws JsonParseException, JsonMappingException ,IOException{
-       // logger.debug("POST:DeliveryboyController:addDeliveryboy::parameters:: "+parameters);
-        ObjectMapper mapper=new ObjectMapper();
-        DeliveryboyEntity deliveryboyEntity=mapper.readValue(parameters, DeliveryboyEntity.class);
-        System.out.println("delivery boy in controller ::"+deliveryboyEntity);
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:DeliveryboyController:addDeliveryboy::parameters::
+        // "+parameters);
+        ObjectMapper mapper = new ObjectMapper();
+        DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
+        System.out.println("delivery boy in controller ::" + deliveryboyEntity);
 
         try {
-          int result=deliveryboyService.addDeliveryboy(deliveryboyEntity);
-         if(result== -1)
-              return ResponseEntity.status(HttpStatus.OK).body("delivery boy Already Exist");
-         else if(result ==0)
-             return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
-         else if(result ==1)
-            return ResponseEntity.status(HttpStatus.OK).body("Deliveryboy added successfully ");
-        
+            int result = deliveryboyService.addDeliveryboy(deliveryboyEntity);
+            if (result == -1)
+                return ResponseEntity.status(HttpStatus.OK).body("delivery boy Already Exist");
+            else if (result == 0)
+                return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
+            else if (result == 1)
+                return ResponseEntity.status(HttpStatus.OK).body("Deliveryboy added successfully ");
+
+        } catch (Exception e) {
+            logger.error("POST:DeliveryboyController:addDeliveryboy::error:: " + e.getStackTrace());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured");
         }
-        catch(Exception e) {
-             logger.error("POST:DeliveryboyController:addDeliveryboy::error:: "+e.getStackTrace());
-             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured");
-      }
-     return null;
+        return null;
     }
-} 
+}

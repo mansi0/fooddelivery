@@ -1,7 +1,9 @@
 package com.example.Customer.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +48,7 @@ public class CustomerController {
     }
 
     
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/add" ,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addCustomer(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException ,IOException{
        // logger.debug("POST:CustomerController:addCustomer::parameters:: "+parameters);
@@ -55,8 +58,14 @@ public class CustomerController {
 
         try {
           int result=customerService.addCustomer(customerEntity);
-         if(result== -1)
-              return ResponseEntity.status(HttpStatus.OK).body("customer Already Exist");
+         if(result== -1) {
+            Map<String, Object> body =new HashMap<String, Object>();
+
+            body.put("message","User already exist");
+            body.put("status", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+         }
          else if(result ==0)
              return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
          else if(result ==1)
