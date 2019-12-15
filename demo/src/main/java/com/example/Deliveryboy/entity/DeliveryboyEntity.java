@@ -7,66 +7,66 @@ import java.sql.Date;
  */
 public class DeliveryboyEntity {
 
-    String deliveryboyid;
-    String deliveryboyname;
-    String deliveryboyaddress;
-    String deliveryboyemailid;
-    String deliveryboycontno;
-    float deliveryboysalary;
+    String deliveryboyId;
+    String deliveryboyName;
+    String deliveryboyAddress;
+    String deliveryboyEmailId;
+    String deliveryboyContNo;
+    float deliveryboySalary;
     String deliveryArea;
-    String deliveryBoyStatus;
-    String deliveryBoyPassword;
-    int noofdays;
-    String deliveryboyshift;
-    int noofdelivery;
+    String deliveryboyStatus;
+    String deliveryboyPassword;
+    int noOfDays;
+    String deliveryboyShift;
+    int noOfDelivery;
     boolean notification=false;
 
-    public String getDeliveryboyid() {
-        return deliveryboyid;
+    public String getDeliveryboyId() {
+        return deliveryboyId;
     }
 
-    public void setDeliveryboyid(String deliveryboyid) {
-        this.deliveryboyid = deliveryboyid;
+    public void setDeliveryboyId(String deliveryboyId) {
+        this.deliveryboyId = deliveryboyId;
     }
 
-    public String getDeliveryboyname() {
-        return deliveryboyname;
+    public String getDeliveryboyName() {
+        return deliveryboyName;
     }
 
-    public void setDeliveryboyname(String deliveryboyname) {
-        this.deliveryboyname = deliveryboyname;
+    public void setDeliveryboyName(String deliveryboyName) {
+        this.deliveryboyName = deliveryboyName;
     }
 
-    public String getDeliveryboyaddress() {
-        return deliveryboyaddress;
+    public String getDeliveryboyAddress() {
+        return deliveryboyAddress;
     }
 
-    public void setDeliveryboyaddress(String deliveryboyaddress) {
-        this.deliveryboyaddress = deliveryboyaddress;
+    public void setDeliveryboyAddress(String deliveryboyAddress) {
+        this.deliveryboyAddress = deliveryboyAddress;
     }
 
-    public String getDeliveryboyemailid() {
-        return deliveryboyemailid;
+    public String getDeliveryboyEmailId() {
+        return deliveryboyEmailId;
     }
 
-    public void setDeliveryboyemailid(String deliveryboyemailid) {
-        this.deliveryboyemailid = deliveryboyemailid;
+    public void setDeliveryboyEmailId(String deliveryboyEmailId) {
+        this.deliveryboyEmailId = deliveryboyEmailId;
     }
 
-    public String getDeliveryboycontno() {
-        return deliveryboycontno;
+    public String getDeliveryboyContNo() {
+        return deliveryboyContNo;
     }
 
-    public void setDeliveryboycontno(String deliveryboycontno) {
-        this.deliveryboycontno = deliveryboycontno;
+    public void setDeliveryboyContNo(String deliveryboyContNo) {
+        this.deliveryboyContNo = deliveryboyContNo;
     }
 
-    public float getDeliveryboysalary() {
-        return deliveryboysalary;
+    public float getDeliveryboySalary() {
+        return deliveryboySalary;
     }
 
-    public void setDeliveryboysalary(float deliveryboysalary) {
-        this.deliveryboysalary = deliveryboysalary;
+    public void setDeliveryboySalary(float deliveryboySalary) {
+        this.deliveryboySalary = deliveryboySalary;
     }
 
     public String getDeliveryArea() {
@@ -77,44 +77,44 @@ public class DeliveryboyEntity {
         this.deliveryArea = deliveryArea;
     }
 
-    public String getDeliveryBoyStatus() {
-        return deliveryBoyStatus;
+    public String getDeliveryboyStatus() {
+        return deliveryboyStatus;
     }
 
-    public void setDeliveryBoyStatus(String deliveryBoyStatus) {
-        this.deliveryBoyStatus = deliveryBoyStatus;
+    public void setDeliveryboyStatus(String deliveryboyStatus) {
+        this.deliveryboyStatus = deliveryboyStatus;
     }
 
-    public String getDeliveryBoyPassword() {
-        return deliveryBoyPassword;
+    public String getDeliveryboyPassword() {
+        return deliveryboyPassword;
     }
 
-    public void setDeliveryBoyPassword(String deliveryBoyPassword) {
-        this.deliveryBoyPassword = deliveryBoyPassword;
+    public void setDeliveryboyPassword(String deliveryboyPassword) {
+        this.deliveryboyPassword = deliveryboyPassword;
     }
 
-    public int getNoofdays() {
-        return noofdays;
+    public int getNoOfDays() {
+        return noOfDays;
     }
 
-    public void setNoofdays(int noofdays) {
-        this.noofdays = noofdays;
+    public void setNoOfDays(int noOfDays) {
+        this.noOfDays = noOfDays;
     }
 
-    public String getDeliveryboyshift() {
-        return deliveryboyshift;
+    public String getDeliveryboyShift() {
+        return deliveryboyShift;
     }
 
-    public void setDeliveryboyshift(String deliveryboyshift) {
-        this.deliveryboyshift = deliveryboyshift;
+    public void setDeliveryboyShift(String deliveryboyShift) {
+        this.deliveryboyShift = deliveryboyShift;
     }
 
-    public int getNoofdelivery() {
-        return noofdelivery;
+    public int getNoOfDelivery() {
+        return noOfDelivery;
     }
 
-    public void setNoofdelivery(int noofdelivery) {
-        this.noofdelivery = noofdelivery;
+    public void setNoOfDelivery(int noOfDelivery) {
+        this.noOfDelivery = noOfDelivery;
     }
 
     public boolean isNotification() {
@@ -122,6 +122,8 @@ public class DeliveryboyEntity {
     }
 
     public void setNotification(boolean notification) {
-		this.notification = notification;
+        this.notification = notification;
     }
+
+   
 }

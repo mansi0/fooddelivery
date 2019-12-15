@@ -1,4 +1,4 @@
-package com.example.hotel.entity;
+package com.example.Hotel.entity;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -25,11 +25,12 @@ public class HotelEntity {
     boolean expressDelivery;
     String hotelStatus;
     String[] hotelMenuType;
-    Integer[] hotelRating;
-    String[] hotelReview;
     Integer[] hotelFacility;
     String[] hotelCuisine;
     boolean notification=false;
+    Integer[] hotelRating;
+    String[] hotelReview;
+    
 
     public String getHotelId() {
         return hotelId;

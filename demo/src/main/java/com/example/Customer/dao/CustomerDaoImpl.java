@@ -88,7 +88,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     try {
 
-      String sql = "insert into customer values(:customerid,:name,:address,:locality,:landmark,:city,:state,:accounttype,:emailid,:contno,:password,:accountdate)";
+      String sql = "insert into customer values(:customerid,:name,:address,:locality,:landmark,:city,:state,:emailid,:contno,:password,:accountdate)";
       logger.debug("DAO::CustomerDaoImp::addCustomer::sql:: " + sql);
       SqlParameterSource param = new MapSqlParameterSource()
         .addValue("customerid", uuid.toString())
@@ -98,7 +98,7 @@ public class CustomerDaoImpl implements CustomerDao {
         .addValue("landmark", customerEntity.getLandmark())
         .addValue("city", customerEntity.getCity())
         .addValue("state", customerEntity.getState())
-        .addValue("accounttype", customerEntity.getAccountType())
+        //.addValue("accounttype", customerEntity.getAccountType())
         .addValue("emailid", customerEntity.getEmailId())
 
         .addValue("contno", customerEntity.getContNo())

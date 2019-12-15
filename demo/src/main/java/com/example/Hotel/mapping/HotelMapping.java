@@ -1,21 +1,23 @@
-package com.example.hotel.mapping;
+package com.example.Hotel.mapping;
 
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.example.hotel.entity.HotelEntity;
+import com.example.Hotel.entity.HotelEntity;
 
 import org.springframework.jdbc.core.RowMapper;
+
 /**
  * HotelMapping
  */
 public class HotelMapping implements RowMapper<HotelEntity> {
+
     @Override
-    public HotelEntity mapRow(ResultSet rs,int arg) throws SQLException {
-    
-        HotelEntity hotelEntity=new HotelEntity();
-    
+    public HotelEntity mapRow(ResultSet rs, int arg) throws SQLException {
+
+        HotelEntity hotelEntity = new HotelEntity();
+
         hotelEntity.setHotelId(rs.getString("hotelid"));
         hotelEntity.setHotelPassword(rs.getString("hotelpassword"));
         hotelEntity.setHotelEmailId(rs.getString("hotelemailid"));
@@ -35,26 +37,27 @@ public class HotelMapping implements RowMapper<HotelEntity> {
         hotelEntity.setHotelStatus(rs.getString("hotelstatus"));
 
         Array hotelMenuTypeArray = rs.getArray("hotelmenutype");
-        String[] hotelMenuTypeStrings = (String[])hotelMenuTypeArray.getArray();
+        String[] hotelMenuTypeStrings = (String[]) hotelMenuTypeArray.getArray();
         hotelEntity.setHotelMenuType(hotelMenuTypeStrings);
 
-        Array hotelRatingArray = rs.getArray("hotelrating");
-        Integer[] hotelRatingIntegers = (Integer[])hotelRatingArray.getArray();
-        hotelEntity.setHotelRating(hotelRatingIntegers);
-
-        Array hotelReviewArray = rs.getArray("hotelreview");
-        String[] hotelReviewStrings = (String[])hotelReviewArray.getArray();
-        hotelEntity.setHotelMenuType(hotelReviewStrings);
-
+       
         Array hotelFacilityArray = rs.getArray("hotelfacility");
-        Integer[] hotelFacilitIntegers = (Integer[])hotelFacilityArray.getArray();
+        Integer[] hotelFacilitIntegers = (Integer[]) hotelFacilityArray.getArray();
         hotelEntity.setHotelFacility(hotelFacilitIntegers);
 
         Array hotelCuisineArray = rs.getArray("hotelcuisine");
-        String[] hotelCuisineStrings = (String[])hotelCuisineArray.getArray();
+        String[] hotelCuisineStrings = (String[]) hotelCuisineArray.getArray();
         hotelEntity.setHotelCuisine(hotelCuisineStrings);
 
         hotelEntity.setNotification(rs.getBoolean("notification"));
+        Array hotelRatingArray = rs.getArray("hotelrating");
+        Integer[] hotelRatingIntegers = (Integer[]) hotelRatingArray.getArray();
+        hotelEntity.setHotelRating(hotelRatingIntegers);
+
+        Array hotelReviewArray = rs.getArray("hotelreview");
+        String[] hotelReviewStrings = (String[]) hotelReviewArray.getArray();
+        hotelEntity.setHotelMenuType(hotelReviewStrings);
+
         return hotelEntity;
     }
 }
