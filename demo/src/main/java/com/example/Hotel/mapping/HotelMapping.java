@@ -42,8 +42,8 @@ public class HotelMapping implements RowMapper<HotelEntity> {
 
        
         Array hotelFacilityArray = rs.getArray("hotelfacility");
-        Integer[] hotelFacilitIntegers = (Integer[]) hotelFacilityArray.getArray();
-        hotelEntity.setHotelFacility(hotelFacilitIntegers);
+        String[] hotelFacilityStrings = (String[]) hotelFacilityArray.getArray();
+        hotelEntity.setHotelFacility(hotelFacilityStrings);
 
         Array hotelCuisineArray = rs.getArray("hotelcuisine");
         String[] hotelCuisineStrings = (String[]) hotelCuisineArray.getArray();
@@ -51,8 +51,8 @@ public class HotelMapping implements RowMapper<HotelEntity> {
 
         hotelEntity.setNotification(rs.getBoolean("notification"));
         Array hotelRatingArray = rs.getArray("hotelrating");
-        Integer[] hotelRatingIntegers = (Integer[]) hotelRatingArray.getArray();
-        hotelEntity.setHotelRating(hotelRatingIntegers);
+        String[] hotelRatingStrings = (String[]) hotelRatingArray.getArray();
+        hotelEntity.setHotelRating(hotelRatingStrings);
 
         Array hotelReviewArray = rs.getArray("hotelreview");
         String[] hotelReviewStrings = (String[]) hotelReviewArray.getArray();

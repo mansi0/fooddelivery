@@ -48,6 +48,7 @@ public class HotelController {
         // logger.debug("POST:HotelController:addHotel::parameters:: "+parameters);
         ObjectMapper mapper = new ObjectMapper();
         HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
+    
         System.out.println("hotel in controller ::" + hotelEntity);
 
         try {

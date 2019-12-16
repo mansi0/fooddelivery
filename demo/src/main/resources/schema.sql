@@ -78,9 +78,9 @@ CREATE TABLE hotel(
     expressdelivery boolean,
     hotelstatus varchar(10),
     hotelmenutype text[],
-    hotelfacility int[],
+    hotelfacility text[],
     hotelcuisine text[],
-    hotelrating int[],
+    hotelrating text[],
     hotelreview text[],
     notification boolean
 );
