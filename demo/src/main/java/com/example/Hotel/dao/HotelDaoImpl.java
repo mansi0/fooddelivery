@@ -87,6 +87,14 @@ public class HotelDaoImpl implements HotelDao {
 
       String sql = "insert into hotel values(:hotelid,:hotelpassword,:hotelemailid,:hotelcontno,:hotelname,:hoteladdress,:hotellocality,:hotellandmark,:hotelcity,:hotelstate,:openat,:closeat,:approximatecost,:hotelopeningdate,:expressdelivery,:hotelstatus,:hotelmenutype,:hotelcuisine)";
       logger.debug("DAO::HotelDaoImp::addHotel::sql:: " + sql);
+     /* int[] numbers = new int[hotelEntity.hotelFacility.length];
+      for (int i = 0; i < hotelEntity.hotelFacility.length; i++) {
+        // Note that this is assuming valid input
+        // If you want to check then add a try/catch
+        // and another index for the numbers if to continue adding the others (see
+        // below)
+        numbers[i] = Integer.parseInt(hotelEntity.hotelFacility[i]);
+      }*/
       SqlParameterSource param = new MapSqlParameterSource().addValue("hotelid", uuid.toString())
           .addValue("hotelpassword", hotelEntity.getHotelPassword())
           .addValue("hotelemailid", hotelEntity.getHotelEmailId()).addValue("hotelcontno", hotelEntity.getHotelContNo())

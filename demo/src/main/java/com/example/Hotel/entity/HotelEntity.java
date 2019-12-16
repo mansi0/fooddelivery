@@ -25,10 +25,10 @@ public class HotelEntity {
     boolean expressDelivery;
     String hotelStatus;
     String[] hotelMenuType;
-    Integer[] hotelFacility;
+    String[] hotelFacility;
     String[] hotelCuisine;
     boolean notification=false;
-    Integer[] hotelRating;
+    String[] hotelRating;
     String[] hotelReview;
     
 
@@ -168,11 +168,11 @@ public class HotelEntity {
         this.hotelMenuType = hotelMenuType;
     }
 
-    public Integer[] getHotelRating() {
+    public String[] getHotelRating() {
         return hotelRating;
     }
 
-    public void setHotelRating(Integer[] hotelRating) {
+    public void setHotelRating(String[] hotelRating) {
         this.hotelRating = hotelRating;
     }
 
@@ -184,11 +184,11 @@ public class HotelEntity {
         this.hotelReview = hotelReview;
     }
 
-    public Integer[] getHotelFacility() {
+    public String[] getHotelFacility() {
         return hotelFacility;
     }
 
-    public void setHotelFacility(Integer[] hotelFacility) {
+    public void setHotelFacility(String[] hotelFacility) {
         this.hotelFacility = hotelFacility;
     }
 

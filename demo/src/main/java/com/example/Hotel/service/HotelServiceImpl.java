@@ -108,8 +108,8 @@ public class HotelServiceImpl implements HotelService {
       return executor.submit(() -> {
 
         String message = String.format("<html>Hi <b>%s</b>,", name);
-        message += "<br>&nbsp;&nbsp;Welcome in FoodTrip journey,Thanx for joining us.";
-        message += "<br><br><br> Thanks, <br> FoodTrip Team.</html>";
+        message += "<br>&nbsp;&nbsp;Welcome in Taste on way system, thanks for joinning our buiseness. ";
+        message += "<br><br><br> Thanks, <br> Taste on Way Team.</html>";
 
         logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::message:: " + message);
 
