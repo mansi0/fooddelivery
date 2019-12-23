@@ -14,5 +14,5 @@ public interface CustomerDao {
     public List<CustomerEntity> checkDuplicationOfEmail(CustomerEntity customerEntity);
     public int addCustomer(CustomerEntity customerEntity)throws ParseException;
     public void updateCustomer(CustomerEntity customerEntity);
-    public List<CustomerEntity> fetchByEmailId(String email);
+    public List<CustomerEntity> fetchByEmailId(String email); 
 }
