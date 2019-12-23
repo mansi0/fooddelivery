@@ -23,80 +23,117 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.servlet.mvc.method.annotation.PathVariableMapMethodArgumentResolver;
 
 /**
  * CustomerController
  */
 @RestController
-@RequestMapping(path = "customer")
+@RequestMapping(path = "/customer")
 public class CustomerController {
-    @Resource CustomerService customerService;
-    
+    @Resource
+    CustomerService customerService;
+
     static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
-    @GetMapping(value = "details")
+
+    @GetMapping(value = "/details")
     public List<CustomerEntity> getDetails() {
 
-
-        List<CustomerEntity> listOfCustomer=customerService.getDetail();
+        List<CustomerEntity> listOfCustomer = customerService.getDetail();
         return listOfCustomer;
     }
 
-    
-    @PostMapping(value = "/add" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addCustomer(@RequestBody String parameters)
-            throws JsonParseException, JsonMappingException ,IOException{
-       // logger.debug("POST:CustomerController:addCustomer::parameters:: "+parameters);
-        ObjectMapper mapper=new ObjectMapper();
-        CustomerEntity customerEntity=mapper.readValue(parameters, CustomerEntity.class);
-        System.out.println("customer in controller ::"+customerEntity);
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:CustomerController:addCustomer::parameters::
+        // "+parameters);
+        ObjectMapper mapper = new ObjectMapper();
+        CustomerEntity customerEntity = mapper.readValue(parameters, CustomerEntity.class);
+        System.out.println("customer in controller ::" + customerEntity);
 
         try {
-          int result=customerService.addCustomer(customerEntity);
-         if(result== -1) {
-            Map<String, Object> body =new HashMap<String, Object>();
+            int result = customerService.addCustomer(customerEntity);
+            if (result == -1)/*400*/ {
+                Map<String, Object> body = new HashMap<String, Object>();
 
-            body.put("message","User already exist");
-            body.put("status", HttpStatus.BAD_REQUEST.value());
+                body.put("message", "Customer already exist");
+                body.put("status", HttpStatus.BAD_REQUEST.value());
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-         }
-         else if(result ==0)
-             return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
-         else if(result ==1)
-            return ResponseEntity.status(HttpStatus.OK).body("Customer added successfully ");
-        
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+            } else if (result == 0)//500
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
+            else if (result == 1)//200
+            {
+                System.out.println("add success");
+                return ResponseEntity.status(HttpStatus.OK).body("Customer added successfully ");
+                
+            }
+
+        } catch (Exception e) {
+            logger.error("POST:CustomerController:addCustomer::error:: " + e.getStackTrace());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured");
         }
-        catch(Exception e) {
-             logger.error("POST:CustomerController:addCustomer::error:: "+e.getStackTrace());
-             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured");
-      }
-     return null;
+        return null;
     }
-   /* @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("errorMsg", "Your username and password are invalid.");
+    /*
+     * @RequestMapping(value = "/login", method = RequestMethod.GET) public String
+     * login(Model model, String error, String logout) { if (error != null)
+     * model.addAttribute("errorMsg", "Your username and password are invalid.");
+     * 
+     * if (logout != null) model.addAttribute("msg",
+     * "You have been logged out successfully.");
+     * 
+     * return "login"; }
+     */
+    /*
+     * @GetMapping("/index") public String greetingForm(Model model) {
+     * model.addAttribute("greeting", new CustomerMapping()); return "greeting"; }
+     * 
+     * @PostMapping("/index") public String greetingSubmit(@ModelAttribute
+     * CustomerEntity customerEntity) { return "result"; }
+     */
 
-        if (logout != null)
-            model.addAttribute("msg", "You have been logged out successfully.");
+  /*  @PostMapping(path  = "/logincustomer/{email}/{psw}")
+    public ResponseEntity<?> loginCustomer(@PathVariable ("email") String email , @PathVariable ("psw") String psw)
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:CustomerController:addCustomer::parameters::*/
 
-        return "login";
-    }*/
-/*
-    @GetMapping("/index")
-	public String greetingForm(Model model) {
-		model.addAttribute("greeting", new CustomerMapping());
-		return "greeting";
-	}
+        @PostMapping(value = "/logincustomer", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> loginCustomer(@RequestBody String parameters)
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:CustomerController:addCustomer::parameters::
+        // "+parameters);
+        ObjectMapper mapper = new ObjectMapper();
+        CustomerEntity customerEntity = mapper.readValue(parameters, CustomerEntity.class);
+        String email=customerEntity.getEmailId();
+        String psw=customerEntity.getPassword();       
+        // "+parameters);
+        try {
+            System.out.println(email  +","+  psw+"cccccccc");
+            int result= customerService.loginCustomer(email, psw);
+            if(result==-1)//404
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer Not Found");
+            if(result==0)//400
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Password");
+            if(result==1)//200
+                return ResponseEntity.status(HttpStatus.OK).body("Valid Customer");
+            if(result==-2)//500
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
+                
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
+        }
+        return null;
 
-	@PostMapping("/index")
-	public String greetingSubmit(@ModelAttribute CustomerEntity customerEntity) {
-		return "result";
-	}*/
-} 
+    }
+
+}

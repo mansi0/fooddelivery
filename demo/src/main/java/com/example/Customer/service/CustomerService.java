@@ -11,4 +11,5 @@ public interface CustomerService {
 
     public List<CustomerEntity> getDetail();
     public int addCustomer(CustomerEntity customerEntity);
+    public int loginCustomer(String email,String psw);
 }

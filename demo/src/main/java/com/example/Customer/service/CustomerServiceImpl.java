@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import java.lang.Object.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -26,44 +27,74 @@ import org.springframework.stereotype.Service;;
  * CustomerServiceImpl
  */
 @Service
-public class CustomerServiceImpl implements CustomerService{
-
+public class CustomerServiceImpl implements CustomerService {
 
   @Autowired
   private JavaMailSender JavaMailSender;
-    @Resource CustomerDao customerDao;
+  @Resource
+  CustomerDao customerDao;
 
-    Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
-    private ExecutorService executor = Executors.newSingleThreadExecutor();
-    @Override
-    public List<CustomerEntity> getDetail() {
+  Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+  private ExecutorService executor = Executors.newSingleThreadExecutor();
 
+  @Override
+  public List<CustomerEntity> getDetail() {
 
-        
-        List<CustomerEntity> listOfCustomer=customerDao.getDetail();
-        return listOfCustomer;
-    }
-    public int checkDuplicationOfEmail(CustomerEntity customerEntity) {
+    List<CustomerEntity> listOfCustomer = customerDao.getDetail();
+    return listOfCustomer;
+  }
 
-        try{
-        //String email = user.getEmail();
-          List<CustomerEntity> listOfCustomer = customerDao.checkDuplicationOfEmail(customerEntity);
-          System.out.println(listOfCustomer.size());
-          if(listOfCustomer.size() > 0) {
-    
-            System.out.println("this email already exist:: " + customerEntity.getEmailId());
-            return 1;
-            //return ResponseEntity.status(HttpStatus.OK).body("Customer Already Exits");
-          }
-        }
-        catch(Exception e) {
-    
-          logger.error("SERVICE::CustomerServiceImpl::addCustomer::checkDuplicationForEmail::error:: " + e.getMessage());
-        }
-          return 0;
-        
+  public int checkDuplicationOfEmail(CustomerEntity customerEntity) {
+
+    try {
+      // String email = user.getEmail();
+      List<CustomerEntity> listOfCustomer = customerDao.checkDuplicationOfEmail(customerEntity);
+      if (listOfCustomer.size() > 0) {
+
+        System.out.println("this email already exist:: " + customerEntity.getEmailId());
+        return 1;
+        // return ResponseEntity.status(HttpStatus.OK).body("Customer Already Exits");
       }
-      public int addCustomer(CustomerEntity customerEntity) {
+    } catch (Exception e) {
+
+      logger.error("SERVICE::CustomerServiceImpl::addCustomer::checkDuplicationForEmail::error:: " + e.getMessage());
+    }
+    return 0;
+
+  }
+
+  @Override
+      public int loginCustomer(String email, String psw) {
+
+        try {
+
+         List<CustomerEntity> listOfCustomer = customerDao.fetchByEmailId(email);
+         System.out.println(listOfCustomer.size()+"+++++++++");
+          if(listOfCustomer.size() == 0) 
+             return -1;
+          else if(listOfCustomer.size()>0) {
+
+           CustomerEntity customerEntity=new CustomerEntity();
+           customerEntity=listOfCustomer.get(0);
+
+            BCryptPasswordEncoder bCrypt =new BCryptPasswordEncoder();
+            boolean isPasswordMatches = bCrypt.matches(psw, customerEntity.getPassword());
+            System.out.println("value :"+ isPasswordMatches);
+
+           if(isPasswordMatches) {
+                return 1;
+           }
+           else return 0;
+
+        }
+      }
+      catch(Exception e) {
+        return -2;
+      }
+      return -2;
+    }
+
+  public int addCustomer(CustomerEntity customerEntity) {
     
         
         int resultOfDuplication = checkDuplicationOfEmail(customerEntity);
@@ -100,7 +131,8 @@ public class CustomerServiceImpl implements CustomerService{
         else 
           return -1;
       }
-      public Future<Integer> sendGreetingEmail(String name, String email) {
+
+  public Future<Integer> sendGreetingEmail(String name, String email) {
    
         try {
           return executor.submit(() -> {
@@ -149,6 +181,5 @@ public class CustomerServiceImpl implements CustomerService{
           });
         }
       }
-    
-    
+
 }
