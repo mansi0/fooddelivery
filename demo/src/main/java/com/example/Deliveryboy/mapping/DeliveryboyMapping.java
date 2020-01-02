@@ -23,10 +23,11 @@ public class DeliveryboyMapping implements RowMapper<DeliveryboyEntity> {
         deliveryboyEntity.setDeliveryboySalary(rs.getFloat("deliveryboysalary"));
         deliveryboyEntity.setDeliveryArea(rs.getString("deliveryArea"));
         deliveryboyEntity.setDeliveryboyStatus(rs.getString("deliveryBoyStatus"));
-        deliveryboyEntity.setDeliveryboyPassword(rs.getString("deliberyBoypassword"));
+        deliveryboyEntity.setDeliveryboyPassword(rs.getString("deliveryBoypassword"));
         deliveryboyEntity.setNoOfDays(rs.getInt("noofdays"));
         deliveryboyEntity.setDeliveryboyShift(rs.getString("deliveryboyshift"));
         deliveryboyEntity.setNoOfDelivery(rs.getInt("noofdelivery"));
+        deliveryboyEntity.setAccountDate(rs.getDate("accountdate"));
         deliveryboyEntity.setNotification(rs.getBoolean("notification"));
         
      return deliveryboyEntity;

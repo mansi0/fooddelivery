@@ -12,4 +12,6 @@ public interface DeliveryboyService {
     public List<DeliveryboyEntity> getDetail();
 
     public int addDeliveryboy(DeliveryboyEntity deliveryboyEntity);
+
+    public int loginDeliveryboy(String email,String psw);
 }
