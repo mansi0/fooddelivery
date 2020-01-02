@@ -40,14 +40,15 @@ create table deliveryBoy(
     deliveryboyaddress varchar(100),
     deliveryboyemailid varchar(50),
     deliveryboycontno varchar(15),
-    deliveryboysalary float,
     deliveryArea varchar(100),
-    deliveryBoyStatus varchar(10) check(deliveryBoyStatus in('active','inactive')),
     deliveryBoypassword varchar(150),
+    accountDate date,
+    deliveryBoyStatus varchar(10) check(deliveryBoyStatus in('active','inactive')),
     noofdays int,
     deliveryboyshift varchar(10) check(deliveryboyshift in('morning','evening','night')),
     noofdelivery int,
-    notification boolean
+    deliveryboysalary float,
+    notification varchar(5)
     );
 
 create table homeDelivery(
@@ -66,9 +67,9 @@ CREATE TABLE hotel(
     hotelemailid VARCHAR(50),
     hotelcontno varchar(15),
     hotelname VARCHAR(50),
-    hoteladdress varchar(50),
-    hotellocality varchar(50),
-    hotellandmark varchar(50),
+    hoteladdress varchar(80),
+    hotellocality varchar(80),
+    hotellandmark varchar(80),
     hotelcity varchar(15),
     hotelstate varchar(20),
     openat time,
@@ -76,13 +77,14 @@ CREATE TABLE hotel(
     approximatecost float,
     hotelopeningdate DATE,
     expressdelivery boolean,
+    notification varchar(5),
     hotelstatus varchar(10),
     hotelmenutype text[],
     hotelfacility text[],
     hotelcuisine text[],
     hotelrating text[],
     hotelreview text[],
-    notification boolean
+    
 );
 
 

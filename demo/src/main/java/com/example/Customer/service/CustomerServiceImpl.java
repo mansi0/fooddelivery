@@ -154,6 +154,7 @@ public class CustomerServiceImpl implements CustomerService {
               JavaMailSender.send(mimeMessage);	  
             } catch (Exception e) {
               System.out.println(">>>>>>>>>>>>> ERRROR " +e);
+              return 0;
             }
             
             logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::sendMessage Successfully");

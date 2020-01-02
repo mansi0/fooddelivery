@@ -49,15 +49,17 @@ public class DeliveryboyDaoImpl implements DeliveryboyDao {
 
     try {
 
-      String sql = "select * from deliveryboy where deliveryboyemailid = :deliveryboyemailid";
-      SqlParameterSource param = new MapSqlParameterSource().addValue("deliveryboyemailid",
+      String sql = "select * from deliveryboy where deliveryboyEmailId = :deliveryboyEmailId";
+
+      SqlParameterSource param = new MapSqlParameterSource().addValue("deliveryboyEmailId",
           deliveryboyEntity.getDeliveryboyEmailId());
 
       listOfDeliveryboy = template.query(sql, param, new DeliveryboyMapping());
       logger.debug("DAO::DeliveryboyDaoImp::getDetail::listOfDeliveryboy::listOfDeliveryboy:: " + listOfDeliveryboy);
 
       return listOfDeliveryboy;
-    } catch (Exception e) {
+    }
+    catch (Exception e) {
       logger.error("DAO::DeliveryboyDaoImp::checkDuplicateEmail::error:: " + e.getMessage());
       logger.error("DAO::DeliveryboyDaoImp::checkDuplicateEmail::error:: " + e.getStackTrace());
       throw e;
@@ -84,24 +86,18 @@ public class DeliveryboyDaoImpl implements DeliveryboyDao {
 
     try {
 
-      String sql = "insert into deliveryboy values (:deliveryboyid,:deliveryboyname,:deliveryboyaddress,:deliveryboyemailid,:deliveryboycontno,:deliveryboysalary,:deliveryarea,:deliveryboystatus,:deliveryboypassword,:noofdays,:deliveryboyshift,:noofdelivery)";
+      String sql = "insert into deliveryboy values (:deliveryboyid,:deliveryboyname,:deliveryboyaddress,:deliveryboyemailid,:deliveryboycontno,:deliveryarea,:deliveryboypassword,:accountdate)";
 
       logger.debug("DAO::DeliveryboyDaoImp::addDeliveryboy::sql:: " + sql);
-      SqlParameterSource param = new MapSqlParameterSource().addValue("deliveryboyid", uuid.toString())
-          .addValue("deliveryboyid", uuid.toString())
+      SqlParameterSource param = new MapSqlParameterSource().
+        addValue("deliveryboyid", uuid.toString())
           .addValue("deliveryboyname", deliveryboyEntity.getDeliveryboyName())
           .addValue("deliveryboyaddress", deliveryboyEntity.getDeliveryboyAddress())
           .addValue("deliveryboyemailid", deliveryboyEntity.getDeliveryboyEmailId())
           .addValue("deliveryboycontno", deliveryboyEntity.getDeliveryboyContNo())
-          .addValue("deliveryboysalary", deliveryboyEntity.getDeliveryboySalary())
           .addValue("deliveryarea", deliveryboyEntity.getDeliveryArea())
-          .addValue("deliveryboystatus", deliveryboyEntity.getDeliveryboyStatus())
           .addValue("deliveryboypassword", deliveryboyEntity.getDeliveryboyPassword())
-
-          .addValue("noofdays", deliveryboyEntity.getNoOfDays())
-          .addValue("deliveryboyshift", deliveryboyEntity.getDeliveryboyShift())
-          .addValue("noofdelivery", deliveryboyEntity.getNoOfDelivery());
-
+          .addValue("accountdate", parsedDate);
       logger.debug("DAO::DeliveryboyDaoImp::addDeliveryboy::param:: " + param);
 
       return template.update(sql, param);
@@ -110,6 +106,7 @@ public class DeliveryboyDaoImpl implements DeliveryboyDao {
       logger.error("DAO::DeliveryboyDaoImp::addDeliveryboy::error:: " + e.getStackTrace());
 
       throw e;
+
     }
 
   }

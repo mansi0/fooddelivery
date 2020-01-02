@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import java.lang.Object.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -68,6 +69,7 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
   public int addDeliveryboy(DeliveryboyEntity deliveryboyEntity) {
 
     int resultOfDuplication = checkDuplicationOfEmail(deliveryboyEntity);
+    System.out.println(resultOfDuplication);
 
     if (resultOfDuplication == 0) {
       String password = deliveryboyEntity.getDeliveryboyPassword();
@@ -84,19 +86,23 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
           Future<Integer> response = sendGreetingEmail(deliveryboyEntity.getDeliveryboyName(),
               deliveryboyEntity.getDeliveryboyEmailId());
           logger.debug("SERVICE::UserServiceImp::addUser::response:: " + addDeliveryboyResponse);
-        } else {
+          return 1;
+        }
+         else {
 
           logger.debug("SERVICE::DeliveryboyServiceImp::addDeliveryboy::Delivery boy not get added");
+          return 0;
 
         }
 
-        return 1;
+        
       } catch (Exception e) {
 
         logger.error("SERVICE::DeliveryboyServiceImp::addDeliveryboy::error:: " + e.getMessage());
         return 0;
       }
-    } else
+    } 
+    else
       return -1;
   }
 
@@ -114,14 +120,20 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
         MimeMessage mimeMessage = JavaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
+                
         helper.setTo(email);
+        
         helper.setSubject("Sign Up");
+        
         helper.setText(message, true);
-
+        
         try {
+
           JavaMailSender.send(mimeMessage);
-        } catch (Exception e) {
-          System.out.println(">>>>>>>>>>>>> ERRROR " + e);
+        } 
+        catch (Exception e) {
+          
+          return 0;
         }
 
         logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::sendMessage Successfully");
@@ -149,5 +161,36 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
       });
     }
   }
+
+  @Override
+      public int loginDeliveryboy(String email, String psw) {
+
+        try {
+
+         List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyDao.fetchByEmailId(email);
+          if(listOfDeliveryboy.size() == 0) 
+             return -1;
+          else if(listOfDeliveryboy.size()>0) {
+
+           DeliveryboyEntity deliveryboyEntity=new DeliveryboyEntity();
+           deliveryboyEntity=listOfDeliveryboy.get(0);
+
+            BCryptPasswordEncoder bCrypt =new BCryptPasswordEncoder();
+            boolean isPasswordMatches = bCrypt.matches(psw, deliveryboyEntity.getDeliveryboyPassword());
+            System.out.println("value :"+ isPasswordMatches);
+
+           if(isPasswordMatches) {
+                return 1;
+           }
+           else return 0;
+
+        }
+      }
+      catch(Exception e) {
+        return -2;
+      }
+      return -2;
+    }
+
 
 }

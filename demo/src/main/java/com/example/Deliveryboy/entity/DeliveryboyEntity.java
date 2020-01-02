@@ -12,13 +12,14 @@ public class DeliveryboyEntity {
     String deliveryboyAddress;
     String deliveryboyEmailId;
     String deliveryboyContNo;
-    float deliveryboySalary;
     String deliveryArea;
-    String deliveryboyStatus;
     String deliveryboyPassword;
+    String deliveryboyStatus;
     int noOfDays;
     String deliveryboyShift;
     int noOfDelivery;
+    Date accountDate;
+    float deliveryboySalary;
     boolean notification=false;
 
     public String getDeliveryboyId() {
@@ -123,6 +124,14 @@ public class DeliveryboyEntity {
 
     public void setNotification(boolean notification) {
         this.notification = notification;
+    }
+
+    public Date getAccountDate() {
+        return accountDate;
+    }
+
+    public void setAccountDate(Date accountDate) {
+        this.accountDate = accountDate;
     }
 
    

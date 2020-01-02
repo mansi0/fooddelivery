@@ -116,7 +116,7 @@ public class CustomerController {
         String psw=customerEntity.getPassword();       
         // "+parameters);
         try {
-            System.out.println(email  +","+  psw+"cccccccc");
+    
             int result= customerService.loginCustomer(email, psw);
             if(result==-1)//404
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer Not Found");
