@@ -112,7 +112,7 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
       return executor.submit(() -> {
 
         String message = String.format("<html>Hi <b>%s</b>,", name);
-        message += "<br>&nbsp;&nbsp;Welcome in Taste On Way journey,Thanx for joining us.";
+        message += "<br>&nbsp;&nbsp;Welcome in Taste On Way journey,Thanx for joining our buiseness. We also feel pround to work with you.Your loyalty and sincerity will go a long way to help us make you proud of us.";
         message += "<br><br><br> Thanks, <br> Taste On Way Team.</html>";
 
         logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::message:: " + message);
@@ -123,7 +123,7 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
                 
         helper.setTo(email);
         
-        helper.setSubject("Sign Up");
+        helper.setSubject("Work with Taste On Way");
         
         helper.setText(message, true);
         

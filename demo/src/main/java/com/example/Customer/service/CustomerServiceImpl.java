@@ -138,16 +138,17 @@ public class CustomerServiceImpl implements CustomerService {
           return executor.submit(() -> {
     
             String message = String.format("<html>Hi <b>%s</b>,", name);
-            message += "<br>&nbsp;&nbsp;Welcome in FoodTrip journey,Thanx for joining us.";
-            message += "<br><br><br> Thanks, <br> FoodTrip Team.</html>";
-    
+            message += "<br><br>&nbsp;&nbsp;Welcome on Taste On Way Service !!!Our team just wanted to say hello and make sure everything's in place for you to feel at home on \"Tast On Way\". ";
+            message += "<br><br>&nbsp;&nbsp;          We are always here to serve your cravings,thank you for joining us. Your feedback and loyalty will go a long way to help us make you proud of us.";
+            message += "<br><br><br> Cheers!, <br> Taste On Way Team.</html>";
+            
             logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::message:: " + message);
     
             MimeMessage mimeMessage = JavaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
             
             helper.setTo(email);
-            helper.setSubject("Sign Up");     
+            helper.setSubject("Welcome in Foodie Team!!");     
             helper.setText(message, true);
     
             try {
