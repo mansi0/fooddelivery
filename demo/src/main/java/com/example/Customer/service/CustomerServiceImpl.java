@@ -58,6 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
     } catch (Exception e) {
 
       logger.error("SERVICE::CustomerServiceImpl::addCustomer::checkDuplicationForEmail::error:: " + e.getMessage());
+      return 0;
     }
     return 0;
 
@@ -69,7 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
         try {
 
          List<CustomerEntity> listOfCustomer = customerDao.fetchByEmailId(email);
-         System.out.println(listOfCustomer.size()+"+++++++++");
+         
           if(listOfCustomer.size() == 0) 
              return -1;
           else if(listOfCustomer.size()>0) {

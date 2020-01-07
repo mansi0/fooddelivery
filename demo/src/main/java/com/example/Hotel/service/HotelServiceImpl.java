@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import java.lang.Object.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -49,7 +50,7 @@ public class HotelServiceImpl implements HotelService {
     try {
       // String email = user.getEmail();
       List<HotelEntity> listOfHotel = hotelDao.checkDuplicationOfEmail(hotelEntity);
-      System.out.println(listOfHotel.size());
+      
       if (listOfHotel.size() > 0) {
 
         System.out.println("this email already exist:: " + hotelEntity.getHotelEmailId());
@@ -69,6 +70,7 @@ public class HotelServiceImpl implements HotelService {
   public int addHotel(HotelEntity hotelEntity) {
 
     int resultOfDuplication = checkDuplicationOfEmail(hotelEntity);
+    
 
     if (resultOfDuplication == 0) {
       String password = hotelEntity.getHotelPassword();
@@ -108,7 +110,9 @@ public class HotelServiceImpl implements HotelService {
       return executor.submit(() -> {
 
         String message = String.format("<html>Hi <b>%s</b>,", name);
-        message += "<br>&nbsp;&nbsp;Welcome in Taste on way system, thanks for joinning our buiseness. ";
+        
+        message += "<br>&nbsp;&nbsp;Welcome in Taste on way system,thanx for coming with our buiseness,Our partnership will create a global food network.";
+        message += "<br>&nbsp;&nbsp;    Your feedback and loyalty will go a long way to help us make you proud of us.";
         message += "<br><br><br> Thanks, <br> Taste on Way Team.</html>";
 
         logger.debug("SERVICE::UserServiceImp::sendGreetingEmail::message:: " + message);
@@ -155,5 +159,36 @@ public class HotelServiceImpl implements HotelService {
       });
     }
   }
+
+
+  @Override
+      public int loginHotel(String email, String psw) {
+
+        try {
+
+         List<HotelEntity> listOfHotelEntities = hotelDao.fetchByEmailId(email);
+          if(listOfHotelEntities.size() == 0) 
+             return -1;
+          else if(listOfHotelEntities.size()>0) {
+
+           HotelEntity hotelEntity=new HotelEntity();
+           hotelEntity=listOfHotelEntities.get(0);
+
+            BCryptPasswordEncoder bCrypt =new BCryptPasswordEncoder();
+            boolean isPasswordMatches = bCrypt.matches(psw, hotelEntity.getHotelPassword());
+            System.out.println("value :"+ isPasswordMatches);
+
+           if(isPasswordMatches) {
+                return 1;
+           }
+           else return 0;
+
+        }
+      }
+      catch(Exception e) {
+        return -2;
+      }
+      return -2;
+    }
 
 }

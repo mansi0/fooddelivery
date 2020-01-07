@@ -51,14 +51,15 @@ public class HotelDaoImpl implements HotelDao {
 
     try {
 
-      String sql = "select * from hotel where hotelemailid = :hotelemailid";
-      SqlParameterSource param = new MapSqlParameterSource().addValue("hotelemailid", hotelEntity.getHotelEmailId());
+      String sql = "select * from hotel where hotelEmailId = :hotelEmailId" ;
+      SqlParameterSource param = new MapSqlParameterSource().addValue("hotelEmailId", hotelEntity.getHotelEmailId());
 
       listOfHotel = template.query(sql, param, new HotelMapping());
       logger.debug("DAO::HotelDaoImp::getDetail::listOfHotel::listOfHotel:: " + listOfHotel);
 
       return listOfHotel;
-    } catch (Exception e) {
+    } 
+    catch (Exception e) {
       logger.error("DAO::HotelDaoImp::checkDuplicateEmail::error:: " + e.getMessage());
       logger.error("DAO::HotelDaoImp::checkDuplicateEmail::error:: " + e.getStackTrace());
       throw e;
@@ -85,7 +86,7 @@ public class HotelDaoImpl implements HotelDao {
 
     try {
 
-      String sql = "insert into hotel values(:hotelid,:hotelpassword,:hotelemailid,:hotelcontno,:hotelname,:hoteladdress,:hotellocality,:hotellandmark,:hotelcity,:hotelstate,:openat,:closeat,:approximatecost,:hotelopeningdate,:expressdelivery,:hotelstatus,:hotelmenutype,:hotelcuisine)";
+      String sql = "insert into hotel values(:hotelid,:hotelpassword,:hotelemailid,:hotelcontno,:hotelname,:hoteladdress,:hotellocality,:hotellandmark,:hotelcity,:hotelstate,:openat,:closeat,:approximatecost,:hotelopeningdate,:expressdelivery,:hotelstatus,:hotelmenutype,:hotelfacility,:hotelcuisine)";
       logger.debug("DAO::HotelDaoImp::addHotel::sql:: " + sql);
      /* int[] numbers = new int[hotelEntity.hotelFacility.length];
       for (int i = 0; i < hotelEntity.hotelFacility.length; i++) {

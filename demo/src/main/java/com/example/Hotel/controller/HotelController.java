@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.apache.tomcat.util.http.parser.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -53,12 +54,18 @@ public class HotelController {
 
         try {
             int result = hotelService.addHotel(hotelEntity);
-            if (result == -1)
+            if (result == -1) {
+                System.out.println("this emailid already exist for another hotel");
                 return ResponseEntity.status(HttpStatus.OK).body("hotel Already Exist");
-            else if (result == 0)
+            }
+            else if (result == 0) {
+                System.out.println("error occured");
                 return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
-            else if (result == 1)
+            }
+            else if (result == 1) {
+                System.out.println("hotel added successfully");
                 return ResponseEntity.status(HttpStatus.OK).body("hotel added successfully ");
+            }
 
         }
 
@@ -67,5 +74,49 @@ public class HotelController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error occured");
         }
         return null;
+    }
+
+    /*
+
+        function for images
+    */
+    /*@RequestMapping(value = "/image")
+    public ResponseEntity<?> setImage(@RequestBody String parameters) throws JsonParseException,JsonMappingException,IOException {
+
+        ObjectMapper mapper= new ObjectMapper();
+        HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
+        hotelEntity.setImage();
+
+
+    }*/
+
+    @PostMapping(value = "/loginhotel")
+    public ResponseEntity<?> loginHotel(@RequestBody String parameters)
+            throws JsonParseException, JsonMappingException, IOException {
+        
+        ObjectMapper mapper = new ObjectMapper();
+        HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
+        String email=hotelEntity.getHotelEmailId();
+        String psw=hotelEntity.getHotelPassword();       
+        // "+parameters);
+        try {
+    
+            int result= hotelService.loginHotel(email, psw);
+            if(result==-1)//404
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hotel Not Found");
+            if(result==0)//400
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Password");
+            if(result==1)//200
+                return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+            if(result==-2)//500
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
+                
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
+        }
+        return null;
+
     }
 }

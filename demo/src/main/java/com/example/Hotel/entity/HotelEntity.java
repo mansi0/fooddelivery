@@ -31,6 +31,8 @@ public class HotelEntity {
     String[] hotelRating;
     String[] hotelReview;
     
+   // private String image;
+
 
     public String getHotelId() {
         return hotelId;
@@ -207,4 +209,12 @@ public class HotelEntity {
     public void setNotification(boolean notification) {
         this.notification = notification;
     }
+
+   /* public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }*/
 }
