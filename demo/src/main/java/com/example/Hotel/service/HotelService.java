@@ -12,4 +12,6 @@ public interface HotelService {
     public List<HotelEntity> getDetail();
 
     public int addHotel(HotelEntity hotelEntity);
+
+    public int loginHotel(String email,String psw);
 }

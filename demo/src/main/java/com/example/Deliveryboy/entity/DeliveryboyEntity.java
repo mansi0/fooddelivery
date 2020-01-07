@@ -21,6 +21,7 @@ public class DeliveryboyEntity {
     Date accountDate;
     float deliveryboySalary;
     boolean notification=false;
+    
 
     public String getDeliveryboyId() {
         return deliveryboyId;

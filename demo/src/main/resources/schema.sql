@@ -51,6 +51,9 @@ create table deliveryBoy(
     notification varchar(5)
     );
 
+CREATE TABLE image(
+    imagepath varchar(50)
+);
 create table homeDelivery(
     homeDeliveryId varchar(100) primary key,
     homeDeliveryAddress varchar(100),
@@ -77,15 +80,15 @@ CREATE TABLE hotel(
     approximatecost float,
     hotelopeningdate DATE,
     expressdelivery boolean,
-    notification varchar(5),
-    hotelstatus varchar(10),
+    hotelstatus varchar(20),
     hotelmenutype text[],
     hotelfacility text[],
     hotelcuisine text[],
+    notification varchar(5),
     hotelrating text[],
-    hotelreview text[],
-    
+    hotelreview text[]
 );
+
 
 
 
