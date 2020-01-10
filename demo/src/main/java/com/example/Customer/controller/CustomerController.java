@@ -121,7 +121,15 @@ public class CustomerController {
             if(result==-1)//404
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer Not Found");
             if(result==0)//400
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Password");
+            {
+                Map<String, Object> body = new HashMap<String, Object>();
+
+                body.put("message", "Invalid Password");
+                body.put("status", HttpStatus.BAD_REQUEST.value());
+
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+            }
+             
             if(result==1)//200
                 return ResponseEntity.status(HttpStatus.OK).body("Valid Customer");
             if(result==-2)//500

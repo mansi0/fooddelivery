@@ -1,7 +1,9 @@
 package com.example.Deliveryboy.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -53,9 +55,16 @@ public class DeliveryboyController {
         try {
             int result = deliveryboyService.addDeliveryboy(deliveryboyEntity);
             if (result == -1)//400
-                return ResponseEntity.status(HttpStatus.OK).body("delivery boy Already Exist");
+            {
+                Map<String, Object> body = new HashMap<String, Object>();
+
+                body.put("message", "DeliveryBoy already exist already exist");
+                body.put("status", HttpStatus.BAD_REQUEST.value());
+
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+            }
             else if (result == 0)//500
-                return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
             else if (result == 1)//200
                 return ResponseEntity.status(HttpStatus.OK).body("Deliveryboy added successfully ");
 
@@ -82,7 +91,15 @@ public class DeliveryboyController {
             if(result==-1)//404
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Deliveryboy Not Found");
             if(result==0)//400
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Password");
+            {
+                Map<String, Object> body = new HashMap<String, Object>();
+
+                body.put("message", "Invalid Password");
+                body.put("status", HttpStatus.BAD_REQUEST.value());
+
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+            }
+             
             if(result==1)//200
                 return ResponseEntity.status(HttpStatus.OK).body("Valid Entry");
             if(result==-2)//500
