@@ -89,6 +89,21 @@ CREATE TABLE hotel(
     hotelreview text[]
 );
 
+create table food(
+    foodid varchar(100) PRIMARY KEY,
+    foodname varchar(80),
+    foodtype int,
+    category varchar(50)
+);
 
+create table hotel_food (
+    hotelfoodid varchar(100) PRIMARY KEY,
+    hotelid varchar(100) REFERENCES hotel(hotelid) ON DELETE CASCADE ON UPDATE CASCADE,
+    foodid VARCHAR(100) REFERENCES food(foodid) ON DELETE CASCADE ON UPDATE CASCADE,
+    foodspeciality VARCHAR(200),
+    size varchar,
+    price float,
+    unique(hotelid,foodid)
+); 
 
 

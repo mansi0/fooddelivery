@@ -64,36 +64,6 @@ public class CustomerServiceImpl implements CustomerService {
 
   }
 
-  @Override
-      public int loginCustomer(String email, String psw) {
-
-        try {
-
-         List<CustomerEntity> listOfCustomer = customerDao.fetchByEmailId(email);
-         
-          if(listOfCustomer.size() == 0) 
-             return -1;
-          else if(listOfCustomer.size()>0) {
-
-           CustomerEntity customerEntity=new CustomerEntity();
-           customerEntity=listOfCustomer.get(0);
-
-            BCryptPasswordEncoder bCrypt =new BCryptPasswordEncoder();
-            boolean isPasswordMatches = bCrypt.matches(psw, customerEntity.getPassword());
-            System.out.println("value :"+ isPasswordMatches);
-
-           if(isPasswordMatches) {
-                return 1;
-           }
-           else return 0;
-
-        }
-      }
-      catch(Exception e) {
-        return -2;
-      }
-      return -2;
-    }
 
   public int addCustomer(CustomerEntity customerEntity) {
     
@@ -184,5 +154,37 @@ public class CustomerServiceImpl implements CustomerService {
           });
         }
       }
+
+
+  @Override
+  public int loginCustomer(String email, String psw) {
+
+    try {
+
+     List<CustomerEntity> listOfCustomer = customerDao.fetchByEmailId(email);
+     
+      if(listOfCustomer.size() == 0) 
+         return -1;
+      else if(listOfCustomer.size()>0) {
+
+       CustomerEntity customerEntity=new CustomerEntity();
+       customerEntity=listOfCustomer.get(0);
+
+        BCryptPasswordEncoder bCrypt =new BCryptPasswordEncoder();
+        boolean isPasswordMatches = bCrypt.matches(psw, customerEntity.getPassword());
+        System.out.println("value :"+ isPasswordMatches);
+
+       if(isPasswordMatches) {
+            return 1;
+       }
+       else return 0;
+
+    }
+  }
+  catch(Exception e) {
+    return -2;
+  }
+  return -2;
+}
 
 }
