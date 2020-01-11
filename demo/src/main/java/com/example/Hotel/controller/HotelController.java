@@ -1,7 +1,9 @@
 package com.example.Hotel.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -54,15 +56,25 @@ public class HotelController {
 
         try {
             int result = hotelService.addHotel(hotelEntity);
-            if (result == -1) {
+            if (result == -1) //400
+            {
+                Map<String, Object> body = new HashMap<String, Object>();
+
+                body.put("message", "Restaurent already exist already exist");
+                body.put("status", HttpStatus.BAD_REQUEST.value());
+
                 System.out.println("this emailid already exist for another hotel");
-                return ResponseEntity.status(HttpStatus.OK).body("hotel Already Exist");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
             }
-            else if (result == 0) {
+                
+            
+            else if (result == 0)//500
+             {
                 System.out.println("error occured");
-                return ResponseEntity.status(HttpStatus.OK).body("Exception occur");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
             }
-            else if (result == 1) {
+            else if (result == 1)//200
+             {
                 System.out.println("hotel added successfully");
                 return ResponseEntity.status(HttpStatus.OK).body("hotel added successfully ");
             }
@@ -103,13 +115,31 @@ public class HotelController {
     
             int result= hotelService.loginHotel(email, psw);
             if(result==-1)//404
+            {
+                System.out.println("restaurent not found");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hotel Not Found");
+            }
             if(result==0)//400
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Password");
+            {
+                Map<String, Object> body = new HashMap<String, Object>();
+
+                body.put("message", "Invalid password");
+                body.put("status", HttpStatus.BAD_REQUEST.value());
+
+                System.out.println("Invalid Password");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+            }
+             
             if(result==1)//200
+            {
+                System.out.println("valid user");
                 return ResponseEntity.status(HttpStatus.OK).body("Valid User");
+            }
             if(result==-2)//500
+            {
+                System.out.println("Exception Occure");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
+            }
                 
         }
         catch(Exception e)

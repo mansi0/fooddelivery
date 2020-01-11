@@ -56,7 +56,7 @@ public class CustomerController {
         // "+parameters);
         ObjectMapper mapper = new ObjectMapper();
         CustomerEntity customerEntity = mapper.readValue(parameters, CustomerEntity.class);
-        System.out.println("customer in controller ::" + customerEntity);
+        
 
         try {
             int result = customerService.addCustomer(customerEntity);
@@ -65,10 +65,14 @@ public class CustomerController {
 
                 body.put("message", "Customer already exist");
                 body.put("status", HttpStatus.BAD_REQUEST.value());
-
+                System.out.println("customer already exists");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-            } else if (result == 0)//500
+            }
+             else if (result == 0)//500
+             {
+                 System.out.println("Exception Occur");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
+             }
             else if (result == 1)//200
             {
                 System.out.println("add success");
