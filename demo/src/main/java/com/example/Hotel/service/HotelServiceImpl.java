@@ -8,6 +8,7 @@ import java.util.concurrent.Future;
 import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 
+import com.example.Food.entity.FoodEntity;
 import com.example.Hotel.dao.HotelDao;
 import com.example.Hotel.entity.HotelEntity;
 
@@ -39,9 +40,8 @@ public class HotelServiceImpl implements HotelService {
   private ExecutorService executor = Executors.newSingleThreadExecutor();
 
   @Override
-  public List<HotelEntity> getDetail() {
-
-    List<HotelEntity> listOfHotel = hotelDao.getDetail();
+  public List<HotelEntity> getDetail(HotelEntity hotelEntity) {
+    List<HotelEntity> listOfHotel = hotelDao.getDetail(hotelEntity.getHotelName());
     return listOfHotel;
   }
 

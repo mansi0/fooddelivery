@@ -24,16 +24,16 @@ public class FoodMapping implements RowMapper<FoodEntity> {
 
             switch (fieldName) {
 
-            case "imageid":
-            foodEntity.setFoodid(rs.getString("foodid"));
+            case "foodid":
+            foodEntity.setFoodId(rs.getString("foodid"));
             break;
 
             case "foodname" :
-            foodEntity.setFoodname(rs.getString("foodname"));
+            foodEntity.setFoodName(rs.getString("foodname"));
             break;
 
             case "foodtype" :
-            foodEntity.setFoodtype(rs.getInt("foodtype"));
+            foodEntity.setFoodType(rs.getInt("foodtype"));
             break;
 
             case "category" :

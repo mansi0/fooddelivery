@@ -38,10 +38,13 @@ public class HotelController {
 
     static final Logger logger = LoggerFactory.getLogger(HotelController.class);
 
-    @GetMapping(value = "details")
-    public List<HotelEntity> getDetails() {
+    @GetMapping(value = "/getdetail")
+    public List<HotelEntity> getDetails(@RequestBody String parameters)
+    throws JsonParseException,JsonMappingException,IOException {
 
-        List<HotelEntity> listOfHotel = hotelService.getDetail();
+        ObjectMapper mapper = new ObjectMapper();
+        HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
+        List<HotelEntity> listOfHotel = hotelService.getDetail(hotelEntity);
         return listOfHotel;
     }
 

@@ -26,6 +26,18 @@ public class FoodDaoImpl implements FoodDao {
         this.template = template;
 
     }
+    @Override
+    public List<FoodEntity> getDetails(String foodName) {
+
+      String sql ="select * from food where foodname=:foodname";
+      SqlParameterSource param = new MapSqlParameterSource().addValue("foodname", foodName);
+
+
+      List<FoodEntity> foodEntity = template.query(sql, param, new FoodMapping());
+
+
+      return foodEntity;
+    }
 
     @Override
     public List<FoodEntity> checkDuplicationOfFood(FoodEntity FoodEntity) {
@@ -35,13 +47,13 @@ public class FoodDaoImpl implements FoodDao {
         try {
 
             String sql = "select * from food where foodname = :foodname";
-            SqlParameterSource param = new MapSqlParameterSource().addValue("foodname", FoodEntity.getFoodname());
+            SqlParameterSource param = new MapSqlParameterSource().addValue("foodname", FoodEntity.getFoodName());
 
             listOfFoodEntities = template.query(sql, param, new FoodMapping());
 
             return listOfFoodEntities;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("FoodDaoImpl::checkDuplicationOfFood"+e.getMessage());
             throw e;
 
         }
@@ -55,14 +67,14 @@ public class FoodDaoImpl implements FoodDao {
             String sql = "insert into food values(:foodid,:foodname,:foodtype,:category)";
 
             SqlParameterSource param = new MapSqlParameterSource().addValue("foodid", uuid.toString())
-                    .addValue("foodname", foodEntity.getFoodname()).addValue("foodtype", foodEntity.getFoodtype())
+                    .addValue("foodname", foodEntity.getFoodName()).addValue("foodtype", foodEntity.getFoodType())
                     .addValue("category", foodEntity.getCategory());
 
             return template.update(sql, param);
 
         } catch (Exception e) {
             // TODO: handle exception
-            System.out.println(e.getMessage());
+            System.out.println("FoodDaoImpl::addFood"+e.getMessage());
             return 0;
         }
 
