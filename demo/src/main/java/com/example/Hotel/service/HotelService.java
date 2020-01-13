@@ -9,7 +9,7 @@ import com.example.Hotel.entity.HotelEntity;
  */
 public interface HotelService {
 
-    public List<HotelEntity> getDetail();
+    public List<HotelEntity> getDetail(HotelEntity hotelEntity);
 
     public int addHotel(HotelEntity hotelEntity);
 
