@@ -11,6 +11,7 @@ import com.example.Food.entity.FoodEntity;
 public interface FoodDao {
 
     public List<FoodEntity> getDetails(String foodName);
+    public List<FoodEntity> getAllDetails();
     public List<FoodEntity> checkDuplicationOfFood(FoodEntity foodEntity);
     public int addFood(FoodEntity foodEntity)throws ParseException;
     public List<FoodEntity> fetchByFoodName(String foodName);

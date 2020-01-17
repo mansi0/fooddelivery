@@ -26,6 +26,13 @@ public class FoodDaoImpl implements FoodDao {
         this.template = template;
 
     }
+
+    @Override
+    public List<FoodEntity> getAllDetails() {
+      String sql="select * from food";
+      List<FoodEntity> listOfFoodEntity = template.query(sql, new FoodMapping());
+      return listOfFoodEntity;
+    }
     @Override
     public List<FoodEntity> getDetails(String foodName) {
 
