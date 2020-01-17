@@ -10,7 +10,7 @@ import com.example.Food.entity.FoodEntity;
  */
 public interface FoodService {
     
-    public List<FoodEntity> getDetails(FoodEntity foodEntity);
+    public List<FoodEntity> getDetailsByName(String foodName);
 
     public int addFood(FoodEntity foodEntity) throws ParseException;
 }

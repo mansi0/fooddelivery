@@ -12,6 +12,7 @@ import com.example.Hotel.service.HotelService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.tools.sjavac.Log;
 
 import org.apache.tomcat.util.http.parser.MediaType;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,15 +40,46 @@ public class HotelController {
 
     static final Logger logger = LoggerFactory.getLogger(HotelController.class);
 
-    @GetMapping(value = "/getdetail")
-    public List<HotelEntity> getDetails(@RequestBody String parameters)
+    //get the hotel details by name
+    @GetMapping(value = "/getdetail/{parameters}")
+    public List<HotelEntity> getDetailByName(@PathVariable String parameters)
     throws JsonParseException,JsonMappingException,IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
-        HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
-        List<HotelEntity> listOfHotel = hotelService.getDetail(hotelEntity);
+        List<HotelEntity> listOfHotel = hotelService.getDetailByName(parameters);
         return listOfHotel;
     }
+//get all details of hotel
+    @GetMapping(value = "/gethoteldetail")
+    public List<HotelEntity> getDetails() {
+
+        List<HotelEntity> listOfHotel = hotelService.getDetails();
+        return listOfHotel;
+    }
+    //by facility
+    @GetMapping(value = "/gethoteldetailbyhotelfacility/{parameters}")
+    public List<HotelEntity> getDetailsByHotelFacility(@PathVariable String parameters) {
+
+        //System.out.println(parameters);
+        int id=Integer.parseInt(parameters);
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelFacility(id);
+        return listOfHotel;
+    }
+    //by cuisine
+    @GetMapping(value = "/gethoteldetailbyhotelcuisine/{parameters}")
+    public List<HotelEntity> getDetailsByHotelCuisine(@PathVariable String parameters) {
+
+       // System.out.println(parameters);
+        int id=Integer.parseInt(parameters);
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelCuisine(id);
+        return listOfHotel;
+    }
+    //bymenutype veg or nonveg or both
+   /* @GetMapping(value = "/gethoteldetailbthotelmenutype/{parameters}")
+    public List<HotelEntity> getDetailsByHotelMenuType(@PathVariable String parameters) {
+        
+    }*/
+
+
 
     @PostMapping(value = "/addhotel")
     public ResponseEntity<?> addHotel(@RequestBody String parameters)

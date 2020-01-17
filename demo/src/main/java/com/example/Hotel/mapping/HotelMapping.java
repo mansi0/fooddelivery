@@ -76,13 +76,15 @@ public class HotelMapping implements RowMapper<HotelEntity> {
                 hotelEntity.setHotelStatus(rs.getString("hotelstatus"));
                 break;
             case "hotelmenutype": {
-                Array hotelMenuTypeArray = rs.getArray("hotelmenutype");
+              /*  Array hotelMenuTypeArray = rs.getArray("hotelmenutype");
                 if (hotelMenuTypeArray != null) {
                     String[] hotelMenuTypeStrings = (String[]) hotelMenuTypeArray.getArray();
                     hotelEntity.setHotelMenuType(hotelMenuTypeStrings);
-                }
-                break;
+                }*/
+                hotelEntity.setHotelMenuType(rs.getString("hotelmenutype"));
             }
+                break;
+            
 
             case "hotelfacility": {
                 Array hotelFacilityArray = rs.getArray("hotelfacility");
@@ -117,7 +119,7 @@ public class HotelMapping implements RowMapper<HotelEntity> {
                 Array hotelReviewArray = rs.getArray("hotelreview");
                 if (hotelReviewArray != null) {
                     String[] hotelReviewStrings = (String[]) hotelReviewArray.getArray();
-                    hotelEntity.setHotelMenuType(hotelReviewStrings);
+                    hotelEntity.setHotelReview(hotelReviewStrings);
                 }
                 break;
             }

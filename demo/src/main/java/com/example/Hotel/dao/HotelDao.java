@@ -10,7 +10,13 @@ import com.example.Hotel.entity.HotelEntity;
  */
 public interface HotelDao {
 
-    public List<HotelEntity> getDetail(String hotelName);
+    public List<HotelEntity> getDetailByName(String hotelName);
+
+    public List<HotelEntity> getDetails();
+
+    public List<HotelEntity> getDetailsByHotelFacility(int index);
+
+    public List<HotelEntity> getDetailsByHotelCuisine(int index);
 
     public List<HotelEntity> checkDuplicationOfEmail(HotelEntity hotelEntity);
 

@@ -40,9 +40,26 @@ public class HotelServiceImpl implements HotelService {
   private ExecutorService executor = Executors.newSingleThreadExecutor();
 
   @Override
-  public List<HotelEntity> getDetail(HotelEntity hotelEntity) {
-    List<HotelEntity> listOfHotel = hotelDao.getDetail(hotelEntity.getHotelName());
+  public List<HotelEntity> getDetailByName(String hotelName) {
+    List<HotelEntity> listOfHotel = hotelDao.getDetailByName(hotelName);
     return listOfHotel;
+  }
+  @Override
+  public List<HotelEntity> getDetails() {
+    List<HotelEntity> listOfHotel = hotelDao.getDetails();
+    return listOfHotel;
+  }
+
+  @Override
+  public List<HotelEntity> getDetailsByHotelFacility(int index) {
+    List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelFacility(index);
+    return listOfHotel; 
+  }
+
+  @Override
+  public List<HotelEntity> getDetailsByHotelCuisine(int index) {
+    List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelFacility(index);
+    return listOfHotel; 
   }
 
   public int checkDuplicationOfEmail(HotelEntity hotelEntity) {
