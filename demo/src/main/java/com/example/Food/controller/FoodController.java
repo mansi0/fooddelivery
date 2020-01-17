@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +32,11 @@ public class FoodController {
     @Resource
     FoodService foodService;
 
-    @GetMapping(value = "/getdetail")
-    public List<FoodEntity> getdetail(@RequestBody String parameters)
+    @GetMapping(value = "/getdetail/{parameters}")
+    public List<FoodEntity> getdetailByName(@PathVariable String parameters)
     throws JsonParseException,JsonMappingException,IOException {
-
-        ObjectMapper mapper = new ObjectMapper();
-        FoodEntity foodEntity = mapper.readValue(parameters, FoodEntity.class);
-        List<FoodEntity> listOFoodEntities = foodService.getDetails(foodEntity) ;
+       // System.out.println("in foodgetdetailcontroller");
+         List<FoodEntity> listOFoodEntities = foodService.getDetailsByName(parameters) ;
         return listOFoodEntities;
     }
 

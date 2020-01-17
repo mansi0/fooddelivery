@@ -16,10 +16,10 @@ create table customer(
 
 create table order1(
     orderId varchar(100) primary key,
+    customerId varchar(100) references customer(customerId)on delete cascade on update cascade,
     orderDate date,
     orderTime time,
     cookingInstruction varchar(50),
-    customerId varchar(100) references customer(customerId)on delete cascade on update cascade,
     unique(customerId,orderId)
     );
 
@@ -81,7 +81,7 @@ CREATE TABLE hotel(
     hotelopeningdate DATE,
     expressdelivery boolean,
     hotelstatus varchar(20),
-    hotelmenutype text[],
+    hotelmenutype varchar(20),
     hotelfacility text[],
     hotelcuisine text[],
     notification varchar(5),
@@ -101,8 +101,8 @@ create table hotel_food (
     hotelid varchar(100) REFERENCES hotel(hotelid) ON DELETE CASCADE ON UPDATE CASCADE,
     foodid VARCHAR(100) REFERENCES food(foodid) ON DELETE CASCADE ON UPDATE CASCADE,
     foodspeciality VARCHAR(200),
-    size varchar,
     price float,
+    size varchar,
     unique(hotelid,foodid)
 ); 
 

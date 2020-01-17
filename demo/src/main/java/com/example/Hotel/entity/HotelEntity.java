@@ -24,7 +24,7 @@ public class HotelEntity {
     Date hotelOpeningDate;
     boolean expressDelivery;
     String hotelStatus;
-    String[] hotelMenuType;
+    String hotelMenuType;
     String[] hotelFacility;
     String[] hotelCuisine;
     boolean notification=false;
@@ -162,11 +162,11 @@ public class HotelEntity {
         this.hotelStatus = hotelStatus;
     }
 
-    public String[] getHotelMenuType() {
+    public String getHotelMenuType() {
         return hotelMenuType;
     }
 
-    public void setHotelMenuType(String[] hotelMenuType) {
+    public void setHotelMenuType(String hotelMenuType) {
         this.hotelMenuType = hotelMenuType;
     }
 
