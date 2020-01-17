@@ -32,6 +32,14 @@ public class FoodController {
     @Resource
     FoodService foodService;
 
+    //get all details of hotel
+    @GetMapping(value = "/getfooddetail")
+    public List<FoodEntity> getDetails() {
+
+        List<FoodEntity> listOfHotel = foodService.getDetails();
+        return listOfHotel;
+    }
+
     @GetMapping(value = "/getdetail/{parameters}")
     public List<FoodEntity> getdetailByName(@PathVariable String parameters)
     throws JsonParseException,JsonMappingException,IOException {
