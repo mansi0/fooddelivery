@@ -74,10 +74,10 @@ public class HotelController {
         return listOfHotel;
     }
     //bymenutype veg or nonveg or both
-    @GetMapping(value = "/gethoteldetailbthotelmenutype/{parameters}")
+   /* @GetMapping(value = "/gethoteldetailbthotelmenutype/{parameters}")
     public List<HotelEntity> getDetailsByHotelMenuType(@PathVariable String parameters) {
         
-    }
+    }*/
 
 
 
