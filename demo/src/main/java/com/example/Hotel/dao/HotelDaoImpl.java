@@ -112,7 +112,7 @@ public class HotelDaoImpl implements HotelDao {
 
     try {
 
-      String sql = "insert into hotel values(:hotelid,:hotelpassword,:hotelemailid,:hotelcontno,:hotelname,:hoteladdress,:hotellocality,:hotellandmark,:hotelcity,:hotelstate,:openat,:closeat,:approximatecost,:hotelopeningdate,:expressdelivery,:hotelstatus,:hotelmenutype,:hotelfacility,:hotelcuisine)";
+      String sql = "insert into hotel values(:hotelid,:hotelpassword,:hotelemailid,:hotelcontno,:hotelname,:hoteladdress,:hotellocality,:hotellandmark,:hotelcity,:hotelstate,:openat,:closeat,:approximatecost,:hotelopeningdate,:expressdelivery,:hotelstatus,:hotelmenutype,:hotelfacility,:hotelcuisine,:hotelimage)";
       logger.debug("DAO::HotelDaoImp::addHotel::sql:: " + sql);
      /* int[] numbers = new int[hotelEntity.hotelFacility.length];
       for (int i = 0; i < hotelEntity.hotelFacility.length; i++) {
@@ -136,7 +136,8 @@ public class HotelDaoImpl implements HotelDao {
           .addValue("hotelstatus", hotelEntity.getHotelStatus())
           .addValue("hotelmenutype", hotelEntity.getHotelMenuType())
           .addValue("hotelfacility", hotelEntity.getHotelFacility())
-          .addValue("hotelcuisine", hotelEntity.getHotelCuisine());
+          .addValue("hotelcuisine", hotelEntity.getHotelCuisine())
+          .addValue("hotelimage", hotelEntity.getHotelImage());
 
       logger.debug("DAO::HotelDaoImp::addHotel::param:: " + param);
 

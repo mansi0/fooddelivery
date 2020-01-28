@@ -58,6 +58,7 @@ public class ImageLoadingController {
 
                 /*body.put("message", "Customer already exist");
                 body.put("status", HttpStatus.BAD_REQUEST.value());*/
+                System.out.println("image added successfully");
 
                 return ResponseEntity.status(HttpStatus.OK).body("image added successfully");
             } 

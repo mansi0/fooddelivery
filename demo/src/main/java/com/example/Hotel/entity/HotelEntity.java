@@ -27,6 +27,7 @@ public class HotelEntity {
     String hotelMenuType;
     String[] hotelFacility;
     String[] hotelCuisine;
+    String hotelImage;
     boolean notification=false;
     String[] hotelRating;
     String[] hotelReview;
@@ -208,6 +209,14 @@ public class HotelEntity {
 
     public void setNotification(boolean notification) {
         this.notification = notification;
+    }
+
+    public String getHotelImage() {
+        return hotelImage;
+    }
+
+    public void setHotelImage(String hotelImage) {
+        this.hotelImage = hotelImage;
     }
 
    /* public String getImage() {

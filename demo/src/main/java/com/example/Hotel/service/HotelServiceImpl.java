@@ -44,6 +44,7 @@ public class HotelServiceImpl implements HotelService {
     List<HotelEntity> listOfHotel = hotelDao.getDetailByName(hotelName);
     return listOfHotel;
   }
+
   @Override
   public List<HotelEntity> getDetails() {
     List<HotelEntity> listOfHotel = hotelDao.getDetails();
@@ -53,13 +54,13 @@ public class HotelServiceImpl implements HotelService {
   @Override
   public List<HotelEntity> getDetailsByHotelFacility(int index) {
     List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelFacility(index);
-    return listOfHotel; 
+    return listOfHotel;
   }
 
   @Override
   public List<HotelEntity> getDetailsByHotelCuisine(int index) {
     List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelFacility(index);
-    return listOfHotel; 
+    return listOfHotel;
   }
 
   public int checkDuplicationOfEmail(HotelEntity hotelEntity) {
@@ -67,7 +68,7 @@ public class HotelServiceImpl implements HotelService {
     try {
       // String email = user.getEmail();
       List<HotelEntity> listOfHotel = hotelDao.checkDuplicationOfEmail(hotelEntity);
-      
+
       if (listOfHotel.size() > 0) {
 
         System.out.println("this email already exist:: " + hotelEntity.getHotelEmailId());
@@ -87,7 +88,6 @@ public class HotelServiceImpl implements HotelService {
   public int addHotel(HotelEntity hotelEntity) {
 
     int resultOfDuplication = checkDuplicationOfEmail(hotelEntity);
-    
 
     if (resultOfDuplication == 0) {
       String password = hotelEntity.getHotelPassword();
@@ -127,7 +127,7 @@ public class HotelServiceImpl implements HotelService {
       return executor.submit(() -> {
 
         String message = String.format("<html>Hi <b>%s</b>,", name);
-        
+
         message += "<br>&nbsp;&nbsp;Welcome in Taste on way system,thanx for coming with our buiseness,Our partnership will create a global food network.";
         message += "<br>&nbsp;&nbsp;    Your feedback and loyalty will go a long way to help us make you proud of us.";
         message += "<br><br><br> Thanks, <br> Taste on Way Team.</html>";
@@ -177,35 +177,33 @@ public class HotelServiceImpl implements HotelService {
     }
   }
 
-
   @Override
-      public int loginHotel(String email, String psw) {
+  public int loginHotel(String email, String psw) {
 
-        try {
+    try {
 
-         List<HotelEntity> listOfHotelEntities = hotelDao.fetchByEmailId(email);
-          if(listOfHotelEntities.size() == 0) 
-             return -1;
-          else if(listOfHotelEntities.size()>0) {
+      List<HotelEntity> listOfHotelEntities = hotelDao.fetchByEmailId(email);
+      if (listOfHotelEntities.size() == 0)
+        return -1;
+      else if (listOfHotelEntities.size() > 0) {
 
-           HotelEntity hotelEntity=new HotelEntity();
-           hotelEntity=listOfHotelEntities.get(0);
+        HotelEntity hotelEntity = new HotelEntity();
+        hotelEntity = listOfHotelEntities.get(0);
 
-            BCryptPasswordEncoder bCrypt =new BCryptPasswordEncoder();
-            boolean isPasswordMatches = bCrypt.matches(psw, hotelEntity.getHotelPassword());
-            System.out.println("value :"+ isPasswordMatches);
+        BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+        boolean isPasswordMatches = bCrypt.matches(psw, hotelEntity.getHotelPassword());
+        System.out.println("value :" + isPasswordMatches);
 
-           if(isPasswordMatches) {
-                return 1;
-           }
-           else return 0;
+        if (isPasswordMatches) {
+          return 1;
+        } else
+          return 0;
 
-        }
       }
-      catch(Exception e) {
-        return -2;
-      }
+    } catch (Exception e) {
       return -2;
     }
+    return -2;
+  }
 
 }
