@@ -84,6 +84,7 @@ CREATE TABLE hotel(
     hotelmenutype varchar(20),
     hotelfacility text[],
     hotelcuisine text[],
+    hotelimage varchar(100),
     notification varchar(5),
     hotelrating text[],
     hotelreview text[]
