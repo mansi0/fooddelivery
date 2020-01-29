@@ -28,7 +28,7 @@ public class HotelFoodDaoImpl implements HotelFoodDao {
         UUID uuid = UUID.randomUUID();
 
         try {
-            String sql = "insert into hotel_food values(:hotelfoodid,:hotelid,:foodid,:foodspeciality,:size,:price)";
+            String sql = "insert into hotel_food values(:hotelfoodid,:hotelid,:foodid,:foodspeciality,:price,:size)";
 
             SqlParameterSource param = new MapSqlParameterSource().addValue("hotelfoodid", uuid.toString())
                     .addValue("hotelid", hotelFoodEntity.getHotelId())
