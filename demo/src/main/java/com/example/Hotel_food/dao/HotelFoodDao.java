@@ -12,4 +12,6 @@ public interface HotelFoodDao {
 
     
     public int addHotelFood(HotelFoodEntity hotelFoodEntity) throws ParseException;
+
+    public List<HotelFoodEntity> getDetailsByHotelId(String hotelId) throws ParseException;
 }

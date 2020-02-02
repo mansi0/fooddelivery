@@ -33,6 +33,12 @@ public class FoodServiceImpl implements FoodService {
             return listOfFoodEntities;
     }
 
+    @Override
+    public List<FoodEntity> getDetailsById(String foodId) {
+            List<FoodEntity> listOfFoodEntities = foodDao.getDetailsById(foodId);
+            return listOfFoodEntities;
+    }
+
     public int checkDuplicationOfFood(FoodEntity foodEntity) {
         try {
             List<FoodEntity> listOfFoodEntities = foodDao.checkDuplicationOfFood(foodEntity);

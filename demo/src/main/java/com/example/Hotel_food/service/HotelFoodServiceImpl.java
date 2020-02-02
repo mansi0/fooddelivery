@@ -1,6 +1,7 @@
 package com.example.Hotel_food.service;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -46,5 +47,11 @@ public class HotelFoodServiceImpl implements HotelFoodService {
             // TODO: handle exception
         }
 
+    }
+
+    @Override
+    public List<HotelFoodEntity> getDetailsByHotelId(String hotelId) throws ParseException {
+        List<HotelFoodEntity> lHotelFoodEntities = hotelFoodDao.getDetailsByHotelId(hotelId);
+        return lHotelFoodEntities;
     }
 }
