@@ -47,6 +47,20 @@ public class FoodDaoImpl implements FoodDao {
     }
 
     @Override
+    public List<FoodEntity> getDetailsById(String foodId) {
+
+      String sql ="select * from food where foodid=:foodId";
+      SqlParameterSource param = new MapSqlParameterSource().addValue("foodId", foodId);
+
+
+      List<FoodEntity> foodEntity = template.query(sql, param, new FoodMapping());
+
+
+      return foodEntity;
+    }
+
+
+    @Override
     public List<FoodEntity> checkDuplicationOfFood(FoodEntity FoodEntity) {
 
         List<FoodEntity> listOfFoodEntities = new ArrayList<FoodEntity>();

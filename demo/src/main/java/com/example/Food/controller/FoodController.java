@@ -32,14 +32,15 @@ public class FoodController {
     @Resource
     FoodService foodService;
 
-    //get all details of hotel
+    //get all details of food
     @GetMapping(value = "/getfooddetail")
     public List<FoodEntity> getDetails() {
 
-        List<FoodEntity> listOfHotel = foodService.getDetails();
-        return listOfHotel;
+        List<FoodEntity> listOfFood = foodService.getDetails();
+        return listOfFood;
     }
 
+    //get food details by food name
     @GetMapping(value = "/getdetail/{parameters}")
     public List<FoodEntity> getdetailByName(@PathVariable String parameters)
     throws JsonParseException,JsonMappingException,IOException {
@@ -48,6 +49,16 @@ public class FoodController {
         return listOFoodEntities;
     }
 
+    //get food details by food id
+    @GetMapping(value = "/getdetailbyid/{parameters}")
+    public List<FoodEntity> getdetailById(@PathVariable String parameters)
+    throws JsonParseException,JsonMappingException,IOException {
+       // System.out.println("in foodgetdetailcontroller");
+         List<FoodEntity> listOFoodEntities = foodService.getDetailsById(parameters) ;
+        return listOFoodEntities;
+    }
+
+    //addfood
     @PostMapping(value = "/addfood")
     public ResponseEntity<?> addFood(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {
