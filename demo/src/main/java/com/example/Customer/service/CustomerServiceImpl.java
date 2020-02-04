@@ -44,6 +44,13 @@ public class CustomerServiceImpl implements CustomerService {
     return listOfCustomer;
   }
 
+  @Override
+  public List<CustomerEntity> getDetailsByEmailId(String emailId) {
+    List<CustomerEntity> listOfCustomer = customerDao.getDetailsByEmailId(emailId);
+    return listOfCustomer;
+  
+  }
+
   public int checkDuplicationOfEmail(CustomerEntity customerEntity) {
 
     try {

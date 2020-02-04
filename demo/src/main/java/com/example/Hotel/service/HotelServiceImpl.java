@@ -63,6 +63,19 @@ public class HotelServiceImpl implements HotelService {
     return listOfHotel;
   }
 
+  @Override
+  public List<HotelEntity> getDetailsByHotelMenuType(String type) {
+    List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelMenuType(type);
+    return listOfHotel;
+  }
+
+  @Override
+  public List<HotelEntity> getDetailsByNearBy(String locality) {
+    List<HotelEntity> listOfHotel = hotelDao.getDetailsByNearBy(locality);
+    return listOfHotel;
+  
+  }
+
   public int checkDuplicationOfEmail(HotelEntity hotelEntity) {
 
     try {

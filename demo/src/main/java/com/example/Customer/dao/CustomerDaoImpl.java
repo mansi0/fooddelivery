@@ -43,6 +43,18 @@ public class CustomerDaoImpl implements CustomerDao {
   }
 
   @Override
+  public List<CustomerEntity> getDetailsByEmailId(String emailId) {
+    String sql="select * from customer where emailid=:emailid";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("emailid", emailId);
+
+    List<CustomerEntity> listOfCustomer = template.query(sql, param, new CustomerMapping());
+    return listOfCustomer;
+  }
+
+
+
+
+  @Override
   public List<CustomerEntity> checkDuplicationOfEmail(CustomerEntity customerEntity) {
 
     List<CustomerEntity> listOfCustomer = new ArrayList<CustomerEntity>();

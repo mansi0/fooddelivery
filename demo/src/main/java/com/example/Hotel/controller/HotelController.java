@@ -55,7 +55,7 @@ public class HotelController {
         List<HotelEntity> listOfHotel = hotelService.getDetails();
         return listOfHotel;
     }
-    //by facility
+//by facility
     @GetMapping(value = "/gethoteldetailbyhotelfacility/{parameters}")
     public List<HotelEntity> getDetailsByHotelFacility(@PathVariable String parameters) {
 
@@ -64,7 +64,7 @@ public class HotelController {
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelFacility(id);
         return listOfHotel;
     }
-    //by cuisine
+//by cuisine
     @GetMapping(value = "/gethoteldetailbyhotelcuisine/{parameters}")
     public List<HotelEntity> getDetailsByHotelCuisine(@PathVariable String parameters) {
 
@@ -73,11 +73,21 @@ public class HotelController {
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelCuisine(id);
         return listOfHotel;
     }
-    //bymenutype veg or nonveg or both
-   /* @GetMapping(value = "/gethoteldetailbthotelmenutype/{parameters}")
+//bymenutype veg or nonveg or both
+    @GetMapping(value = "/gethoteldetailbyhotelmenutype/{parameters}")
     public List<HotelEntity> getDetailsByHotelMenuType(@PathVariable String parameters) {
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelMenuType(parameters);
+        return listOfHotel;  
         
-    }*/
+    }
+//nearby
+@GetMapping(value = "/gethoteldetailbynearby/{parameters}")
+public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
+    List<HotelEntity> listOfHotel = hotelService.getDetailsByNearBy(parameters);
+    return listOfHotel;  
+    
+}
+    
 
 
 

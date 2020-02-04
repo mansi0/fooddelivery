@@ -42,11 +42,20 @@ public class CustomerController {
 
     static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
+    // get all details
     @GetMapping(value = "/details")
     public List<CustomerEntity> getDetails() {
 
         List<CustomerEntity> listOfCustomer = customerService.getDetail();
         return listOfCustomer;
+    }
+
+    // get details by emailid
+    @GetMapping(value = "/getcustomerbyemailid/{parameters}")
+    public List<CustomerEntity> getDetailsByEmailId(@PathVariable String parameters) {
+        List<CustomerEntity> listOfCustomer = customerService.getDetailsByEmailId(parameters);
+        return listOfCustomer;
+
     }
 
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,28 +65,25 @@ public class CustomerController {
         // "+parameters);
         ObjectMapper mapper = new ObjectMapper();
         CustomerEntity customerEntity = mapper.readValue(parameters, CustomerEntity.class);
-        
 
         try {
             int result = customerService.addCustomer(customerEntity);
-            if (result == -1)/*400*/ {
+            if (result == -1)/* 400 */ {
                 Map<String, Object> body = new HashMap<String, Object>();
 
                 body.put("message", "Customer already exist");
                 body.put("status", HttpStatus.BAD_REQUEST.value());
                 System.out.println("customer already exists");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-            }
-             else if (result == 0)//500
-             {
-                 System.out.println("Exception Occur");
+            } else if (result == 0)// 500
+            {
+                System.out.println("Exception Occur");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
-             }
-            else if (result == 1)//200
+            } else if (result == 1)// 200
             {
                 System.out.println("add success");
                 return ResponseEntity.status(HttpStatus.OK).body("Customer added successfully ");
-                
+
             }
 
         } catch (Exception e) {
@@ -104,27 +110,29 @@ public class CustomerController {
      * CustomerEntity customerEntity) { return "result"; }
      */
 
-  /*  @PostMapping(path  = "/logincustomer/{email}/{psw}")
-    public ResponseEntity<?> loginCustomer(@PathVariable ("email") String email , @PathVariable ("psw") String psw)
-            throws JsonParseException, JsonMappingException, IOException {
-        // logger.debug("POST:CustomerController:addCustomer::parameters::*/
+    /*
+     * @PostMapping(path = "/logincustomer/{email}/{psw}") public ResponseEntity<?>
+     * loginCustomer(@PathVariable ("email") String email , @PathVariable ("psw")
+     * String psw) throws JsonParseException, JsonMappingException, IOException { //
+     * logger.debug("POST:CustomerController:addCustomer::parameters::
+     */
 
-        @PostMapping(value = "/logincustomer", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/logincustomer", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginCustomer(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {
         // logger.debug("POST:CustomerController:addCustomer::parameters::
         // "+parameters);
         ObjectMapper mapper = new ObjectMapper();
         CustomerEntity customerEntity = mapper.readValue(parameters, CustomerEntity.class);
-        String email=customerEntity.getEmailId();
-        String psw=customerEntity.getPassword();       
+        String email = customerEntity.getEmailId();
+        String psw = customerEntity.getPassword();
         // "+parameters);
         try {
-    
-            int result= customerService.loginCustomer(email, psw);
-            if(result==-1)//404
+
+            int result = customerService.loginCustomer(email, psw);
+            if (result == -1)// 404
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer Not Found");
-            if(result==0)//400
+            if (result == 0)// 400
             {
                 Map<String, Object> body = new HashMap<String, Object>();
 
@@ -133,15 +141,13 @@ public class CustomerController {
 
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
             }
-             
-            if(result==1)//200
+
+            if (result == 1)// 200
                 return ResponseEntity.status(HttpStatus.OK).body("Valid Customer");
-            if(result==-2)//500
+            if (result == -2)// 500
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
-                
-        }
-        catch(Exception e)
-        {
+
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
         }
         return null;

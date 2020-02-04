@@ -101,5 +101,16 @@ insert into hotel values(
 
 
 
+/*foodid
+foodname
+foodtype
+category*/
+
+INSERT INTO food values('1001','pohe',1,''); 
+
+INSERT INTO food values('1002','upit',1,'');
+
+
+
 
     
