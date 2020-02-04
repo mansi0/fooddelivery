@@ -127,6 +127,19 @@ insert into food values('1023','Veg Kolhapuri','Main Course','Gravy');
 insert into food values('1024','Veg Maratha','Main Course','Gravy');
 insert into food values('1025','Kaju Curry','Main Course','Gravy');
 
+<<<<<<< HEAD:demo/src/main/resources/static/data.sql
+/*foodid
+foodname
+foodtype
+category*/
+
+INSERT INTO food values('1001','pohe',1,''); 
+
+INSERT INTO food values('1002','upit',1,'');
+
+
+
+=======
 insert into food values('1026','Gulam Jamun','Desserts','Sweets');
 insert into food values('1027','Chocolate Pastry','Desserts','Cake');
 insert into food values('1028','Carrot Halwa','Desserts','Sweets');
@@ -261,4 +274,5 @@ insert into hotel_food values('2077','114','1030','Extra 10%','$80','3');
 insert into hotel_food values('2078','115','1034','Extra 10%','$90','1');
 insert into hotel_food values('2079','116','1025','Extra 10%','$70','2');
 insert into hotel_food values('2080','101','1026','Extra 10%','$70','1');
+>>>>>>> aac0f1f09f07a00c12c6f13f558c91fd856fd31f:demo/src/main/resources/data.sql
 

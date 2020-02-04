@@ -11,6 +11,7 @@ import com.example.Customer.entity.CustomerEntity;
 public interface CustomerDao {
 
     public List<CustomerEntity> getDetail();
+    public List<CustomerEntity> getDetailsByEmailId(String emailId);
     public List<CustomerEntity> checkDuplicationOfEmail(CustomerEntity customerEntity);
     public int addCustomer(CustomerEntity customerEntity)throws ParseException;
     public void updateCustomer(CustomerEntity customerEntity);
