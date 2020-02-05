@@ -18,6 +18,10 @@ public interface HotelDao {
 
     public List<HotelEntity> getDetailsByHotelCuisine(int index);
 
+    public List<HotelEntity> getDetailsByHotelMenuType(String type);
+
+    public List<HotelEntity> getDetailsByNearBy(String locality);
+
     public List<HotelEntity> checkDuplicationOfEmail(HotelEntity hotelEntity);
 
     public int addHotel(HotelEntity hotelEntity) throws ParseException;
