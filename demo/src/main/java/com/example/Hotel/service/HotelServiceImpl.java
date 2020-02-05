@@ -52,6 +52,12 @@ public class HotelServiceImpl implements HotelService {
   }
 
   @Override
+  public List<HotelEntity> getDetailsByHotelId(String hotelId) {
+    List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelId(hotelId);
+    return listOfHotel;
+  }
+
+  @Override
   public List<HotelEntity> getDetailsByHotelFacility(int index) {
     List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelFacility(index);
     return listOfHotel;
