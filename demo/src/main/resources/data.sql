@@ -260,5 +260,32 @@ insert into hotel_food values('2076','113','1050','Extra 10%','$100','2');
 insert into hotel_food values('2077','114','1030','Extra 10%','$80','3');
 insert into hotel_food values('2078','115','1034','Extra 10%','$90','1');
 insert into hotel_food values('2079','116','1025','Extra 10%','$70','2');
-insert into hotel_food values('2080','101','1026','Extra 10%','$70','1');
+insert into hotel_food values('2080','101','1026','Extra 10%','$50','1');
+insert into hotel_food values('2081','102','1022','Extra 10%','$70','2');
+insert into hotel_food values('2082','103','1027','Extra 10%','$50','3');
+insert into hotel_food values('2083','104','1021','Extra 10%','$60','1');
+insert into hotel_food values('2084','105','1055','Extra 10%','$50','2');
+insert into hotel_food values('2085','106','1052','Extra 10%','$40','1');
+insert into hotel_food values('2086','107','1051','Extra 10%','$50','1');
+insert into hotel_food values('2087','108','1061','Extra 10%','$90','1');
+insert into hotel_food values('2088','109','1062','Extra 10%','$100','2');
+insert into hotel_food values('2089','110','1063','Extra 10%','$90','1');
+insert into hotel_food values('2090','111','1064','Extra 10%','$90','1');
+insert into hotel_food values('2091','112','1051','Extra 10%','$90','1');
+insert into hotel_food values('2092','113','1031','Extra 10% cheese','$100','1');
+insert into hotel_food values('2093','114','1032','Extra 10% cheese','$150','1');
+insert into hotel_food values('2094','115','1033','Extra 10% cheese','$100','1');
+insert into hotel_food values('2095','116','1034','Extra 10% cheese','$100','1');
+insert into hotel_food values('2096','101','1035','Extra 10% cheese','$100','1');
+insert into hotel_food values('2097','102','1036','Extra 10% cheese','$100','1');
+insert into hotel_food values('2098','103','1037','Extra 10% cheese','$150','1');
+insert into hotel_food values('2099','104','1038','Extra 10% cheese','$100','1');
+insert into hotel_food values('2100','105','1039','Extra 10% cheese','$100','1');
+
+
+
+
+
+
+
 
