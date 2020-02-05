@@ -12,6 +12,7 @@ public class OrderEntity {
  
     String orderId;
     String customerId;
+    String hotelId;
     Date orderDate;
     String orderTime;
     String cookingInstruction;
@@ -56,6 +57,14 @@ public class OrderEntity {
 
     public void setOrderTime(String orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public String getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
     }
     
     

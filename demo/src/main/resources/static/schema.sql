@@ -17,6 +17,7 @@ create table customer(
 create table order1(
     orderId varchar(100) primary key,
     customerId varchar(100) references customer(customerId)on delete cascade on update cascade,
+    hotelId varchar(100) REFERENCES hotel(hotelid)ON DELETE CASCADE ON UPDATE CASCADE,
     orderDate date,
     orderTime time,
     cookingInstruction varchar(50),
