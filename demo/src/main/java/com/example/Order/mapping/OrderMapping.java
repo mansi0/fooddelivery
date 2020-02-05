@@ -24,33 +24,34 @@ public class OrderMapping implements RowMapper<OrderEntity> {
         for (int i = 0; i < meta.getColumnCount(); i++) {
             // System.out.println(">>> Name :" + meta.getColumnLabel(i+1));
             String fieldName = meta.getColumnName(i + 1);
-/*   orderId varchar
-orderDate date
-orderTime time
-cookingInstruction varchar
-customerId varchar*/
+            /*
+             * orderId varchar orderDate date orderTime time cookingInstruction varchar
+             * customerId varchar
+             */
 
             switch (fieldName) {
 
             case "orderid":
                 orderEntity.setOrderId(rs.getString("orderid"));
                 break;
-            case "customerid" :
+            case "customerid":
                 orderEntity.setCustomerId(rs.getString("customerid"));
                 break;
-            case "orderdate" :
+            case "hotelid":
+                orderEntity.setHotelId(rs.getString("hotelid"));
+                break;
+            case "orderdate":
                 orderEntity.setOrderDate(rs.getDate("orderdate"));
                 break;
-            case "ordertime" :
+            case "ordertime":
                 orderEntity.setOrderTime(rs.getString("ordertime"));
                 break;
-            case "cookinginstruction" :
+            case "cookinginstruction":
                 orderEntity.setCookingInstruction(rs.getString("cookinginstruction"));
                 break;
             }
         }
         return orderEntity;
     }
-                
-                
+
 }

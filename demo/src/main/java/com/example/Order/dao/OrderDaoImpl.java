@@ -39,7 +39,7 @@ public class OrderDaoImpl implements OrderDao {
         UUID uuid = UUID.randomUUID();
 
         try {
-            String sql = "insert into order1 values(:orderid,:customerid,:orderdate,:ordertime,:cookinginstruction)";
+            String sql = "insert into order1 values(:orderid,:customerid,:hotelid,:orderdate,:ordertime,:cookinginstruction)";
 
             DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
             Date date = new Date();
@@ -68,7 +68,9 @@ public class OrderDaoImpl implements OrderDao {
             System.out.println("Current time of the day using Calendar - 24 hour format: "+ formattedDate);
 
             SqlParameterSource param = new MapSqlParameterSource().addValue("orderid", uuid.toString())
-                    .addValue("customerid", orderEntity.getCustomerId()).addValue("orderdate", parsedDate)
+                    .addValue("customerid", orderEntity.getCustomerId())
+                    .addValue("hotelid", orderEntity.getHotelId())
+                    .addValue("orderdate", parsedDate)
                     .addValue("ordertime", formattedDate)
                     .addValue("cookinginstruction", orderEntity.getCookingInstruction());
 
