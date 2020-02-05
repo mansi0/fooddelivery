@@ -40,56 +40,66 @@ public class HotelController {
 
     static final Logger logger = LoggerFactory.getLogger(HotelController.class);
 
-    //get the hotel details by name
+    // get the hotel details by name
     @GetMapping(value = "/getdetail/{parameters}")
     public List<HotelEntity> getDetailByName(@PathVariable String parameters)
-    throws JsonParseException,JsonMappingException,IOException {
+            throws JsonParseException, JsonMappingException, IOException {
 
         List<HotelEntity> listOfHotel = hotelService.getDetailByName(parameters);
         return listOfHotel;
     }
-//get all details of hotel
+
+    // get all details of hotel
     @GetMapping(value = "/gethoteldetail")
     public List<HotelEntity> getDetails() {
 
         List<HotelEntity> listOfHotel = hotelService.getDetails();
         return listOfHotel;
     }
-//by facility
+
+    // get all details of hotel by hotelId
+    @GetMapping(value = "/hotelfood/getdetailsbyhotelid/{parameters}")
+    public List<HotelEntity> getDetailsByHotelId(@PathVariable String parameters) {
+
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelId(parameters);
+        return listOfHotel;
+    }
+
+    // by facility
     @GetMapping(value = "/gethoteldetailbyhotelfacility/{parameters}")
     public List<HotelEntity> getDetailsByHotelFacility(@PathVariable String parameters) {
 
-        //System.out.println(parameters);
-        int id=Integer.parseInt(parameters);
+        // System.out.println(parameters);
+        int id = Integer.parseInt(parameters);
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelFacility(id);
         return listOfHotel;
     }
-//by cuisine
+
+    // by cuisine
     @GetMapping(value = "/gethoteldetailbyhotelcuisine/{parameters}")
     public List<HotelEntity> getDetailsByHotelCuisine(@PathVariable String parameters) {
 
-       // System.out.println(parameters);
-        int id=Integer.parseInt(parameters);
+        // System.out.println(parameters);
+        int id = Integer.parseInt(parameters);
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelCuisine(id);
         return listOfHotel;
     }
-//bymenutype veg or nonveg or both
+
+    // bymenutype veg or nonveg or both
     @GetMapping(value = "/gethoteldetailbyhotelmenutype/{parameters}")
     public List<HotelEntity> getDetailsByHotelMenuType(@PathVariable String parameters) {
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelMenuType(parameters);
-        return listOfHotel;  
-        
+        return listOfHotel;
+
     }
-//nearby
-@GetMapping(value = "/gethoteldetailbynearby/{parameters}")
-public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
-    List<HotelEntity> listOfHotel = hotelService.getDetailsByNearBy(parameters);
-    return listOfHotel;  
-    
-}
-    
 
+    // nearby
+    @GetMapping(value = "/gethoteldetailbynearby/{parameters}")
+    public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByNearBy(parameters);
+        return listOfHotel;
 
+    }
 
     @PostMapping(value = "/addhotel")
     public ResponseEntity<?> addHotel(@RequestBody String parameters)
@@ -97,12 +107,12 @@ public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
         // logger.debug("POST:HotelController:addHotel::parameters:: "+parameters);
         ObjectMapper mapper = new ObjectMapper();
         HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
-    
+
         System.out.println("hotel in controller ::" + hotelEntity);
 
         try {
             int result = hotelService.addHotel(hotelEntity);
-            if (result == -1) //400
+            if (result == -1) // 400
             {
                 Map<String, Object> body = new HashMap<String, Object>();
 
@@ -112,15 +122,13 @@ public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
                 System.out.println("this emailid already exist for another hotel");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
             }
-                
-            
-            else if (result == 0)//500
-             {
+
+            else if (result == 0)// 500
+            {
                 System.out.println("error occured");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
-            }
-            else if (result == 1)//200
-             {
+            } else if (result == 1)// 200
+            {
                 System.out.println("hotel added successfully");
                 return ResponseEntity.status(HttpStatus.OK).body("hotel added successfully ");
             }
@@ -135,37 +143,39 @@ public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
     }
 
     /*
-
-        function for images
-    */
-    /*@RequestMapping(value = "/image")
-    public ResponseEntity<?> setImage(@RequestBody String parameters) throws JsonParseException,JsonMappingException,IOException {
-
-        ObjectMapper mapper= new ObjectMapper();
-        HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
-        hotelEntity.setImage();
-
-
-    }*/
+     * 
+     * function for images
+     */
+    /*
+     * @RequestMapping(value = "/image") public ResponseEntity<?>
+     * setImage(@RequestBody String parameters) throws
+     * JsonParseException,JsonMappingException,IOException {
+     * 
+     * ObjectMapper mapper= new ObjectMapper(); HotelEntity hotelEntity =
+     * mapper.readValue(parameters, HotelEntity.class); hotelEntity.setImage();
+     * 
+     * 
+     * }
+     */
 
     @PostMapping(value = "/loginhotel")
     public ResponseEntity<?> loginHotel(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {
-        
+
         ObjectMapper mapper = new ObjectMapper();
         HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
-        String email=hotelEntity.getHotelEmailId();
-        String psw=hotelEntity.getHotelPassword();       
+        String email = hotelEntity.getHotelEmailId();
+        String psw = hotelEntity.getHotelPassword();
         // "+parameters);
         try {
-    
-            int result= hotelService.loginHotel(email, psw);
-            if(result==-1)//404
+
+            int result = hotelService.loginHotel(email, psw);
+            if (result == -1)// 404
             {
                 System.out.println("restaurent not found");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hotel Not Found");
             }
-            if(result==0)//400
+            if (result == 0)// 400
             {
                 Map<String, Object> body = new HashMap<String, Object>();
 
@@ -175,21 +185,19 @@ public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
                 System.out.println("Invalid Password");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
             }
-             
-            if(result==1)//200
+
+            if (result == 1)// 200
             {
                 System.out.println("valid user");
                 return ResponseEntity.status(HttpStatus.OK).body("Valid User");
             }
-            if(result==-2)//500
+            if (result == -2)// 500
             {
                 System.out.println("Exception Occure");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
             }
-                
-        }
-        catch(Exception e)
-        {
+
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
         }
         return null;

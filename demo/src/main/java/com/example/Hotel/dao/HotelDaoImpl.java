@@ -54,6 +54,13 @@ public class HotelDaoImpl implements HotelDao {
   }
 
   @Override
+  public List<HotelEntity> getDetailsByHotelId(String hotelId) {
+    String sql ="select * from hotel where hotelmenutype="+hotelId;
+    List<HotelEntity> listOfHotel = template.query(sql, new HotelMapping());
+    return listOfHotel;
+  }
+
+  @Override
   public List<HotelEntity> getDetailsByHotelFacility(int index) {
     String sql ="select * from hotel where hotelfacility["+index+"]='1'";
    // SqlParameterSource param = new MapSqlParameterSource().addValue("hotelfacility",index);
