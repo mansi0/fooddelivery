@@ -99,85 +99,85 @@ insert into hotel values(
 
 
 /*food*/
-insert into food values('1001','Pohe','Breakfast','Light');
-insert into food values('1002','Upma','Breakfast','Light');
-insert into food values('1003','Misal','Breakfast','Heavy');
-insert into food values('1004','Idli','Breakfast','Heavy');
-insert into food values('1005','Dosa','Breakfast','Light');
+insert into food values('1001','Pohe','1','Light');
+insert into food values('1002','Upma','1','Light');
+insert into food values('1003','Misal','1','Heavy');
+insert into food values('1004','Idli','1','Heavy');
+insert into food values('1005','Dosa','1','Light');
 
-insert into food values('1006','Manchow Soup','Starters','Soup');
-insert into food values('1007','Manchurian','Starters','Chinese');
-insert into food values('1008','Paneer 65','Starters','Punjabi');
-insert into food values('1009','Paneer Chilli Dry','Starters','Punjabi');
-insert into food values('1010','Corn Soup','Starters','Soup');
-insert into food values('1011','Veg Lollipop','Starters','Chinese');
-insert into food values('1012','Spring Roll','Starters','Chinese');
+insert into food values('1006','Manchow Soup','2','Soup');
+insert into food values('1007','Manchurian','2','Chinese');
+insert into food values('1008','Paneer 65','2','Punjabi');
+insert into food values('1009','Paneer Chilli Dry','2','Punjabi');
+insert into food values('1010','Corn Soup','2','Soup');
+insert into food values('1011','Veg Lollipop','2','Chinese');
+insert into food values('1012','Spring Roll','2','Chinese');
 
-insert into food values('1013','Roti','Main Course','Roti');
-insert into food values('1014','Simple Rice','Main Course','Rice');
-insert into food values('1015','Butter Roti','Main Course','Roti');
-insert into food values('1016','Jeera rice','Main Course','Rice');
-insert into food values('1017','Paneer Tikka','Main Course','Gravy');
-insert into food values('1018','Kaju Masala','Main Course','Gravy');
-insert into food values('1019','Veg Biryani','Main Course','Rice');
-insert into food values('1020','Chicken Biryani','Main Course','Rice');
-insert into food values('1021','Mutton Biryani','Main Course','Rice');
-insert into food values('1022','Paneer Masala','Main Course','Gravy');
-insert into food values('1023','Veg Kolhapuri','Main Course','Gravy');
-insert into food values('1024','Veg Maratha','Main Course','Gravy');
-insert into food values('1025','Kaju Curry','Main Course','Gravy');
+insert into food values('1013','Roti','3','Roti');
+insert into food values('1014','Simple Rice','3','Rice');
+insert into food values('1015','Butter Roti','3','Roti');
+insert into food values('1016','Jeera rice','3','Rice');
+insert into food values('1017','Paneer Tikka','3','Gravy');
+insert into food values('1018','Kaju Masala','3','Gravy');
+insert into food values('1019','Veg Biryani','3','Rice');
+insert into food values('1020','Chicken Biryani','3','Rice');
+insert into food values('1021','Mutton Biryani','3','Rice');
+insert into food values('1022','Paneer Masala','3','Gravy');
+insert into food values('1023','Veg Kolhapuri','3','Gravy');
+insert into food values('1024','Veg Maratha','3','Gravy');
+insert into food values('1025','Kaju Curry','3','Gravy');
 
-insert into food values('1026','Gulam Jamun','Desserts','Sweets');
-insert into food values('1027','Chocolate Pastry','Desserts','Cake');
-insert into food values('1028','Carrot Halwa','Desserts','Sweets');
-insert into food values('1029','Chocolate Balls','Desserts','Cake');
-insert into food values('1030','Rasgulla','Desserts','Sweets');
+insert into food values('1026','Gulam Jamun','4','Sweets');
+insert into food values('1027','Chocolate Pastry','4','Cake');
+insert into food values('1028','Carrot Halwa','4','Sweets');
+insert into food values('1029','Chocolate Balls','4','Cake');
+insert into food values('1030','Rasgulla','4','Sweets');
 
-insert into food values('1031','Panner Tandoori Pizza','Fast Food','Pizza');
-insert into food values('1032','Paneer Makhni Pizza','Fast Food','Pizza');
-insert into food values('1033','Aloo Tikki Burger','Fast Food','Burger');
-insert into food values('1034','Veggie Burger','Fast Food','Burger');
-insert into food values('1035','Salty Fries','Fast Food','Fries');
-insert into food values('1036','Cheese Fries','Fast Food','Fries');
-insert into food values('1037','Super Nachos','Fast Food','Nachos');
-insert into food values('1038','Loaded Veggie Nachos','Fast Food','Nachos');
-insert into food values('1039','White Pasta ','Fast Food','Pasta');
-insert into food values('1040','Masala Pasta','Fast Food','Pasta');
-insert into food values('1041','Grill Sandwitch','Fast Food','Sandwitch');
-insert into food values('1042','Veg Sandwitch','Fast Food','Sandwitch');
-insert into food values('1043','Veg Momos','Fast Food','Momos');
-insert into food values('1044','Chicken Momos','Fast Food','Momos');
+insert into food values('1031','Panner Tandoori Pizza','5','Pizza');
+insert into food values('1032','Paneer Makhni Pizza','5','Pizza');
+insert into food values('1033','Aloo Tikki Burger','5','Burger');
+insert into food values('1034','Veggie Burger','5','Burger');
+insert into food values('1035','Salty Fries','5','Fries');
+insert into food values('1036','Cheese Fries','5','Fries');
+insert into food values('1037','Super Nachos','5','Nachos');
+insert into food values('1038','Loaded Veggie Nachos','5','Nachos');
+insert into food values('1039','White Pasta ','5','Pasta');
+insert into food values('1040','Masala Pasta','5','Pasta');
+insert into food values('1041','Grill Sandwitch','5','Sandwitch');
+insert into food values('1042','Veg Sandwitch','5','Sandwitch');
+insert into food values('1043','Veg Momos','5','Momos');
+insert into food values('1044','Chicken Momos','5','Momos');
 
-insert into food values('1045','Vin de pays','Drinks With Alcohol','Wine');
-insert into food values('1046','Dubble','Drinks With Alcohol','Beer');
-insert into food values('1047','Martini','Drinks With Alcohol','Vodka');
-insert into food values('1048','Burgundy wine','Drinks With Alcohol','Wine');
-insert into food values('1049','Brown ale','Drinks With Alcohol','Beer');
+insert into food values('1045','Vin de pays','6','Wine');
+insert into food values('1046','Dubble','6','Beer');
+insert into food values('1047','Martini','6','Vodka');
+insert into food values('1048','Burgundy wine','6','Wine');
+insert into food values('1049','Brown ale','6','Beer');
 
-insert into food values('1050','Hot Cappuccino','Cappuccino','Hot');
-insert into food values('1051','Iced Cappuccino','Cappuccino','Cold');
+insert into food values('1050','Hot Cappuccino','7','Hot');
+insert into food values('1051','Iced Cappuccino','7','Cold');
 
-insert into food values('1052','Mango Juice','Juice','Fruit Juice');
-insert into food values('1053','Lemon Soda','Juice','Aerated Juice');
-insert into food values('1054','Water Melon','Juice','Fruit Juice');
-insert into food values('1055','Chickoo Juice','Juice','Fruit Juice');
-insert into food values('1056','Fresh Fruit Juice','Juice','Aerated Juice');
+insert into food values('1052','Mango Juice','8','Fruit Juice');
+insert into food values('1053','Lemon Soda','8','Aerated Juice');
+insert into food values('1054','Water Melon Juice','8','Fruit Juice');
+insert into food values('1055','Chickoo Juice','8','Fruit Juice');
+insert into food values('1056','Fresh Fruit Juice','8','Aerated Juice');
 
-insert into food values('1057','Blue Mojito','Mocktail','Mojito');
-insert into food values('1058','Monin Mojito Mint Syrup','Mocktail','Mojito');
-insert into food values('1059','Princess Nojito','Mocktail','Nojito');
-insert into food values('1060','Sainsbury Nojito','Mocktail','Nojito');
+insert into food values('1057','Blue Mojito','9','Mojito');
+insert into food values('1058','Monin Mojito Mint Syrup','9','Mojito');
+insert into food values('1059','Princess Nojito','9','Nojito');
+insert into food values('1060','Sainsbury Nojito','9','Nojito');
 
-insert into food values('1061','Chocolate Cornetto','Ice Cream','Cone');
-insert into food values('1062','Butter Scotch','Ice Cream','Cone');
-insert into food values('1063','Vanilla Cups','Ice Cream','Cup');
-insert into food values('1064','Pista Cups','Ice Cream','Cup');
-insert into food values('1065','Chocolate Chips','Ice Cream','Family Pack');
-insert into food values('1066','Cream and Cookies','Ice Cream','Family Pack');
-insert into food values('1067','Magnum','Ice Cream','Candy');
-insert into food values('1068','Chocobar','Ice Cream','Candy');
-insert into food values('1069','Malai Kulfi','Ice Cream','Kulfi');
-insert into food values('1070','Mix Kulfi','Ice Cream','Kulfi');
+insert into food values('1061','Chocolate Cornetto','10','Cone');
+insert into food values('1062','Butter Scotch','10','Cone');
+insert into food values('1063','Vanilla Cups','10','Cup');
+insert into food values('1064','Pista Cups','10','Cup');
+insert into food values('1065','Chocolate Chips','10','Family Pack');
+insert into food values('1066','Cream and Cookies','10','Family Pack');
+insert into food values('1067','Magnum','10','Candy');
+insert into food values('1068','Chocobar','10','Candy');
+insert into food values('1069','Malai Kulfi','10','Kulfi');
+insert into food values('1070','Mix Kulfi','10','Kulfi');
 
 /*hotel_food*/
 insert into hotel_food values('2000','101','1001','Garnished with cheese and coriander','40','');
