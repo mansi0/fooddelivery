@@ -12,6 +12,10 @@ public interface DeliveryboyDao {
 
     public List<DeliveryboyEntity> getDetail();
 
+    public List<DeliveryboyEntity> getDetailsByEmailId(String emailId);
+
+    public List<DeliveryboyEntity> getDetailsByDeliveryboyId(String deliveryboyId);
+
     public List<DeliveryboyEntity> checkDuplicationOfEmail(DeliveryboyEntity deliveryboyEntity);
 
     public int addDeliveryboy(DeliveryboyEntity deliveryboyEntity) throws ParseException;

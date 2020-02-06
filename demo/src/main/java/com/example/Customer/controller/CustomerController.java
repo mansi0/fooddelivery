@@ -53,11 +53,26 @@ public class CustomerController {
     // get details by emailid
     @GetMapping(value = "/getcustomerbyemailid/{parameters}")
     public List<CustomerEntity> getDetailsByEmailId(@PathVariable String parameters) {
+       // System.out.println(parameters);
+       // parameters = parameters + ".com";
+        System.out.println(parameters);
         List<CustomerEntity> listOfCustomer = customerService.getDetailsByEmailId(parameters);
         return listOfCustomer;
 
     }
 
+    // get details by customerid
+    @GetMapping(value = "/getcustomerbycustomerid/{parameters}")
+    public List<CustomerEntity> getDetailsByCustomerId(@PathVariable String parameters) {
+       // System.out.println(parameters);
+       // parameters = parameters + ".com";
+        System.out.println(parameters);
+        List<CustomerEntity> listOfCustomer = customerService.getDetailsByCustomerId(parameters);
+        return listOfCustomer;
+
+    }
+
+    // addcustomer
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addCustomer(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {

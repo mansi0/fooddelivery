@@ -51,6 +51,15 @@ public class CustomerDaoImpl implements CustomerDao {
     return listOfCustomer;
   }
 
+  @Override
+  public List<CustomerEntity> getDetailsByCustomerId(String customerId) {
+    String sql="select * from customer where customerid=:customerid";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("customerid", customerId);
+
+    List<CustomerEntity> listOfCustomer = template.query(sql, param, new CustomerMapping());
+    return listOfCustomer;
+  }
+
 
 
 
