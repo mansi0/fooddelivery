@@ -16,6 +16,8 @@ public interface HotelDao {
 
     public List<HotelEntity> getDetailsByHotelId(String hotelId);
 
+    public List<HotelEntity> getDetailsByHotelEmailId(String hotelEmailId);
+
     public List<HotelEntity> getDetailsByHotelFacility(int index);
 
     public List<HotelEntity> getDetailsByHotelCuisine(int index);

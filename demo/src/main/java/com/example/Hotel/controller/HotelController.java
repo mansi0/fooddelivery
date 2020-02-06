@@ -40,7 +40,7 @@ public class HotelController {
 
     static final Logger logger = LoggerFactory.getLogger(HotelController.class);
 
-// get the hotel details by name
+    // get the hotel details by name
     @GetMapping(value = "/getdetail/{parameters}")
     public List<HotelEntity> getDetailByName(@PathVariable String parameters)
             throws JsonParseException, JsonMappingException, IOException {
@@ -49,7 +49,7 @@ public class HotelController {
         return listOfHotel;
     }
 
-// get all details of hotel
+    // get all details of hotel
     @GetMapping(value = "/gethoteldetail")
     public List<HotelEntity> getDetails() {
 
@@ -57,7 +57,7 @@ public class HotelController {
         return listOfHotel;
     }
 
-// get all details of hotel by hotelId
+    // get all details of hotel by hotelId
     @GetMapping(value = "/hotelfood/getdetailsbyhotelid/{parameters}")
     public List<HotelEntity> getDetailsByHotelId(@PathVariable String parameters) {
 
@@ -65,7 +65,15 @@ public class HotelController {
         return listOfHotel;
     }
 
-// by facility
+    // get all details of hotel by hotelemailid
+    @GetMapping(value = "/hotelfood/getdetailsbyemailid/{parameters}")
+    public List<HotelEntity> getDetailsByHotelEmailId(@PathVariable String parameters) {
+
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelId(parameters);
+        return listOfHotel;
+    }
+
+    // by facility
     @GetMapping(value = "/gethoteldetailbyhotelfacility/{parameters}")
     public List<HotelEntity> getDetailsByHotelFacility(@PathVariable String parameters) {
 
@@ -75,7 +83,7 @@ public class HotelController {
         return listOfHotel;
     }
 
-// by cuisine
+    // by cuisine
     @GetMapping(value = "/gethoteldetailbyhotelcuisine/{parameters}")
     public List<HotelEntity> getDetailsByHotelCuisine(@PathVariable String parameters) {
 
@@ -85,7 +93,7 @@ public class HotelController {
         return listOfHotel;
     }
 
-// bymenutype veg or nonveg or both
+    // bymenutype veg or nonveg or both
     @GetMapping(value = "/gethoteldetailbyhotelmenutype/{parameters}")
     public List<HotelEntity> getDetailsByHotelMenuType(@PathVariable String parameters) {
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelMenuType(parameters);
@@ -93,7 +101,7 @@ public class HotelController {
 
     }
 
-// nearby
+    // nearby
     @GetMapping(value = "/gethoteldetailbynearby/{parameters}")
     public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
         List<HotelEntity> listOfHotel = hotelService.getDetailsByNearBy(parameters);
@@ -101,8 +109,8 @@ public class HotelController {
 
     }
 
-//addhotel
-     @PostMapping(value = "/addhotel")
+    // addhotel
+    @PostMapping(value = "/addhotel")
     public ResponseEntity<?> addHotel(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {
         // logger.debug("POST:HotelController:addHotel::parameters:: "+parameters);

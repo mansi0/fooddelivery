@@ -19,6 +19,8 @@ public interface HotelService {
 
     public List<HotelEntity> getDetailsByHotelId(String hotelId);
 
+    public List<HotelEntity> getDetailsByHotelEmailId(String hotelEmailId);
+
     public List<HotelEntity> getDetailsByNearBy(String locality);
 
     public List<HotelEntity> getDetailsByHotelCuisine(int index);
