@@ -20,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,29 @@ public class DeliveryboyController {
         List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyService.getDetail();
         return listOfDeliveryboy;
     }
+
+// get details by emailid
+    @GetMapping(value = "/getdeliveryboybyemailid/{parameters}")
+    public List<DeliveryboyEntity> getDetailsByEmailId(@PathVariable String parameters) {
+        System.out.println(parameters);
+        parameters=parameters+".com";
+        System.out.println(parameters);
+        List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByEmailId(parameters);
+        return listOfDeliveryboyEntities;
+
+    }
+
+// get details by deliveryboyid
+@GetMapping(value = "/getdeliveryboybydeliveryboyid/{parameters}")
+public List<DeliveryboyEntity> getDetailsByDeliveryboyId(@PathVariable String parameters) {
+    //System.out.println(parameters);
+    //parameters=parameters+".com";
+    System.out.println(parameters);
+    List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(parameters);
+    return listOfDeliveryboyEntities;
+
+}
+
 
     @PostMapping(value = "/adddeliveryboy")
     public ResponseEntity<?> addDeliveryboy(@RequestBody String parameters)

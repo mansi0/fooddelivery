@@ -44,6 +44,22 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
     return listOfDeliveryboy;
   }
 
+
+  @Override
+  public List<DeliveryboyEntity> getDetailsByEmailId(String emailId) {
+    List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyDao.getDetailsByEmailId(emailId);
+    return listOfDeliveryboy;
+  
+  }
+
+  @Override
+  public List<DeliveryboyEntity> getDetailsByDeliveryboyId(String deliveryboyId) {
+    List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyDao.getDetailsByEmailId(deliveryboyId);
+    return listOfDeliveryboy;
+  
+  }
+
+
   public int checkDuplicationOfEmail(DeliveryboyEntity deliveryboyEntity) {
 
     try {

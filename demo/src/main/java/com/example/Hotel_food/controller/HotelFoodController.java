@@ -62,7 +62,7 @@ public class HotelFoodController {
      * ); } return null; }
      */
 
-    // add new hotel food
+// add new hotel food
     @PostMapping(value = "/addhotelfood")
     public ResponseEntity<?> addHotelFood(@RequestBody String parameter)
             throws JsonParseException, JsonMappingException, IOException {
@@ -96,7 +96,7 @@ public class HotelFoodController {
         return null;
     }
 
-    // get all details of hotel_food by hotelid
+// get all details of hotel_food by hotelid
     @GetMapping(value = "/getdetailsbyhotelid/{parameters}")
     public List<HotelFoodEntity> getdetailByName(@PathVariable String parameters)
             throws JsonParseException, JsonMappingException, IOException, ParseException {

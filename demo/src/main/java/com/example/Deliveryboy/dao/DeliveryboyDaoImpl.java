@@ -43,6 +43,26 @@ public class DeliveryboyDaoImpl implements DeliveryboyDao {
   }
 
   @Override
+  public List<DeliveryboyEntity> getDetailsByEmailId(String emailId) {
+    String sql="select * from deliveryboy where deliveryboyemailid=:deliveryboyemailid";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("deliveryboyemailid", emailId);
+
+    List<DeliveryboyEntity> listOfDeliveryboyEntities = template.query(sql, param, new DeliveryboyMapping());
+    return listOfDeliveryboyEntities;
+  }
+
+
+  @Override
+  public List<DeliveryboyEntity> getDetailsByDeliveryboyId(String deliveryboyId) {
+    String sql="select * from deliveryboy where deliveryboyid=:deliveryboyid";
+    SqlParameterSource param = new MapSqlParameterSource().addValue("deliveryboyid", deliveryboyId);
+
+    List<DeliveryboyEntity> listOfDeliveryboyEntities = template.query(sql, param, new DeliveryboyMapping());
+    return listOfDeliveryboyEntities;
+  }
+
+
+  @Override
   public List<DeliveryboyEntity> checkDuplicationOfEmail(DeliveryboyEntity deliveryboyEntity) {
 
     List<DeliveryboyEntity> listOfDeliveryboy = new ArrayList<DeliveryboyEntity>();
