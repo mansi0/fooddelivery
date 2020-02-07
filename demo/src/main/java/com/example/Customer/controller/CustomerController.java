@@ -50,7 +50,7 @@ public class CustomerController {
         return listOfCustomer;
     }
 
-    // get details by emailid
+    // get details by emailid --it has some error hence postgetcustomer is used
     @GetMapping(value = "/getcustomerbyemailid/{parameters}")
     public List<CustomerEntity> getDetailsByEmailId(@PathVariable String parameters) {
        // System.out.println(parameters);
@@ -71,6 +71,26 @@ public class CustomerController {
         return listOfCustomer;
 
     }
+
+    //get details by emailid using post method
+    @PostMapping(value = "/getbyemailid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CustomerEntity> getByEmailId(@RequestBody String parameters)
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:CustomerController:addCustomer::parameters::
+        // "+parameters);
+        //ObjectMapper mapper = new ObjectMapper();
+        //CustomerEntity customerEntity = mapper.readValue(parameters, CustomerEntity.class);
+//
+        //try {
+        //    int result = customerService.addCustomer(customerEntity);
+        List<CustomerEntity> listOfCustomer = customerService.getDetailsByEmailId(parameters);
+        return listOfCustomer;
+
+
+
+        }
+    
+
 
     // addcustomer
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
