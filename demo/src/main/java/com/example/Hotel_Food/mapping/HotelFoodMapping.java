@@ -1,10 +1,10 @@
-package com.example.Hotel_food.mapping;
+package com.example.Hotel_Food.mapping;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import com.example.Hotel_food.entity.HotelFoodEntity;
+import com.example.Hotel_Food.entity.HotelFoodEntity;
 
 import org.springframework.jdbc.core.RowMapper;
 

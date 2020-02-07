@@ -1,9 +1,9 @@
-package com.example.Hotel_food.dao;
+package com.example.Hotel_Food.dao;
 
 import java.text.ParseException;
 import java.util.List;
 
-import com.example.Hotel_food.entity.HotelFoodEntity;
+import com.example.Hotel_Food.entity.HotelFoodEntity;
 
 /**
  * HotelFoodDao

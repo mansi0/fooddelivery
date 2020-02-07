@@ -15,7 +15,7 @@ public class OrderEntity {
     String hotelId;
     Date orderDate;
     String orderTime;
-    String cookingInstruction;
+    
 
     public String getOrderId() {
         return orderId;
@@ -43,14 +43,7 @@ public class OrderEntity {
 
     
 
-    public String getCookingInstruction() {
-        return cookingInstruction;
-    }
-
-    public void setCookingInstruction(String cookingInstruction) {
-        this.cookingInstruction = cookingInstruction;
-    }
-
+   
     public String getOrderTime() {
         return orderTime;
     }
