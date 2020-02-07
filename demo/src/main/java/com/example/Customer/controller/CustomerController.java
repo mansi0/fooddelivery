@@ -51,7 +51,7 @@ public class CustomerController {
     }
 
     // get details by emailid
-    @GetMapping(value = "/getcustomerbyemailid/{parameters}")
+    @GetMapping(value = "/getcustomerbyemailid/{parameters}" ,produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CustomerEntity> getDetailsByEmailId(@PathVariable String parameters) {
        // System.out.println(parameters);
        // parameters = parameters + ".com";
