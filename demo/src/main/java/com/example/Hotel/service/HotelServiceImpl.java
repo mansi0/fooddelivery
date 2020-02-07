@@ -59,7 +59,7 @@ public class HotelServiceImpl implements HotelService {
 
   @Override
   public List<HotelEntity> getDetailsByHotelEmailId(String hotelEmailId) {
-  List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelId(hotelEmailId);
+  List<HotelEntity> listOfHotel = hotelDao.getDetailsByHotelEmailId(hotelEmailId);
     return listOfHotel;
   }
 
