@@ -62,7 +62,10 @@ throws JsonParseException, JsonMappingException, IOException {
     //System.out.println(parameters);
     //parameters=parameters+".com";
    // System.out.println(parameters);
-    List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(parameters);
+    ObjectMapper mapper = new ObjectMapper();
+    DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
+        
+    List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(deliveryboyEntity.getDeliveryboyEmailId());
     return listOfDeliveryboyEntities;
 
 }
