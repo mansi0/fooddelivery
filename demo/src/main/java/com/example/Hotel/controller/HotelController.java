@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import com.example.Hotel.entity.HotelEntity;
 import com.example.Hotel.service.HotelService;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.tools.sjavac.Log;
@@ -68,9 +69,13 @@ public class HotelController {
 
     // get all details of hotel by hotelemailid by post
     @PostMapping(value = "/hotelfood/getdetailsbyemailid", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HotelEntity> getDetailsByHotelEmailId(@PathVariable String parameters) {
+    public List<HotelEntity> getDetailsByHotelEmailId(@PathVariable String parameters)
+            throws JsonMappingException, JsonProcessingException {
 
-        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelId(parameters);
+        ObjectMapper mapper = new ObjectMapper();
+        HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
+
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelId(hotelEntity.getHotelEmailId());
         return listOfHotel;
     }
 
