@@ -106,6 +106,19 @@ create table hotel_food (
     price float,
     size varchar,
     unique(hotelid,foodid)
-); 
+);
+
+CREATE TABLE food_order (
+    foodorderid VARCHAR(100) PRIMARY KEY,
+    foodid VARCHAR(100) REFERENCES food(foodid) ON DELETE CASCADE ON UPDATE CASCADE,
+    orderId varchar(100) references order1(orderId)on delete cascade on update cascade
+    UNIQUE(foodid,orderId)
+);
+
+CREATE TABLE hotel_order(
+    hotelorderid VARCHAR(100) PRIMARY KEY,
+    hotelid varchar(100) REFERENCES hotel(hotelid) ON DELETE CASCADE ON UPDATE CASCADE,
+    orderId varchar(100) references order1(orderId)on delete cascade on update cascade
+)
 
 
