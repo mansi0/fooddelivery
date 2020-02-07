@@ -60,7 +60,7 @@ public class HotelController {
     }
 
     // get all details of hotel by hotelId
-    @GetMapping(value = "/hotelfood/getdetailsbyhotelid/{parameters}")
+    @GetMapping(value = "/getdetailsbyhotelid/{parameters}")
     public List<HotelEntity> getDetailsByHotelId(@PathVariable String parameters) {
 
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelId(parameters);
@@ -68,14 +68,14 @@ public class HotelController {
     }
 
     // get all details of hotel by hotelemailid by post
-    @PostMapping(value = "/hotelfood/getdetailsbyemailid", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HotelEntity> getDetailsByHotelEmailId(@PathVariable String parameters)
+    @PostMapping(value = "/getdetailsbyemailid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<HotelEntity> getDetailsByHotelEmailId(@RequestBody String parameters)
             throws JsonMappingException, JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
         HotelEntity hotelEntity = mapper.readValue(parameters, HotelEntity.class);
 
-        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelId(hotelEntity.getHotelEmailId());
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelEmailId(hotelEntity.getHotelEmailId());
         return listOfHotel;
     }
 

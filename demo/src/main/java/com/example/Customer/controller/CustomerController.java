@@ -69,6 +69,7 @@ public class CustomerController {
        // parameters = parameters + ".com";
         System.out.println(parameters);
         List<CustomerEntity> listOfCustomer = customerService.getDetailsByCustomerId(parameters);
+        //    System.out.println("*****"+listOfCustomer);
         return listOfCustomer;
 
     }

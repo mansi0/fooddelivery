@@ -54,7 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public List<CustomerEntity> getDetailsByCustomerId(String customerId) {
-    List<CustomerEntity> listOfCustomer = customerDao.getDetailsByEmailId(customerId);
+    List<CustomerEntity> listOfCustomer = customerDao.getDetailsByCustomerId(customerId);
+    //System.out.println("in service ####"+listOfCustomer);
     return listOfCustomer;
   
   }
