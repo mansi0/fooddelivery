@@ -14,10 +14,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.tools.sjavac.Log;
 
-import org.apache.tomcat.util.http.parser.MediaType;
+//import org.apache.tomcat.util.http.parser.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,8 +66,8 @@ public class HotelController {
         return listOfHotel;
     }
 
-    // get all details of hotel by hotelemailid
-    @GetMapping(value = "/hotelfood/getdetailsbyemailid/{parameters}")
+    // get all details of hotel by hotelemailid by post
+    @PostMapping(value = "/hotelfood/getdetailsbyemailid", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HotelEntity> getDetailsByHotelEmailId(@PathVariable String parameters) {
 
         List<HotelEntity> listOfHotel = hotelService.getDetailsByHotelId(parameters);
@@ -110,7 +111,7 @@ public class HotelController {
     }
 
     // addhotel
-    @PostMapping(value = "/addhotel")
+    @PostMapping(value = "/addhotel" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addHotel(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {
         // logger.debug("POST:HotelController:addHotel::parameters:: "+parameters);

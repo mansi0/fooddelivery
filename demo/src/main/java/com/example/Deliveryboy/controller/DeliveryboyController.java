@@ -55,19 +55,20 @@ public class DeliveryboyController {
 
     }
 
-// get details by deliveryboyid
-@GetMapping(value = "/getdeliveryboybydeliveryboyid/{parameters}")
-public List<DeliveryboyEntity> getDetailsByDeliveryboyId(@PathVariable String parameters) {
+// get details by deliveryboyid by post
+@PostMapping(value = "/getdeliveryboybydeliveryboyid" , produces = MediaType.APPLICATION_JSON_VALUE)
+public List<DeliveryboyEntity> getDetailsByDeliveryboyId(@RequestBody String parameters)
+throws JsonParseException, JsonMappingException, IOException {
     //System.out.println(parameters);
     //parameters=parameters+".com";
-    System.out.println(parameters);
+   // System.out.println(parameters);
     List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(parameters);
     return listOfDeliveryboyEntities;
 
 }
 
 
-    @PostMapping(value = "/adddeliveryboy")
+    @PostMapping(value = "/adddeliveryboy" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addDeliveryboy(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {
         // logger.debug("POST:DeliveryboyController:addDeliveryboy::parameters::

@@ -72,6 +72,26 @@ public class CustomerController {
 
     }
 
+    //get details by emailid using post method
+    @PostMapping(value = "/getbyemailid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CustomerEntity> getByEmailId(@RequestBody String parameters)
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:CustomerController:addCustomer::parameters::
+        // "+parameters);
+        //ObjectMapper mapper = new ObjectMapper();
+        //CustomerEntity customerEntity = mapper.readValue(parameters, CustomerEntity.class);
+//
+        //try {
+        //    int result = customerService.addCustomer(customerEntity);
+        List<CustomerEntity> listOfCustomer = customerService.getDetailsByEmailId(parameters);
+        return listOfCustomer;
+
+
+
+        }
+    
+
+
     // addcustomer
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addCustomer(@RequestBody String parameters)
