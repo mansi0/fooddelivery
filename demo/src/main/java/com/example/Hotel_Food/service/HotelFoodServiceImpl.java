@@ -1,14 +1,12 @@
-package com.example.Hotel_food.service;
+package com.example.Hotel_Food.service;
 
 import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.example.Food.entity.FoodEntity;
-import com.example.Food.service.FoodService;
-import com.example.Hotel_food.dao.HotelFoodDao;
-import com.example.Hotel_food.entity.HotelFoodEntity;
+import com.example.Hotel_Food.dao.HotelFoodDao;
+import com.example.Hotel_Food.entity.HotelFoodEntity;
 
 import org.springframework.stereotype.Service;
 

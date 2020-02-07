@@ -1,10 +1,10 @@
-package com.example.Hotel_food.service;
+package com.example.Hotel_Food.service;
 
 import java.text.ParseException;
 import java.util.List;
 
 import com.example.Food.entity.FoodEntity;
-import com.example.Hotel_food.entity.HotelFoodEntity;
+import com.example.Hotel_Food.entity.HotelFoodEntity;
 
 /**
  * HotelFoodService

@@ -46,9 +46,7 @@ public class OrderMapping implements RowMapper<OrderEntity> {
             case "ordertime":
                 orderEntity.setOrderTime(rs.getString("ordertime"));
                 break;
-            case "cookinginstruction":
-                orderEntity.setCookingInstruction(rs.getString("cookinginstruction"));
-                break;
+            
             }
         }
         return orderEntity;

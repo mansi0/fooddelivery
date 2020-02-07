@@ -1,4 +1,4 @@
-package com.example.Hotel_food.entity;
+package com.example.Hotel_Food.entity;
 
 /**
  * HotelFoodEntity

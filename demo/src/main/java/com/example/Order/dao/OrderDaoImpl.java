@@ -39,7 +39,7 @@ public class OrderDaoImpl implements OrderDao {
         UUID uuid = UUID.randomUUID();
 
         try {
-            String sql = "insert into order1 values(:orderid,:customerid,:hotelid,:orderdate,:ordertime,:cookinginstruction)";
+            String sql = "insert into order1 values(:orderid,:customerid,:hotelid,:orderdate,:ordertime)";
 
             DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
             Date date = new Date();
@@ -71,8 +71,8 @@ public class OrderDaoImpl implements OrderDao {
                     .addValue("customerid", orderEntity.getCustomerId())
                     .addValue("hotelid", orderEntity.getHotelId())
                     .addValue("orderdate", parsedDate)
-                    .addValue("ordertime", formattedDate)
-                    .addValue("cookinginstruction", orderEntity.getCookingInstruction());
+                    .addValue("ordertime", formattedDate);
+
 
             return template.update(sql, param);
 
