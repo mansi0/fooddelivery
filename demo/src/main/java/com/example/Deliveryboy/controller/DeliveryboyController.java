@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import com.example.Deliveryboy.entity.DeliveryboyEntity;
 import com.example.Deliveryboy.service.DeliveryboyService;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,28 +45,31 @@ public class DeliveryboyController {
         return listOfDeliveryboy;
     }
 
-// get details by emailid
-    @GetMapping(value = "/getdeliveryboybyemailid/{parameters}")
-    public List<DeliveryboyEntity> getDetailsByEmailId(@PathVariable String parameters) {
-        System.out.println(parameters);
-        parameters=parameters+".com";
-        System.out.println(parameters);
-        List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByEmailId(parameters);
+    // get details by emailid
+    @PostMapping(value = "/getdeliveryboybyemailid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<DeliveryboyEntity> getDetailsByEmailId(@RequestBody String parameters)
+            throws JsonMappingException, JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+    DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
+    
+        //System.out.println(parameters);
+        //parameters=parameters+".com";
+        //System.out.println(parameters);
+        List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByEmailId(deliveryboyEntity.getDeliveryboyEmailId());
         return listOfDeliveryboyEntities;
 
     }
 
 // get details by deliveryboyid by post
-@PostMapping(value = "/getdeliveryboybydeliveryboyid" , produces = MediaType.APPLICATION_JSON_VALUE)
-public List<DeliveryboyEntity> getDetailsByDeliveryboyId(@RequestBody String parameters)
+@GetMapping(value = "/getdeliveryboybydeliveryboyid/{parameters}" )
+public List<DeliveryboyEntity> getDetailsByDeliveryboyId(@PathVariable String parameters)
 throws JsonParseException, JsonMappingException, IOException {
     //System.out.println(parameters);
     //parameters=parameters+".com";
    // System.out.println(parameters);
-    ObjectMapper mapper = new ObjectMapper();
-    DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
         
-    List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(deliveryboyEntity.getDeliveryboyEmailId());
+    List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(parameters);
     return listOfDeliveryboyEntities;
 
 }

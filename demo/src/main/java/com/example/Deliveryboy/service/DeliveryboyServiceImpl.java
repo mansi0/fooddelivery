@@ -54,7 +54,7 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
 
   @Override
   public List<DeliveryboyEntity> getDetailsByDeliveryboyId(String deliveryboyId) {
-    List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyDao.getDetailsByEmailId(deliveryboyId);
+    List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyDao.getDetailsByDeliveryboyId(deliveryboyId);
     return listOfDeliveryboy;
   
   }
