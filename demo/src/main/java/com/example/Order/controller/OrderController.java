@@ -1,6 +1,8 @@
 package com.example.Order.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -12,6 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +30,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     @Resource
     OrderService orderService;
+
+    // get details by hours min sec
+    @GetMapping(value = "/getorderbytime/{hrs}/{min}/{date}")
+    public List<OrderEntity> getDetailsByTime(@PathVariable String hrs, @PathVariable String min,@PathVariable String date)
+     throws ParseException {
+           
+            int h = Integer.parseInt(hrs);
+            int m = Integer.parseInt(min);
+            
+            List<OrderEntity> listOfOrderEntities = orderService.getDetailsByTime(h,m,date);
+            //    System.out.println("*****"+listOfCustomer);
+            return listOfOrderEntities;
+    
+        }
+    
 
     @PostMapping(value = "/addorder")
     public ResponseEntity<?> addOrder(@RequestBody String parameters)
