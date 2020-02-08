@@ -14,24 +14,6 @@ create table customer(
     );
 
 
-create table order1(
-    orderId varchar(100) primary key,
-    customerId varchar(100) references customer(customerId)on delete cascade on update cascade,
-    hotelid varchar(100) REFERENCES hotel(hotelid)ON DELETE CASCADE ON UPDATE CASCADE,
-    orderDate date,
-    orderTime time,
-    unique(customerId,orderId)
-    );
-
-
-create table selfPickUp(
-    selfPickUpId varchar(100) primary key,
-    pickUpTime time,
-    pickUpDate date,
-    orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
-    unique(orderId,selfPickUpid),
-    unique(orderId)
-    );
 
 
 create table deliveryBoy(
@@ -54,14 +36,6 @@ create table deliveryBoy(
 CREATE TABLE image(
     imagepath varchar(50)
 );
-create table homeDelivery(
-    homeDeliveryId varchar(100) primary key,
-    homeDeliveryAddress varchar(100),
-    orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
-    deliveryboyid varchar(100) references deliveryboy(deliveryboyid)on delete cascade on update cascade,
-    unique(homeDeliveryId,orderId,deliveryboyid),
-    unique(orderId)
-    );
 
 
 CREATE TABLE hotel(
@@ -90,6 +64,7 @@ CREATE TABLE hotel(
     hotelreview text[]
 );
 
+
 create table food(
     foodid varchar(100) PRIMARY KEY,
     foodname varchar(80),
@@ -106,6 +81,36 @@ create table hotel_food (
     size varchar,
     unique(hotelid,foodid)
 );
+
+create table order1(
+    orderId varchar(100) primary key,
+    customerId varchar(100) references customer(customerId)on delete cascade on update cascade,
+    hotelid varchar(100) REFERENCES hotel(hotelid)ON DELETE CASCADE ON UPDATE CASCADE,
+    orderDate date,
+    orderTime time,
+    unique(customerId,orderId)
+    );
+
+
+create table selfPickUp(
+    selfPickUpId varchar(100) primary key,
+    pickUpTime time,
+    pickUpDate date,
+    orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
+    unique(orderId,selfPickUpid),
+    unique(orderId)
+    );
+
+create table homeDelivery(
+    homeDeliveryId varchar(100) primary key,
+    homeDeliveryAddress varchar(100),
+    orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
+    deliveryboyid varchar(100) references deliveryboy(deliveryboyid)on delete cascade on update cascade,
+    unique(homeDeliveryId,orderId,deliveryboyid),
+    unique(orderId)
+    );
+
+
 
 CREATE TABLE food_order (
     foodorderid VARCHAR(100) PRIMARY KEY,

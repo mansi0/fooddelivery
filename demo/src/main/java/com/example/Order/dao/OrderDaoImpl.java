@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.Order.entity.OrderEntity;
+import com.example.Order.mapping.OrderMapping;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -32,6 +33,24 @@ public class OrderDaoImpl implements OrderDao {
     /*
      * orderId customerId rderDate orderTime cookingInstruction
      */
+
+    @Override
+    public List<OrderEntity> getDetailsByTime(int hrs,int min,String d) throws ParseException {
+
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+        Date date = new Date();
+
+        DateFormat parser = new SimpleDateFormat("yyyy-mm-dd");
+        Date parsedDate = parser.parse(dateFormat.format(date));
+
+        String sql = "select * from order1 where extract (HOUR from ordertime) ="+hrs+" and extract (MINUTE from ordertime)="+min+" and orderdate=:parsedDate;";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("parsedDate", parsedDate);
+
+        List<OrderEntity> listOfOrderEntities = template.query(sql,param, new OrderMapping());
+
+        return listOfOrderEntities;
+
+    }
 
     @Override
     public int addOrder(OrderEntity orderEntity) {

@@ -1,6 +1,7 @@
 package com.example.Order.service;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     OrderDao orderDao;
+
+
+    @Override
+    public List<OrderEntity> getDetailsByTime(int hrs,int min,String date) throws ParseException {
+        List<OrderEntity> listOfOrderEntities = orderDao.getDetailsByTime(hrs,min,date);
+        return listOfOrderEntities;
+    }
 
     // add new order
     @Override
