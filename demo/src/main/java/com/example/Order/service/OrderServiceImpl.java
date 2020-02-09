@@ -26,6 +26,24 @@ public class OrderServiceImpl implements OrderService {
         return listOfOrderEntities;
     }
 
+    @Override
+    public int deleteOrder(String orderId) throws ParseException {
+        int resultOfOrder=orderDao.deleteOrder(orderId);
+        return resultOfOrder;
+    }
+
+    @Override
+    public int updateOrderByTotal(OrderEntity orderEntity) throws ParseException {
+        int resultOfOrder=orderDao.updateOrderByTotal(orderEntity);
+        return resultOfOrder;
+    }
+    @Override
+    public int updateOrderByStatus(OrderEntity orderEntity) throws ParseException {
+        int resultOfOrder=orderDao.updateOrderByStatus(orderEntity);
+        return resultOfOrder;
+        
+    }
+
     // add new order
     @Override
     public int addOrder(OrderEntity orderEntity) throws ParseException {

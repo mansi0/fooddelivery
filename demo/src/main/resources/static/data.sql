@@ -180,9 +180,9 @@ insert into food values('1069','Malai Kulfi','10','Kulfi');
 insert into food values('1070','Mix Kulfi','10','Kulfi');
 
 /*hotel_food*/
-insert into hotel_food values('2000','101','1001','Garnished with cheese and coriander','40','');
+insert into hotel_food values('2000','101','1001','Garnished with cheese and coriander','',50);
 insert into hotel_food values('2001','101','1050','Extra Chcocolate','50','');
-insert into hotel_food values('2002','102','1002','Garnished with cheese and coriander','50','');
+insert into hotel_food values('2002','102','1002','Garnished with cheese and coriander',50,'');
 insert into hotel_food values('2003','102','1004','Garnished with cheese and coriander','60','');
 insert into hotel_food values('2004','103','1003','Garnished with cheese and coriander','60','');
 insert into hotel_food values('2005','103','1005','Garnished with cheese and coriander','50','');
@@ -281,6 +281,7 @@ insert into hotel_food values('2097','102','1036','Extra 10% cheese','100','');
 insert into hotel_food values('2098','103','1037','Extra 10% cheese','150','');
 insert into hotel_food values('2099','104','1038','Extra 10% cheese','100','');
 insert into hotel_food values('2100','105','1039','Extra 10% cheese','100','');
+insert into hotel_food values('2101','101','1002','Garnished with cheese and coriander',50,'');
 
 
 

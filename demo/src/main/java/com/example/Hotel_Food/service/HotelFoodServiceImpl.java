@@ -52,4 +52,18 @@ public class HotelFoodServiceImpl implements HotelFoodService {
         List<HotelFoodEntity> lHotelFoodEntities = hotelFoodDao.getDetailsByHotelId(hotelId);
         return lHotelFoodEntities;
     }
+
+    @Override
+    public List<HotelFoodEntity> getDetailsByFoodId(String foodId) throws ParseException {
+        List<HotelFoodEntity> lHotelFoodEntities = hotelFoodDao.getDetailsByFoodId(foodId);
+        return lHotelFoodEntities;
+        
+    }
+
+    @Override
+    public List<HotelFoodEntity> getDetailsByHotelFoodId(String hotelFoodId) throws ParseException {
+        List<HotelFoodEntity> lHotelFoodEntities = hotelFoodDao.getDetailsByHotelFoodId(hotelFoodId);
+        return lHotelFoodEntities;
+        
+    }
 }

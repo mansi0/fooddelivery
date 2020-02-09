@@ -98,13 +98,32 @@ public class HotelFoodController {
 
 // get all details of hotel_food by hotelid
     @GetMapping(value = "/getdetailsbyhotelid/{parameters}")
-    public List<HotelFoodEntity> getdetailByName(@PathVariable String parameters)
+    public List<HotelFoodEntity> getdetailByHotelId(@PathVariable String parameters)
             throws JsonParseException, JsonMappingException, IOException, ParseException {
        // System.out.println("in foodgetdetailcontroller");
          List<HotelFoodEntity> listOfHotelFoodEntities = hotelFoodService.getDetailsByHotelId(parameters) ;
         return listOfHotelFoodEntities;
     }
-    
+
+    // get all details of hotel_food by foodid
+    @GetMapping(value = "/getdetailsbyfoodid/{parameters}")
+    public List<HotelFoodEntity> getdetailByFoodId(@PathVariable String parameters)
+            throws JsonParseException, JsonMappingException, IOException, ParseException {
+       // System.out.println("in foodgetdetailcontroller");
+         List<HotelFoodEntity> listOfHotelFoodEntities = hotelFoodService.getDetailsByFoodId(parameters);
+        return listOfHotelFoodEntities;
+    }
+
+    // get all details of hotel_food by hotelfoodid
+    @GetMapping(value = "/getdetailsbyhotelfoodid/{parameters}")
+    public List<HotelFoodEntity> getdetailByHotelFoodId(@PathVariable String parameters)
+            throws JsonParseException, JsonMappingException, IOException, ParseException {
+       // System.out.println("in foodgetdetailcontroller");
+         List<HotelFoodEntity> listOfHotelFoodEntities = hotelFoodService.getDetailsByHotelFoodId(parameters);
+        //System.out.println(listOfHotelFoodEntities.get(0).getPrice());
+         return listOfHotelFoodEntities;
+    }
+
 
     
 }

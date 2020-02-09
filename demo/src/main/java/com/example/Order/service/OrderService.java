@@ -13,4 +13,10 @@ public interface OrderService {
     public List<OrderEntity> getDetailsByTime(int hrs,int min,String date) throws ParseException;
 
     public int addOrder(OrderEntity orderEntity) throws ParseException;
+
+    public int updateOrderByTotal(OrderEntity orderEntity) throws ParseException;
+
+    public int updateOrderByStatus(OrderEntity orderEntity) throws ParseException;
+
+    public int deleteOrder (String orderId) throws ParseException;
 }

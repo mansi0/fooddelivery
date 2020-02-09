@@ -1,6 +1,8 @@
 package com.example.Food_Order.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -30,6 +32,14 @@ public class FoodOrderController {
 
     @Resource
     FoodOrderService foodOrderService;
+
+    // get all details of foodorder by orderid
+    @GetMapping(value = "/getdetailsbyorderid/{parameters}")
+    public List<FoodOrderEntity> getDetailsByOrderId(@PathVariable String parameters) throws ParseException {
+
+        List<FoodOrderEntity> listOfFoodOrderEntities = foodOrderService.getDetailsByOrderId(parameters);
+        return listOfFoodOrderEntities;
+    }
 
 
 
@@ -65,6 +75,26 @@ public class FoodOrderController {
         }
         return null;
     }
+
+
+    @GetMapping(value="/deletefoodorder/{oid}")
+    public ResponseEntity<?> deleteFoodOrder(@PathVariable String oid) throws ParseException {
+
+        int returnVal=foodOrderService.deleteFoodOrder(oid);
+        if(returnVal >= 1)/*200*/
+        {
+            System.out.println("deleted foodorder success"+returnVal);
+                return ResponseEntity.status(HttpStatus.OK).body("foodOrder deleted successfully ");
+
+        }
+        else if (returnVal == 0)// 500
+            {
+                System.out.println("foodorder is not deleted");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+            }
+            return null;
+    }
+
 
 
 

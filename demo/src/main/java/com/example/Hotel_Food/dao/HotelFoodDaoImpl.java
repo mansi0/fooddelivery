@@ -59,4 +59,27 @@ public class HotelFoodDaoImpl implements HotelFoodDao {
 
     }
 
+
+    @Override
+    public List<HotelFoodEntity> getDetailsByFoodId(String foodId) throws ParseException {
+        String sql = "select * from hotel_food where foodid=:foodid";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("foodid", foodId);
+
+        List<HotelFoodEntity> hotelFoodEntity = template.query(sql, param, new HotelFoodMapping());
+
+        return hotelFoodEntity;
+
+    }
+
+    @Override
+    public List<HotelFoodEntity> getDetailsByHotelFoodId(String hotelFoodId) throws ParseException {
+   
+        String sql = "select * from hotel_food where hotelfoodid=:hotelfoodid";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("hotelfoodid", hotelFoodId);
+
+        List<HotelFoodEntity> hotelFoodEntity = template.query(sql, param, new HotelFoodMapping());
+
+        return hotelFoodEntity;
+
+    }
 }

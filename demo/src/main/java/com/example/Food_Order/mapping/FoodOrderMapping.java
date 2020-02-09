@@ -34,8 +34,8 @@ quantity*/
             foodOrderEntity.setFoodOrderId(rs.getString("foodorderid"));
             break;
 
-            case"foodid":
-            foodOrderEntity.setFoodId(rs.getString("foodid"));
+            case"hotelfoodid":
+            foodOrderEntity.setHotelFoodId(rs.getString("hotelfoodid"));
             break;
 
             case"orderid":
