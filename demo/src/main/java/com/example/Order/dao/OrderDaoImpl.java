@@ -51,6 +51,37 @@ public class OrderDaoImpl implements OrderDao {
         return listOfOrderEntities;
 
     }
+     @Override
+    public int deleteOrder(String orderId) throws ParseException {
+        // TODO Auto-generated method stub
+
+        String sql= "delete from order1 where orderId=:orderId";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId);
+        return template.update(sql, param);
+        
+    }
+
+    @Override
+    public int updateOrderByTotal(OrderEntity orderEntity) throws ParseException {
+        String sql = "update order1 set total=:total where orderid=:orderid";
+        SqlParameterSource param = new MapSqlParameterSource()
+        .addValue("total", orderEntity.getTotal())
+        .addValue("orderid", orderEntity.getOrderId());
+        
+        return template.update(sql, param);
+        
+    }
+
+    @Override
+    public int updateOrderByStatus(OrderEntity orderEntity) throws ParseException {
+        String sql = "update order1 set status=:status where orderid=:orderid";
+        SqlParameterSource param = new MapSqlParameterSource()
+        .addValue("status", orderEntity.getStatus())
+        .addValue("orderid", orderEntity.getOrderId());
+        
+        return template.update(sql, param);
+        
+    }
 
     @Override
     public int addOrder(OrderEntity orderEntity) {

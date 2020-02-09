@@ -88,6 +88,8 @@ create table order1(
     hotelid varchar(100) REFERENCES hotel(hotelid)ON DELETE CASCADE ON UPDATE CASCADE,
     orderDate date,
     orderTime time,
+    total float,
+    status varchar(50),
     unique(customerId,orderId)
     );
 
@@ -114,17 +116,17 @@ create table homeDelivery(
 
 CREATE TABLE food_order (
     foodorderid VARCHAR(100) PRIMARY KEY,
-    foodid VARCHAR(100) REFERENCES food(foodid) ON DELETE CASCADE ON UPDATE CASCADE,
+    hotelfoodid VARCHAR(100) REFERENCES hotel_food(hotelfoodid) ON DELETE CASCADE ON UPDATE CASCADE,
     orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
     quantity int,
-    UNIQUE(foodid,orderId)
+    UNIQUE(hotelfoodid,orderId)
 );
 
-CREATE TABLE hotel_order(
-    hotelorderid VARCHAR(100) PRIMARY KEY,
-    hotelid varchar(100) REFERENCES hotel(hotelid) ON DELETE CASCADE ON UPDATE CASCADE,
-    orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
-    UNIQUE(hotelid,orderid)
-);
+-- CREATE TABLE hotel_order(
+    -- hotelorderid VARCHAR(100) PRIMARY KEY,
+    -- hotelid varchar(100) REFERENCES hotel(hotelid) ON DELETE CASCADE ON UPDATE CASCADE,
+    -- orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
+    -- UNIQUE(hotelid,orderid)
+-- );
 
 

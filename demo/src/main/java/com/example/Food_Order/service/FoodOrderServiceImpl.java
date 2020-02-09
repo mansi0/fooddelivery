@@ -1,6 +1,7 @@
 package com.example.Food_Order.service;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,19 @@ public class FoodOrderServiceImpl implements FoodOrderService {
 
     @Resource
     FoodOrderDao foodOrderDao;
+
+    @Override
+    public List<FoodOrderEntity> getDetailsByOrderId(String orderId) throws ParseException {
+        List<FoodOrderEntity> lFoodOrderEntities=foodOrderDao.getDetailsByOrderId(orderId);
+        return lFoodOrderEntities;
+    }
+
+    @Override
+    public int deleteFoodOrder(String orderId) throws ParseException {
+        int resultOfFoodOrder=foodOrderDao.deleteFoodOrder(orderId);
+        return resultOfFoodOrder;
+    
+    }
 
     @Override
     public int addFoodOrder(FoodOrderEntity foodOrderEntity) throws ParseException {

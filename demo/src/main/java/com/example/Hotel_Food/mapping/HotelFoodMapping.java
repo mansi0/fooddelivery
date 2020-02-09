@@ -45,7 +45,7 @@ public class HotelFoodMapping implements RowMapper<HotelFoodEntity> {
             hotelFoodEntity.setSize(rs.getString("size"));
             break;
 
-            case "float" :
+            case "price" :
             hotelFoodEntity.setPrice(rs.getFloat("price"));
             break;
 

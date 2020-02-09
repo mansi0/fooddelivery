@@ -15,6 +15,8 @@ public class OrderEntity {
     String hotelId;
     Date orderDate;
     String orderTime;
+    float total;
+    String status;
     
 
     public String getOrderId() {
@@ -58,6 +60,22 @@ public class OrderEntity {
 
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     

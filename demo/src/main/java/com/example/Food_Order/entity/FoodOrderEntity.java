@@ -11,7 +11,7 @@ orderId
 quantity*/
 
     String foodOrderId;
-    String foodId;
+    String hotelFoodId;
     String orderId;
     int quantity;
 
@@ -23,12 +23,12 @@ quantity*/
         this.foodOrderId = foodOrderId;
     }
 
-    public String getFoodId() {
-        return foodId;
+    public String getHotelFoodId() {
+        return hotelFoodId;
     }
 
-    public void setFoodId(String foodId) {
-        this.foodId = foodId;
+    public void setHotelFoodId(String hotelFoodId) {
+        this.hotelFoodId = hotelFoodId;
     }
 
     public String getOrderId() {
