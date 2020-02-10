@@ -24,6 +24,8 @@ public interface HotelDao {
 
     public List<HotelEntity> getDetailsByHotelMenuType(String type);
 
+    public List<HotelEntity> getDetailsByExpressDelivery();
+
     public List<HotelEntity> getDetailsByNearBy(String locality);
 
     public List<HotelEntity> checkDuplicationOfEmail(HotelEntity hotelEntity);

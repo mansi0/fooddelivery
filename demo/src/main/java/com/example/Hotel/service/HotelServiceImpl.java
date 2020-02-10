@@ -83,6 +83,13 @@ public class HotelServiceImpl implements HotelService {
   }
 
   @Override
+  public List<HotelEntity> getDetailsByExpressDelivery() {
+    List<HotelEntity> listOfHotel = hotelDao.getDetailsByExpressDelivery();
+    return listOfHotel;
+  
+  }
+
+  @Override
   public List<HotelEntity> getDetailsByNearBy(String locality) {
     List<HotelEntity> listOfHotel = hotelDao.getDetailsByNearBy(locality);
     return listOfHotel;
