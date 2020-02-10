@@ -33,6 +33,13 @@ public class FoodOrderServiceImpl implements FoodOrderService {
     }
 
     @Override
+    public int deleteFoodOrderByHFId(String hotelFoodId) throws ParseException {
+        int resultOfFoodOrder=foodOrderDao.deleteFoodOrderByHFId(hotelFoodId);
+        return resultOfFoodOrder;
+    
+    }
+
+    @Override
     public int addFoodOrder(FoodOrderEntity foodOrderEntity) throws ParseException {
 
         // we call add foodService to add food items and it will return foodid

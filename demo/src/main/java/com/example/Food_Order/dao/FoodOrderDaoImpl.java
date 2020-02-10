@@ -50,6 +50,14 @@ quantity*/
         
     }
 
+    @Override
+    public int deleteFoodOrderByHFId(String hotelFoodId) throws ParseException {
+        String sql= "delete from food_order where hotelFoodId=:hotelFoodId";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("hotelFoodId", hotelFoodId);
+        return template.update(sql, param);
+        
+    }
+
 
     @Override
     public int addFoodOrder(FoodOrderEntity foodOrderEntity) throws ParseException {

@@ -15,4 +15,6 @@ public interface FoodOrderDao {
     public List<FoodOrderEntity> getDetailsByOrderId(String orderId) throws ParseException;
 
     public int deleteFoodOrder (String orderId) throws ParseException;
+
+    public int deleteFoodOrderByHFId (String hotelFoodId) throws ParseException;
 }
