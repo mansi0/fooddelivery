@@ -67,7 +67,7 @@ public class CustomerController {
     public List<CustomerEntity> getDetailsByCustomerId(@PathVariable String parameters) {
        // System.out.println(parameters);
        // parameters = parameters + ".com";
-        System.out.println(parameters);
+       //System.out.println(parameters);
         List<CustomerEntity> listOfCustomer = customerService.getDetailsByCustomerId(parameters);
         //    System.out.println("*****"+listOfCustomer);
         return listOfCustomer;

@@ -107,6 +107,14 @@ public class HotelController {
 
     }
 
+    // by express Delivery
+    @GetMapping(value = "/gethoteldetailbyexpressdelivery")
+    public List<HotelEntity> getDetailsByExpressDelivery() {
+        List<HotelEntity> listOfHotel = hotelService.getDetailsByExpressDelivery();
+        return listOfHotel;
+
+    }
+
     // nearby
     @GetMapping(value = "/gethoteldetailbynearby/{parameters}")
     public List<HotelEntity> getDetailsByNearBy(@PathVariable String parameters) {
