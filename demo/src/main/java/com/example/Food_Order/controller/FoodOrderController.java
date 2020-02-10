@@ -83,13 +83,31 @@ public class FoodOrderController {
         int returnVal=foodOrderService.deleteFoodOrder(oid);
         if(returnVal >= 1)/*200*/
         {
-            System.out.println("deleted foodorder success"+returnVal);
+            System.out.println("deleted foodorder success by oid"+returnVal);
                 return ResponseEntity.status(HttpStatus.OK).body("foodOrder deleted successfully ");
 
         }
         else if (returnVal == 0)// 500
             {
-                System.out.println("foodorder is not deleted");
+                System.out.println("foodorder is not deleted by oid");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+            }
+            return null;
+    }
+
+    @GetMapping(value="/deletefoodorderbyhotelfoodid/{hfid}")
+    public ResponseEntity<?> deleteFoodOrderByHFId(@PathVariable String hfid) throws ParseException {
+
+        int returnVal=foodOrderService.deleteFoodOrderByHFId(hfid);
+        if(returnVal >= 1)/*200*/
+        {
+            System.out.println("deleted foodorder success by hfid"+returnVal);
+                return ResponseEntity.status(HttpStatus.OK).body("foodOrder deleted successfully ");
+
+        }
+        else if (returnVal == 0)// 500
+            {
+                System.out.println("foodorder is not deleted byhfid");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
             }
             return null;
