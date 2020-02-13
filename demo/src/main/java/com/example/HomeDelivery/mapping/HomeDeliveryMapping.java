@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.RowMapper;
  */
 public class HomeDeliveryMapping implements RowMapper<HomeDeliveryEntity> {
 
+
+    
     @Override
     public HomeDeliveryEntity mapRow(ResultSet rs, int arg) throws SQLException {
 
@@ -22,9 +24,13 @@ public class HomeDeliveryMapping implements RowMapper<HomeDeliveryEntity> {
         for (int i = 0; i < meta.getColumnCount(); i++) {
             // System.out.println(">>> Name :" + meta.getColumnLabel(i+1));
             String fieldName = meta.getColumnName(i + 1);
-            /*
-             homeDeliveryId
-homeDeliveryAddress
+          /*homeDeliveryId
+address
+locality
+landmark
+city
+state
+status
 orderId
 deliveryboyid*/
 
@@ -33,9 +39,25 @@ deliveryboyid*/
             case "homedeliveryid":
                 homeDeliveryEntity.setHomeDeliveryId(rs.getString("homedeliveryid"));
                 break;
-            case "homedeliveryaddress":
-                homeDeliveryEntity.setHomeDeliveryAddress(rs.getString("homedeliveryaddress"));
+            case "address":
+                homeDeliveryEntity.setAddress(rs.getString("address"));
                 break;
+            case "locality":
+                homeDeliveryEntity.setLocality(rs.getString("locality"));
+                break;
+            case "landmark" :
+                homeDeliveryEntity.setLandmark(rs.getString("landmark"));
+                break;
+            case "city" : 
+                homeDeliveryEntity.setCity(rs.getString("city"));
+                break;
+            case "state" :
+                homeDeliveryEntity.setState(rs.getString("state"));
+                break;
+            case "status" :
+                homeDeliveryEntity.setStatus(rs.getInt("status"));
+                break;
+            
             case "orderid":
                 homeDeliveryEntity.setOrderId(rs.getString("orderid"));
                 break;

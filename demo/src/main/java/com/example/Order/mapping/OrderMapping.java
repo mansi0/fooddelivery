@@ -46,6 +46,12 @@ public class OrderMapping implements RowMapper<OrderEntity> {
             case "ordertime":
                 orderEntity.setOrderTime(rs.getString("ordertime"));
                 break;
+            case "total":
+                orderEntity.setTotal(rs.getFloat("total"));
+                break;
+            case "status":
+                orderEntity.setStatus(rs.getInt("status"));
+                break;
             
             }
         }

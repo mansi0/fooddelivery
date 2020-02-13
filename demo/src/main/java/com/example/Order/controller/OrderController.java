@@ -47,6 +47,20 @@ public class OrderController {
 
     }
 
+    //get details by hotelId
+    @GetMapping(value = "/getorderbyhotelid/{hid}")
+    public List<OrderEntity> getDetailsByTime(@PathVariable String hid)
+     throws ParseException {
+
+        List<OrderEntity> listOfOrderEntities = orderService.getDetailsByHotelId(hid);
+        // System.out.println("*****"+listOfCustomer);
+        return listOfOrderEntities;
+
+    }
+
+
+
+
     @GetMapping(value="/deleteorder/{oid}")
     public ResponseEntity<?> deleteOrder(@PathVariable String oid) throws ParseException,
     HttpRequestMethodNotSupportedException{
@@ -117,31 +131,30 @@ public class OrderController {
         }
         return null;
     }
-
-    //update order by status
-    @PostMapping(value = "/updateorderbystatus")
-    public ResponseEntity<?> updateOrderByStatus(@RequestBody String parameters)
-            throws JsonParseException, JsonMappingException, IOException {
-        // logger.debug("POST:CustomerController:addCustomer::parameters::
-        // "+parameters);
-        ObjectMapper mapper = new ObjectMapper();
-        OrderEntity orderEntity = mapper.readValue(parameters, OrderEntity.class);
-
-        try {
-            int result = orderService.updateOrderByStatus(orderEntity);
-            if (result == 1)/* 200 */ {
-                System.out.println("updated order for status");
-                return ResponseEntity.status(HttpStatus.OK).body("Order added successfully ");
-            } else if (result == 0)// 500
-            {
-                System.out.println("order is not updated for status");
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("internal server error");
-        }
-        return null;
-    }
-
 }
+
+/*
+ * //update order by status
+ * 
+ * @PostMapping(value = "/updateorderbystatus") public ResponseEntity<?>
+ * updateOrderByStatus(@RequestBody String parameters) throws
+ * JsonParseException, JsonMappingException, IOException { //
+ * logger.debug("POST:CustomerController:addCustomer::parameters:: //
+ * "+parameters); ObjectMapper mapper = new ObjectMapper(); OrderEntity
+ * orderEntity = mapper.readValue(parameters, OrderEntity.class);
+ * 
+ * try { int result = orderService.updateOrderByStatus(orderEntity); if (result
+ * == 1)/* 200
+  {
+/*
+ * System.out.println("updated order for status"); return
+ * ResponseEntity.status(HttpStatus.OK).body("Order added successfully "); }
+ * else if (result == 0)// 500 {
+ * System.out.println("order is not updated for status"); return
+ * ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
+ * body("Internal server error"); } } catch (Exception e) { // TODO: handle
+ * exception return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
+ * body("internal server error"); } return null; }
+ */
+
+

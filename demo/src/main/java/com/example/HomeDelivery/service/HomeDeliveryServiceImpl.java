@@ -1,6 +1,7 @@
 package com.example.HomeDelivery.service;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,19 @@ public class HomeDeliveryServiceImpl implements HomeDeliveryService {
 
     @Resource
     HomeDeliveryDao homeDeliveryDao ;
+
+    @Override
+    public List<HomeDeliveryEntity> getDetailsByOrderId(String orderId) throws ParseException {
+        List<HomeDeliveryEntity> lHomeDeliveryEntities=homeDeliveryDao.getDetailsByOrderId(orderId);
+        return lHomeDeliveryEntities;
+    
+    }
+
+    @Override
+    public int updateOrderByStatus(HomeDeliveryEntity homeDeliveryEntity) throws ParseException {
+       int resultOfHomeDelivery=homeDeliveryDao.updateOrderByStatus(homeDeliveryEntity);
+       return resultOfHomeDelivery; 
+    }
 
     // add new order
     @Override

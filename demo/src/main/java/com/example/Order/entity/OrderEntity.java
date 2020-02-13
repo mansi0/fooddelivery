@@ -16,7 +16,8 @@ public class OrderEntity {
     Date orderDate;
     String orderTime;
     float total;
-    String status;
+    int status;
+    
     
 
     public String getOrderId() {
@@ -70,13 +71,14 @@ public class OrderEntity {
         this.total = total;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
+
     
     
     

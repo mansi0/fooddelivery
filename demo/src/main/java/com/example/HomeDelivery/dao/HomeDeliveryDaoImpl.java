@@ -1,8 +1,11 @@
 package com.example.HomeDelivery.dao;
 
+import java.text.ParseException;
+import java.util.List;
 import java.util.UUID;
 
 import com.example.HomeDelivery.entity.HomeDeliveryEntity;
+import com.example.HomeDelivery.mapping.HomeDeliveryMapping;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -22,12 +25,45 @@ public class HomeDeliveryDaoImpl implements HomeDeliveryDao {
 
     }
 
-    /*
-     homeDeliveryId
-homeDeliveryAddress
+
+    @Override
+    public List<HomeDeliveryEntity> getDetailsByOrderId(String orderId) throws ParseException {
+        
+        String sql ="select * from homedelivery where orderid=:orderid";
+
+        SqlParameterSource param = new MapSqlParameterSource().addValue("orderid", orderId);
+
+
+      List<HomeDeliveryEntity> homeDeliveryEntities = template.query(sql, param, new HomeDeliveryMapping());
+
+
+      return homeDeliveryEntities;
+    
+    }
+
+    @Override
+    public int updateOrderByStatus(HomeDeliveryEntity homeDeliveryEntity) throws ParseException {
+        String sql = "update homedelivery set status=:status where orderid=:orderid";
+        SqlParameterSource param = new MapSqlParameterSource()
+        .addValue("status", homeDeliveryEntity.getStatus())
+        .addValue("orderid",homeDeliveryEntity.getOrderId());
+        
+        return template.update(sql, param);
+        
+    }
+    
+
+    
+    /*homeDeliveryId
+address
+locality
+landmark
+city
+state
+status
 orderId
-deliveryboyid
-     */
+deliveryboyid*/
+ 
 
     @Override
     public int addHomeDelivery(HomeDeliveryEntity homeDeliveryEntity) {
@@ -35,13 +71,18 @@ deliveryboyid
         UUID uuid = UUID.randomUUID();
 
         try {
-            String sql = "insert into homedelivery values(:homedeliveryid,:homedeliveryaddress,:orderid,:deliveryboyid)";
+            String sql = "insert into homedelivery values(:homedeliveryid,:address,:locality,:landmark,:city,:state,:status,:orderid)";
 
             
             SqlParameterSource param = new MapSqlParameterSource().addValue("homedeliveryid", uuid.toString())
-                    .addValue("homedeliveryaddress", homeDeliveryEntity.getHomeDeliveryAddress())
-                    .addValue("orderid", homeDeliveryEntity.getOrderId())
-                    .addValue("deliveryboyid", homeDeliveryEntity.getDeliveryboyId());
+                    .addValue("address", homeDeliveryEntity.getAddress())
+                    .addValue("locality", homeDeliveryEntity.getLocality())
+                    .addValue("landmark", homeDeliveryEntity.getLandmark())
+                    .addValue("city", homeDeliveryEntity.getCity())
+                    .addValue("state", homeDeliveryEntity.getState())
+                    .addValue("status", homeDeliveryEntity.getStatus())
+                    .addValue("orderid", homeDeliveryEntity.getOrderId());
+                    
 
             return template.update(sql, param);
 

@@ -1,6 +1,7 @@
 package com.example.SelfPickup.service;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,21 @@ public class SelfPickupServiceImpl implements SelfPickupService {
 
     @Resource
     SelfPickupDao selfPickupDao;
+
+    @Override
+    public List<SelfPickupEntity> getDetailsByOrderId(String orderId) throws ParseException {
+        List<SelfPickupEntity> lSelfPickupEntities=selfPickupDao.getDetailsByOrderId(orderId);
+        return lSelfPickupEntities;
+    
+    }
+
+    @Override
+    public int updateOrderByStatus(SelfPickupEntity selfPickupEntity) throws ParseException {
+        int resultOfOrder=selfPickupDao.updateOrderByStatus(selfPickupEntity);
+        return resultOfOrder;
+        
+    }
+
 
     // add new order
     @Override

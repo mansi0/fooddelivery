@@ -51,6 +51,14 @@ public class OrderDaoImpl implements OrderDao {
         return listOfOrderEntities;
 
     }
+
+    @Override
+    public List<OrderEntity> getDetailsByHotelId(String hotelId) throws ParseException {
+        String sql="select * from order1 where hotelid=:hotelid";
+        SqlParameterSource param= new MapSqlParameterSource().addValue("hotelid", hotelId);
+        List<OrderEntity> lOrderEntities = template.query(sql, param,new OrderMapping());
+        return lOrderEntities;
+    }
      @Override
     public int deleteOrder(String orderId) throws ParseException {
         // TODO Auto-generated method stub
@@ -63,16 +71,17 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public int updateOrderByTotal(OrderEntity orderEntity) throws ParseException {
-        String sql = "update order1 set total=:total where orderid=:orderid";
+        String sql = "update order1 set total=:total,status=:status where orderid=:orderid";
         SqlParameterSource param = new MapSqlParameterSource()
         .addValue("total", orderEntity.getTotal())
-        .addValue("orderid", orderEntity.getOrderId());
+        .addValue("orderid", orderEntity.getOrderId())
+        .addValue("status", orderEntity.getStatus());
         
         return template.update(sql, param);
         
     }
 
-    @Override
+   /* @Override
     public int updateOrderByStatus(OrderEntity orderEntity) throws ParseException {
         String sql = "update order1 set status=:status where orderid=:orderid";
         SqlParameterSource param = new MapSqlParameterSource()
@@ -81,7 +90,7 @@ public class OrderDaoImpl implements OrderDao {
         
         return template.update(sql, param);
         
-    }
+    }*/
 
     @Override
     public int addOrder(OrderEntity orderEntity) {

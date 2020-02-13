@@ -223,12 +223,19 @@ public class HotelServiceImpl implements HotelService {
         HotelEntity hotelEntity = new HotelEntity();
         hotelEntity = listOfHotelEntities.get(0);
 
-        BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
-        boolean isPasswordMatches = bCrypt.matches(psw, hotelEntity.getHotelPassword());
+        BCryptPasswordEncoder bCrypt;
+        boolean isPasswordMatches=false;
         boolean isSame;
         if(psw == hotelEntity.getHotelPassword())
            isSame=true;
-        else isSame=false;
+           else {
+             System.out.println("in else");
+            isSame=false;
+            bCrypt = new BCryptPasswordEncoder();
+            isPasswordMatches = bCrypt.matches(psw, hotelEntity.getHotelPassword());
+           }
+        
+        
         
        // System.out.println("value :" + isPasswordMatches);
 

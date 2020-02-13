@@ -27,6 +27,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderEntity> getDetailsByHotelId(String hotelId) throws ParseException {
+        List<OrderEntity> listOfOrderEntities = orderDao.getDetailsByHotelId(hotelId);
+        return listOfOrderEntities;
+     
+    }
+
+    @Override
     public int deleteOrder(String orderId) throws ParseException {
         int resultOfOrder=orderDao.deleteOrder(orderId);
         return resultOfOrder;
@@ -37,12 +44,12 @@ public class OrderServiceImpl implements OrderService {
         int resultOfOrder=orderDao.updateOrderByTotal(orderEntity);
         return resultOfOrder;
     }
-    @Override
+  /*  @Override
     public int updateOrderByStatus(OrderEntity orderEntity) throws ParseException {
         int resultOfOrder=orderDao.updateOrderByStatus(orderEntity);
         return resultOfOrder;
         
-    }
+    }*/
 
     // add new order
     @Override

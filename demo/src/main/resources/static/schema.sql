@@ -25,7 +25,9 @@ create table deliveryBoy(
     deliveryArea varchar(100),
     deliveryBoypassword varchar(150),
     accountDate date,
-    deliveryBoyStatus varchar(10) check(deliveryBoyStatus in('active','inactive')),
+    deliveryBoyStatus int,
+    deliveryboyactivity int,
+    pendingamount float,
     noofdays int,
     deliveryboyshift varchar(10) check(deliveryboyshift in('morning','evening','night')),
     noofdelivery int,
@@ -89,23 +91,29 @@ create table order1(
     orderDate date,
     orderTime time,
     total float,
-    status varchar(50),
+    status int,
     unique(customerId,orderId)
     );
 
 
 create table selfPickUp(
     selfPickUpId varchar(100) primary key,
+    orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
+    status int,
     pickUpTime time,
     pickUpDate date,
-    orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
     unique(orderId,selfPickUpid),
     unique(orderId)
     );
 
 create table homeDelivery(
     homeDeliveryId varchar(100) primary key,
-    homeDeliveryAddress varchar(100),
+    address varchar(100),
+    locality varchar(50),
+    landmark varchar(50),
+    city varchar(15),
+    state varchar(20),
+    status int,
     orderId varchar(100) references order1(orderId)on delete cascade on update cascade,
     deliveryboyid varchar(100) references deliveryboy(deliveryboyid)on delete cascade on update cascade,
     unique(homeDeliveryId,orderId,deliveryboyid),

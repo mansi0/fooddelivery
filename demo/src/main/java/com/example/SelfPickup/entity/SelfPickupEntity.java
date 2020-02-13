@@ -10,12 +10,20 @@ public class SelfPickupEntity {
     /*selfPickUpId
 pickUpTime
 pickUpDate
-orderId*/
+orderId
+
+selfPickUpId
+orderId
+status
+pickUpTime
+pickUpDate
+*/
 
     String selfPickupId;
     Date pickUpDate;
     String pickUpTime;
     String orderId;
+    int status;
 
     public String getSelfPickupId() {
         return selfPickupId;
@@ -47,6 +55,14 @@ orderId*/
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
 

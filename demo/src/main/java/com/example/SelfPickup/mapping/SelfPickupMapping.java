@@ -43,6 +43,10 @@ orderId*/
             case "orderid":
                 selfPickupEntity.setOrderId(rs.getString("orderid"));
                 break;
+            case "status" :
+                selfPickupEntity.setStatus(rs.getInt("status"));
+                break;
+                
             }
         }
         return selfPickupEntity;
