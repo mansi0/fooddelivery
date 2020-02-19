@@ -10,6 +10,9 @@ import org.springframework.jdbc.core.RowMapper;
  * CustomerMapping
  */
 public class DeliveryboyMapping implements RowMapper<DeliveryboyEntity> {
+
+
+    
     @Override
     public DeliveryboyEntity mapRow(ResultSet rs,int arg) throws SQLException {
 
@@ -22,7 +25,9 @@ public class DeliveryboyMapping implements RowMapper<DeliveryboyEntity> {
         deliveryboyEntity.setDeliveryboyContNo(rs.getString("deliveryboycontno"));
         deliveryboyEntity.setDeliveryboySalary(rs.getFloat("deliveryboysalary"));
         deliveryboyEntity.setDeliveryArea(rs.getString("deliveryArea"));
-        deliveryboyEntity.setDeliveryboyStatus(rs.getString("deliveryBoyStatus"));
+        deliveryboyEntity.setDeliveryboyStatus(rs.getInt("deliveryBoyStatus"));
+        deliveryboyEntity.setDeliveryboyActivity(rs.getInt("deliveryboyactivity"));
+        deliveryboyEntity.setPendingAmount(rs.getFloat("pendingamount"));
         deliveryboyEntity.setDeliveryboyPassword(rs.getString("deliveryBoypassword"));
         deliveryboyEntity.setNoOfDays(rs.getInt("noofdays"));
         deliveryboyEntity.setDeliveryboyShift(rs.getString("deliveryboyshift"));

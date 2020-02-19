@@ -10,7 +10,11 @@ import com.example.Order.entity.OrderEntity;
  */
 public interface OrderDao {
 
+    public List<OrderEntity> getDetails() throws ParseException;
+
     public List<OrderEntity> getDetailsByTime(int hrs,int min,String date) throws ParseException;
+
+    public List<OrderEntity> getDetailsByTotalOfDay() throws ParseException;
 
     public List<OrderEntity> getDetailsByHotelId(String hotelId) throws ParseException;
 

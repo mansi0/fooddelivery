@@ -21,6 +21,11 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    public List<OrderEntity> getDetails() throws ParseException {
+        List<OrderEntity> lOrderEntities = orderDao.getDetails();
+        return lOrderEntities;
+    }
+    @Override
     public List<OrderEntity> getDetailsByTime(int hrs,int min,String date) throws ParseException {
         List<OrderEntity> listOfOrderEntities = orderDao.getDetailsByTime(hrs,min,date);
         return listOfOrderEntities;
@@ -31,6 +36,18 @@ public class OrderServiceImpl implements OrderService {
         List<OrderEntity> listOfOrderEntities = orderDao.getDetailsByHotelId(hotelId);
         return listOfOrderEntities;
      
+    }
+
+    @Override
+    public float getDetailsByTotalOfDay() throws ParseException {
+
+        List<OrderEntity> listOfOrderEntities = orderDao.getDetailsByTotalOfDay();
+        float total=0;
+        for(int i=0;i<listOfOrderEntities.size();i++) {
+           total+= listOfOrderEntities.get(i).getTotal();
+        }
+        return total;
+    
     }
 
     @Override

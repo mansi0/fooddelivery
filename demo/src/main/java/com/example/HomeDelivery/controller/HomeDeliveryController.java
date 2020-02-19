@@ -93,4 +93,28 @@ public class HomeDeliveryController {
              return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("internal server error"); 
          }return null;
      }
+
+     //update homedelivery by delivery boy id by orderid
+     @PostMapping(value = "/updatehomedeliverybydeliveryboyid")
+     public ResponseEntity<?>updateOrderByDeliveryboyId(@RequestBody String parameters) throws
+     JsonParseException, JsonMappingException, IOException { 
+        ObjectMapper mapper = new ObjectMapper();
+         HomeDeliveryEntity homeDeliveryEntity = mapper.readValue(parameters, HomeDeliveryEntity.class);
+   
+         try {
+              int result = homeDeliveryService.updateOrderByDeliveryboyId(homeDeliveryEntity); 
+              if (result== 1)/* 200*/{
+                 System.out.println("updated homedelivery for deliveryboyid"); return
+                 ResponseEntity.status(HttpStatus.OK).body("homedelivery updated successfully "); 
+             }
+             else if (result == 0)// 500
+             {
+                 System.out.println("homedelivery is not updated for deliveryboyid"); return
+                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error"); 
+             }
+         }catch(Exception e){
+              // TODO: handleexception
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("internal server error"); 
+         }return null;
+     }
 }

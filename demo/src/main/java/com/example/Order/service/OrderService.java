@@ -12,6 +12,10 @@ public interface OrderService {
 
     public List<OrderEntity> getDetailsByTime(int hrs,int min,String date) throws ParseException;
 
+    public List<OrderEntity>getDetails()throws ParseException;
+
+    public float getDetailsByTotalOfDay()throws ParseException;
+
     public List<OrderEntity> getDetailsByHotelId(String hotelId) throws ParseException;
 
     public int addOrder(OrderEntity orderEntity) throws ParseException;

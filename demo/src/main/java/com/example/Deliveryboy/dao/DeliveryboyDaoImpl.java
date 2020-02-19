@@ -61,6 +61,64 @@ public class DeliveryboyDaoImpl implements DeliveryboyDao {
     return listOfDeliveryboyEntities;
   }
 
+  @Override
+  public int updateOrderByStatus(DeliveryboyEntity deliveryboyEntity) throws ParseException {
+        String sql = "update deliveryboy set deliveryboystatus=:deliveryboystatus where deliveryboyid=:deliveryboyid";
+        SqlParameterSource param = new MapSqlParameterSource()
+        .addValue("deliveryboystatus", deliveryboyEntity.getDeliveryboyStatus())
+        .addValue("deliveryboyid", deliveryboyEntity.getDeliveryboyId());
+        
+        return template.update(sql, param);
+        
+    }
+
+    @Override
+    public int updateOrderByActivity(DeliveryboyEntity deliveryboyEntity) throws ParseException {
+      
+      String sql = "update deliveryboy set deliveryboyactivity=:deliveryboyactivity where deliveryboyid=:deliveryboyid";
+      SqlParameterSource param = new MapSqlParameterSource()
+      .addValue("deliveryboyactivity", deliveryboyEntity.getDeliveryboyActivity())
+      .addValue("deliveryboyid", deliveryboyEntity.getDeliveryboyId());
+      
+      return template.update(sql, param);
+      
+    }
+
+    @Override
+    public int updateOrderByPendingAmount(DeliveryboyEntity deliveryboyEntity) throws ParseException {
+      String sql = "update deliveryboy set pendingamount=:pendingamount where deliveryboyid=:deliveryboyid";
+      SqlParameterSource param = new MapSqlParameterSource()
+      .addValue("pendingamount", deliveryboyEntity.getDeliveryboyActivity())
+      .addValue("deliveryboyid", deliveryboyEntity.getDeliveryboyId());
+      
+      return template.update(sql, param);
+      
+    }
+
+    @Override
+    public List<DeliveryboyEntity> getDetailsByActivity() throws ParseException {
+
+      List<DeliveryboyEntity> listOfDeliveryboy = new ArrayList<DeliveryboyEntity>();
+
+    try {
+
+      String sql = "select * from deliveryboy where deliveryboystatus = "+1+" and deliveryboyactivity="+0;
+
+     // SqlParameterSource param = new MapSqlParameterSource()
+     // .addValue("deliveryboyEmailId",deliveryboyEntity.getDeliveryboyEmailId());
+
+      listOfDeliveryboy = template.query(sql, new DeliveryboyMapping());
+
+      return listOfDeliveryboy;
+    }
+    catch (Exception e) {
+      logger.error("DAO::DeliveryboyDaoImp::checkDuplicateEmail::error:: " + e.getMessage());
+      logger.error("DAO::DeliveryboyDaoImp::checkDuplicateEmail::error:: " + e.getStackTrace());
+      throw e;
+    }
+      
+    }
+
 
   @Override
   public List<DeliveryboyEntity> checkDuplicationOfEmail(DeliveryboyEntity deliveryboyEntity) {

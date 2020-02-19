@@ -16,4 +16,6 @@ public interface HomeDeliveryService {
 
     public int updateOrderByStatus(HomeDeliveryEntity homeDeliveryEntity)throws ParseException;
 
+    public int updateOrderByDeliveryboyId(HomeDeliveryEntity homeDeliveryEntity)throws ParseException;
+
 }

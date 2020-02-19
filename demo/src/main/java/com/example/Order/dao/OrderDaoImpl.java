@@ -34,6 +34,29 @@ public class OrderDaoImpl implements OrderDao {
      * orderId customerId rderDate orderTime cookingInstruction
      */
 
+     @Override
+     public List<OrderEntity> getDetails() throws ParseException {
+         String sql="select * from order1";
+         List<OrderEntity> listOfEntities=template.query(sql,new OrderMapping());
+         return listOfEntities;
+     }
+
+    @Override
+    public List<OrderEntity> getDetailsByTotalOfDay() throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+        Date date = new Date();
+
+        DateFormat parser = new SimpleDateFormat("yyyy-mm-dd");
+        Date parsedDate = parser.parse(dateFormat.format(date));
+
+        String sql="select * from order1 where orderdate=:parsedDate;";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("parsedDate", parsedDate);
+
+        List<OrderEntity> listOfOrderEntities = template.query(sql,param, new OrderMapping());
+
+       return listOfOrderEntities;
+    }
+
     @Override
     public List<OrderEntity> getDetailsByTime(int hrs,int min,String d) throws ParseException {
 
