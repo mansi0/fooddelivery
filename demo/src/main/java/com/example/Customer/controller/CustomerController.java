@@ -44,10 +44,10 @@ public class CustomerController {
 
     // get all details
     @GetMapping(value = "/details")
-    public List<CustomerEntity> getDetails() {
+    public int getDetails() {
 
         List<CustomerEntity> listOfCustomer = customerService.getDetail();
-        return listOfCustomer;
+        return listOfCustomer.size();
     }
 
     // get details by emailid --it has some error hence postgetcustomer is used

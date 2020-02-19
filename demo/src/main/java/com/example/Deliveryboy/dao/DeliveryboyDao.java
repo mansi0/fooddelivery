@@ -22,5 +22,13 @@ public interface DeliveryboyDao {
 
     public void updateDeliveryboy(DeliveryboyEntity deliveryboyEntity);
 
+    public int updateOrderByStatus(DeliveryboyEntity deliveryboyEntity)throws ParseException;
+
+    public int updateOrderByActivity(DeliveryboyEntity deliveryboyEntity)throws ParseException;
+
+    public int updateOrderByPendingAmount(DeliveryboyEntity deliveryboyEntity)throws ParseException;
+
+    public List<DeliveryboyEntity> getDetailsByActivity() throws ParseException;
+
     public List<DeliveryboyEntity> fetchByEmailId(String email);
 }

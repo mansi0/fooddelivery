@@ -33,6 +33,13 @@ public class OrderController {
     @Resource
     OrderService orderService;
 
+    //getdetails
+    @GetMapping(value="/getdetails")
+    public int getDetails() throws ParseException {
+        List<OrderEntity> listOfOrderEntities = orderService.getDetails();
+        return listOfOrderEntities.size();
+    }
+
     // get details by hours min sec
     @GetMapping(value = "/getorderbytime/{hrs}/{min}/{date}")
     public List<OrderEntity> getDetailsByTime(@PathVariable String hrs, @PathVariable String min,
@@ -56,6 +63,13 @@ public class OrderController {
         // System.out.println("*****"+listOfCustomer);
         return listOfOrderEntities;
 
+    }
+
+    //getdetailsbytotalofday
+    @GetMapping(value = "/getdetailsbytotalofday")
+    public float getDetailsByTotalOfDay() throws ParseException {
+        float total = orderService.getDetailsByTotalOfDay();
+        return total;
     }
 
 

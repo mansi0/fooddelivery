@@ -6,7 +6,7 @@ import java.sql.Date;
  * DeliveryboyEntity
  */
 public class DeliveryboyEntity {
-
+    
     String deliveryboyId;
     String deliveryboyName;
     String deliveryboyAddress;
@@ -14,7 +14,9 @@ public class DeliveryboyEntity {
     String deliveryboyContNo;
     String deliveryArea;
     String deliveryboyPassword;
-    String deliveryboyStatus;
+    int deliveryboyStatus;
+    int deliveryboyActivity;
+    float pendingAmount;
     int noOfDays;
     String deliveryboyShift;
     int noOfDelivery;
@@ -79,14 +81,7 @@ public class DeliveryboyEntity {
         this.deliveryArea = deliveryArea;
     }
 
-    public String getDeliveryboyStatus() {
-        return deliveryboyStatus;
-    }
-
-    public void setDeliveryboyStatus(String deliveryboyStatus) {
-        this.deliveryboyStatus = deliveryboyStatus;
-    }
-
+    
     public String getDeliveryboyPassword() {
         return deliveryboyPassword;
     }
@@ -133,6 +128,30 @@ public class DeliveryboyEntity {
 
     public void setAccountDate(Date accountDate) {
         this.accountDate = accountDate;
+    }
+
+    public int getDeliveryboyStatus() {
+        return deliveryboyStatus;
+    }
+
+    public void setDeliveryboyStatus(int deliveryboyStatus) {
+        this.deliveryboyStatus = deliveryboyStatus;
+    }
+
+    public int getDeliveryboyActivity() {
+        return deliveryboyActivity;
+    }
+
+    public void setDeliveryboyActivity(int deliveryboyActivity) {
+        this.deliveryboyActivity = deliveryboyActivity;
+    }
+
+    public float getPendingAmount() {
+        return pendingAmount;
+    }
+
+    public void setPendingAmount(float pendingAmount) {
+        this.pendingAmount = pendingAmount;
     }
 
    

@@ -16,4 +16,6 @@ public interface HomeDeliveryDao {
 
     public int updateOrderByStatus(HomeDeliveryEntity homeDeliveryEntity)throws ParseException;
 
+    public int updateOrderByDeliveryBoyId(HomeDeliveryEntity homeDeliveryEntity)throws ParseException;
+
 }

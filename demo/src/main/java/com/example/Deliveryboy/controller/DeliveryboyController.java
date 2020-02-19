@@ -1,6 +1,7 @@
 package com.example.Deliveryboy.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,18 +32,18 @@ import org.springframework.web.bind.annotation.RestController;
  * DeliveryboyController
  */
 @RestController
-@RequestMapping(path = "deliveryboy")
+@RequestMapping(path = "/deliveryboy")
 public class DeliveryboyController {
     @Resource
     DeliveryboyService deliveryboyService;
 
     static final Logger logger = LoggerFactory.getLogger(DeliveryboyController.class);
 
-    @GetMapping(value = "details")
-    public List<DeliveryboyEntity> getDetails() {
+    @GetMapping(value = "/details")
+    public int getDetails() {
 
         List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyService.getDetail();
-        return listOfDeliveryboy;
+        return listOfDeliveryboy.size();
     }
 
     // get details by emailid
@@ -51,42 +52,106 @@ public class DeliveryboyController {
             throws JsonMappingException, JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
-    DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
-    
-        //System.out.println(parameters);
-        //parameters=parameters+".com";
-        //System.out.println(parameters);
-        List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByEmailId(deliveryboyEntity.getDeliveryboyEmailId());
+        DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
+
+        // System.out.println(parameters);
+        // parameters=parameters+".com";
+        // System.out.println(parameters);
+        List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService
+                .getDetailsByEmailId(deliveryboyEntity.getDeliveryboyEmailId());
         return listOfDeliveryboyEntities;
 
     }
 
-// get details by deliveryboyid by post
-@GetMapping(value = "/getdeliveryboybydeliveryboyid/{parameters}" )
-public List<DeliveryboyEntity> getDetailsByDeliveryboyId(@PathVariable String parameters)
-throws JsonParseException, JsonMappingException, IOException {
-    //System.out.println(parameters);
-    //parameters=parameters+".com";
-   // System.out.println(parameters);
-        
-    List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(parameters);
-    return listOfDeliveryboyEntities;
+    // get details by deliveryboyid by post
+    @GetMapping(value = "/getdeliveryboybydeliveryboyid/{parameters}")
+    public List<DeliveryboyEntity> getDetailsByDeliveryboyId(@PathVariable String parameters)
+            throws JsonParseException, JsonMappingException, IOException {
+        // System.out.println(parameters);
+        // parameters=parameters+".com";
+        // System.out.println(parameters);
 
-}
+        List<DeliveryboyEntity> listOfDeliveryboyEntities = deliveryboyService.getDetailsByDeliveryboyId(parameters);
+        return listOfDeliveryboyEntities;
+
+    }
+    // update by deliveryboystatus
+
+    @PostMapping(value = "/updatedelieryboybystatus")
+    public ResponseEntity<?> updateDeliveryboy(@RequestBody String parameters)
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:CustomerController:addCustomer::parameters::
+        // "+parameters);
+        ObjectMapper mapper = new ObjectMapper();
+        DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
+
+        try {
+            int result = deliveryboyService.updateOrderByStatus(deliveryboyEntity);
+            if (result == 1)/* 200 */ {
+                System.out.println("updated deliveryboy for status");
+                return ResponseEntity.status(HttpStatus.OK).body("deliveryboy updated for status ");
+            } else if (result == 0)// 500
+            {
+                System.out.println("delivery boy is not updated for status");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("internal server error");
+        }
+        return null;
+    }
 
 
-    @PostMapping(value = "/adddeliveryboy" , produces = MediaType.APPLICATION_JSON_VALUE)
+    // update by deliveryboyactivity
+
+    @PostMapping(value = "/updatedelieryboybyactivity")
+    public ResponseEntity<?> updateDeliveryboyByActivity(@RequestBody String parameters)
+            throws JsonParseException, JsonMappingException, IOException {
+        // logger.debug("POST:CustomerController:addCustomer::parameters::
+        // "+parameters);
+        ObjectMapper mapper = new ObjectMapper();
+        DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
+
+        try {
+            int result = deliveryboyService.updateOrderByActivity(deliveryboyEntity);
+            if (result == 1)/* 200 */ {
+                System.out.println("updated deliveryboy for activity");
+                return ResponseEntity.status(HttpStatus.OK).body("deliveryboy updated for activity ");
+            } else if (result == 0)// 500
+            {
+                System.out.println("delivery boy is not updated for status");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("internal server error");
+        }
+        return null;
+    }
+
+    //getdetails by activity=0 and status=1
+    @GetMapping(value = "/getdetailsbyactivity")
+    public List<DeliveryboyEntity> getdetailsbyactivity() throws ParseException {
+
+        List<DeliveryboyEntity> deliveryboyEntities = deliveryboyService.getDetailsByActivity();
+        return deliveryboyEntities;
+    }
+
+
+    // adddeliveryboy
+    @PostMapping(value = "/adddeliveryboy", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addDeliveryboy(@RequestBody String parameters)
             throws JsonParseException, JsonMappingException, IOException {
         // logger.debug("POST:DeliveryboyController:addDeliveryboy::parameters::
         // "+parameters);
         ObjectMapper mapper = new ObjectMapper();
         DeliveryboyEntity deliveryboyEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
-        //System.out.println("delivery boy in controller ::" + deliveryboyEntity);
+        // System.out.println("delivery boy in controller ::" + deliveryboyEntity);
 
         try {
             int result = deliveryboyService.addDeliveryboy(deliveryboyEntity);
-            if (result == -1)//400
+            if (result == -1)// 400
             {
                 Map<String, Object> body = new HashMap<String, Object>();
 
@@ -94,10 +159,9 @@ throws JsonParseException, JsonMappingException, IOException {
                 body.put("status", HttpStatus.BAD_REQUEST.value());
 
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-            }
-            else if (result == 0)//500
+            } else if (result == 0)// 500
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
-            else if (result == 1)//200
+            else if (result == 1)// 200
                 return ResponseEntity.status(HttpStatus.OK).body("Deliveryboy added successfully ");
 
         } catch (Exception e) {
@@ -114,15 +178,15 @@ throws JsonParseException, JsonMappingException, IOException {
         // "+parameters);
         ObjectMapper mapper = new ObjectMapper();
         DeliveryboyEntity customerEntity = mapper.readValue(parameters, DeliveryboyEntity.class);
-        String email=customerEntity.getDeliveryboyEmailId();
-        String psw=customerEntity.getDeliveryboyPassword();       
+        String email = customerEntity.getDeliveryboyEmailId();
+        String psw = customerEntity.getDeliveryboyPassword();
         // "+parameters);
         try {
-            System.out.println(email  +","+  psw+"cccccccc");
-            int result= deliveryboyService.loginDeliveryboy(email, psw);
-            if(result==-1)//404
+            System.out.println(email + "," + psw + "cccccccc");
+            int result = deliveryboyService.loginDeliveryboy(email, psw);
+            if (result == -1)// 404
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Deliveryboy Not Found");
-            if(result==0)//400
+            if (result == 0)// 400
             {
                 Map<String, Object> body = new HashMap<String, Object>();
 
@@ -131,15 +195,13 @@ throws JsonParseException, JsonMappingException, IOException {
 
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
             }
-             
-            if(result==1)//200
+
+            if (result == 1)// 200
                 return ResponseEntity.status(HttpStatus.OK).body("Valid Entry");
-            if(result==-2)//500
+            if (result == -2)// 500
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
-                
-        }
-        catch(Exception e)
-        {
+
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Exception occur");
         }
         return null;

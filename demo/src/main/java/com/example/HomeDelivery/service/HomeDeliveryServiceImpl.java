@@ -31,6 +31,11 @@ public class HomeDeliveryServiceImpl implements HomeDeliveryService {
        int resultOfHomeDelivery=homeDeliveryDao.updateOrderByStatus(homeDeliveryEntity);
        return resultOfHomeDelivery; 
     }
+    @Override
+    public int updateOrderByDeliveryboyId(HomeDeliveryEntity homeDeliveryEntity) throws ParseException {
+        int resultOfHomeDelivery=homeDeliveryDao.updateOrderByDeliveryBoyId(homeDeliveryEntity);
+        return resultOfHomeDelivery;
+    }
 
     // add new order
     @Override

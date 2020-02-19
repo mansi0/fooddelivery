@@ -51,6 +51,17 @@ public class HomeDeliveryDaoImpl implements HomeDeliveryDao {
         return template.update(sql, param);
         
     }
+
+    @Override
+    public int updateOrderByDeliveryBoyId(HomeDeliveryEntity homeDeliveryEntity) throws ParseException {
+        String sql = "update homedelivery set deliveryboyid=:deliveryboyid where orderid=:orderid";
+        SqlParameterSource param = new MapSqlParameterSource()
+        .addValue("deliveryboyid", homeDeliveryEntity.getDeliveryboyId())
+        .addValue("orderid",homeDeliveryEntity.getOrderId());
+        
+        return template.update(sql, param);
+        
+    }
     
 
     

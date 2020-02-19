@@ -1,5 +1,6 @@
 package com.example.Deliveryboy.service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -57,6 +58,32 @@ public class DeliveryboyServiceImpl implements DeliveryboyService {
     List<DeliveryboyEntity> listOfDeliveryboy = deliveryboyDao.getDetailsByDeliveryboyId(deliveryboyId);
     return listOfDeliveryboy;
   
+  }
+
+  public int updateOrderByStatus(DeliveryboyEntity deliveryboyEntity)throws ParseException{
+    int result = deliveryboyDao.updateOrderByStatus(deliveryboyEntity);
+    return result;
+  
+  }
+
+  @Override
+  public int updateOrderByActivity(DeliveryboyEntity deliveryboyEntity) throws ParseException {
+    int result=deliveryboyDao.updateOrderByActivity(deliveryboyEntity);
+    return result;
+        
+  }
+
+  @Override
+  public int updateOrderByPendingAmount(DeliveryboyEntity deliveryboyEntity) throws ParseException {
+    int result=deliveryboyDao.updateOrderByPendingAmount(deliveryboyEntity);
+    return result;
+    
+  }
+
+  @Override
+  public List<DeliveryboyEntity> getDetailsByActivity() throws ParseException {
+    List<DeliveryboyEntity> lDeliveryboyEntities = deliveryboyDao.getDetailsByActivity();
+    return lDeliveryboyEntities;
   }
 
 

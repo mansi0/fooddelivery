@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  * HotelController
  */
 @RestController
-@RequestMapping(path = "hotel")
+@RequestMapping(path = "/hotel")
 
 public class HotelController {
 
@@ -51,13 +51,22 @@ public class HotelController {
         return listOfHotel;
     }
 
-    // get all details of hotel
+    // get count of hotel
+    @GetMapping(value = "/gethoteldetails")
+    public int getDetails() {
+
+        List<HotelEntity> listOfHotel = hotelService.getDetails();
+        return listOfHotel.size();
+    }
+
+    // get all details hotel
     @GetMapping(value = "/gethoteldetail")
-    public List<HotelEntity> getDetails() {
+    public List<HotelEntity> getDetail() {
 
         List<HotelEntity> listOfHotel = hotelService.getDetails();
         return listOfHotel;
     }
+
 
     // get all details of hotel by hotelId
     @GetMapping(value = "/getdetailsbyhotelid/{parameters}")
